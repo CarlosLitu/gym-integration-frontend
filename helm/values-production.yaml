@@ -1,0 +1,4 @@
+environment: production
+
+imagePullSecrets:
+  - name: dockerhub
