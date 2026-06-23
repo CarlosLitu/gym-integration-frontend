@@ -1,0 +1,9 @@
+ingress:
+  host: gym-integration-frontend-test.duckdns.org
+  issuer: letsencrypt-test
+  tls:
+    enabled: true
+    secretName: gym-integration-frontend-test-tls
+
+imagePullSecrets:
+  - name: dockerhub

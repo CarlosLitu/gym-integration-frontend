@@ -1,0 +1,45 @@
+replicaCount: 1
+
+image:
+  repository: luanaorg/gym-integration-frontend
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: http
+
+ingress:
+  enabled: true
+  className: nginx
+  host: gym-integration-frontend.72.62.96.230.nip.io
+  path: /
+  pathType: Prefix
+  issuer: ""
+  tls:
+    enabled: false
+    secretName: ""
+
+resources:
+  requests:
+    cpu: 25m
+    memory: 32Mi
+  limits:
+    memory: 128Mi
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 15
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 3
+  periodSeconds: 5
