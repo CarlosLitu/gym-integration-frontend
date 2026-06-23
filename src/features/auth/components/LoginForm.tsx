@@ -1,4 +1,4 @@
-import { Button, Input } from '@/components'
+import { Alert, Button, Input } from '@/components'
 import { AUTH_MESSAGES } from '../constants/auth-messages'
 import { useLoginForm } from '../hooks/useLoginForm'
 
@@ -37,6 +37,8 @@ export function LoginForm() {
         onChange={(event) => handleChange('password', event.target.value)}
       />
 
+      {formError ? <Alert>{formError}</Alert> : null}
+
       <a
         href="#"
         className="w-fit font-sans text-[13px] font-medium text-pulse-blue hover:underline"
@@ -45,17 +47,11 @@ export function LoginForm() {
         {AUTH_MESSAGES.forgotPassword}
       </a>
 
-      {formError ? (
-        <p className="rounded-input bg-red-50 px-3 py-2 text-sm text-red-600" role="alert">
-          {formError}
-        </p>
-      ) : null}
-
       <Button
         type="submit"
-        variant={canSubmit ? 'primary' : 'idle'}
+        variant={canSubmit ? 'active' : 'idle'}
         size="lg"
-        className="w-full rounded-pill"
+        className="w-full"
         disabled={isLoading || !canSubmit}
       >
         {isLoading ? 'Entrando...' : AUTH_MESSAGES.submitLabel}

@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { loginRequest } from '../api/login'
+import { getLoginErrorMessage } from '../utils/api-error'
 import { storage } from '@/services/storage'
 import type { LoginCredentials } from '../types/auth.types'
 
@@ -17,8 +18,8 @@ export function useAuthMutation() {
       storage.setUser(response.user)
       window.dispatchEvent(new Event('auth-changed'))
       return response
-    } catch {
-      setError('Não foi possível realizar o login. Tente novamente.')
+    } catch (loginError) {
+      setError(getLoginErrorMessage(loginError))
       throw new Error('login_failed')
     } finally {
       setIsLoading(false)

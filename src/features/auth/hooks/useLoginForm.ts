@@ -61,9 +61,7 @@ export function useLoginForm() {
   const formError = useMemo(() => error, [error])
 
   const canSubmit =
-    isNotEmpty(credentials.email) &&
-    isValidEmail(credentials.email) &&
-    isNotEmpty(credentials.password)
+    isNotEmpty(credentials.email) && isNotEmpty(credentials.password)
 
   return {
     credentials,

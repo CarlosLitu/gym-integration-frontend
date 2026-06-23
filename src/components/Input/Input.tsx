@@ -1,6 +1,24 @@
+import { cva } from 'class-variance-authority'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import type { InputHTMLAttributes } from 'react'
+
+const inputVariants = cva(
+  'h-auto w-full rounded-input border px-[14px] py-3 font-sans text-sm text-pulse-navy outline-none transition-colors placeholder:text-pulse-muted',
+  {
+    variants: {
+      state: {
+        default:
+          'border-pulse-border bg-pulse-surface focus:border-pulse-blue focus:ring-2 focus:ring-pulse-blue/20',
+        error:
+          'border-pulse-error-border bg-pulse-error-bg focus:border-pulse-error-border focus:ring-2 focus:ring-pulse-error-border/20',
+      },
+    },
+    defaultVariants: {
+      state: 'default',
+    },
+  },
+)
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
@@ -19,16 +37,13 @@ export function Input({ className, label, error, id, ...props }: InputProps) {
       ) : null}
       <input
         id={inputId}
-        className={twMerge(
-          clsx(
-            'h-auto w-full rounded-input border border-pulse-border bg-pulse-surface px-[14px] py-3 font-sans text-sm text-pulse-navy outline-none transition-colors placeholder:text-pulse-muted focus:border-pulse-blue focus:ring-2 focus:ring-pulse-blue/20',
-            error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
-            className,
-          ),
-        )}
+        aria-invalid={Boolean(error)}
+        className={twMerge(clsx(inputVariants({ state: error ? 'error' : 'default' }), className))}
         {...props}
       />
-      {error ? <span className="text-xs text-red-500">{error}</span> : null}
+      {error ? (
+        <span className="font-sans text-xs text-pulse-error-border">{error}</span>
+      ) : null}
     </div>
   )
 }

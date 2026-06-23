@@ -7,9 +7,12 @@ export default {
           navy: '#14213D',
           teal: '#00C2A8',
           blue: '#2D6CDF',
+          accent: '#007AFF',
           muted: '#5C6470',
           surface: '#F7F9FC',
           border: '#DADDE2',
+          'error-border': '#D85A30',
+          'error-bg': '#FAECE7',
         },
         primary: {
           DEFAULT: '#14213D',
