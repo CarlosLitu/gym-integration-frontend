@@ -1,11 +1,16 @@
 import { AuthLayout } from '@/layouts'
-import { AUTH_MESSAGES } from '../constants/auth-messages'
+import { LoginDecorations } from '../components/LoginDecorations'
 import { LoginForm } from '../components/LoginForm'
+import { LoginHeader } from '../components/LoginHeader'
 
 export function LoginPage() {
   return (
-    <AuthLayout title={AUTH_MESSAGES.loginTitle} subtitle={AUTH_MESSAGES.loginSubtitle}>
-      <LoginForm />
-    </AuthLayout>
+    <div className="relative min-h-screen overflow-hidden bg-pulse-surface">
+      <LoginDecorations />
+      <AuthLayout>
+        <LoginHeader />
+        <LoginForm />
+      </AuthLayout>
+    </div>
   )
 }

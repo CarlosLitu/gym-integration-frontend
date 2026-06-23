@@ -53,7 +53,6 @@ export function useLoginForm() {
         await login(credentials)
         navigate('/dashboard')
       } catch {
-        // error state handled by useAuthMutation
       }
     },
     [credentials, login, navigate, validate],
@@ -61,11 +60,17 @@ export function useLoginForm() {
 
   const formError = useMemo(() => error, [error])
 
+  const canSubmit =
+    isNotEmpty(credentials.email) &&
+    isValidEmail(credentials.email) &&
+    isNotEmpty(credentials.password)
+
   return {
     credentials,
     fieldErrors,
     formError,
     isLoading,
+    canSubmit,
     handleChange,
     handleSubmit,
   }

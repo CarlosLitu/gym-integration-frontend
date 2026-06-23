@@ -2,14 +2,19 @@ export const theme = {
   fonts: {
     body: '"Hanken Grotesk", system-ui, sans-serif',
     display: '"Space Grotesk", system-ui, sans-serif',
+    heading: '"Space Grotesk", system-ui, sans-serif',
   },
   colors: {
-    primary: '#2563eb',
-    secondary: '#f1f5f9',
-    background: '#ffffff',
-    foreground: '#0f172a',
-    muted: '#64748b',
-    border: '#e2e8f0',
+    navy: '#14213D',
+    teal: '#00C2A8',
+    blue: '#2D6CDF',
+    muted: '#5C6470',
+    surface: '#F7F9FC',
+    border: '#DADDE2',
+    background: '#F7F9FC',
+    foreground: '#14213D',
+    primary: '#14213D',
+    secondary: '#F7F9FC',
   },
   spacing: {
     xs: '0.25rem',
@@ -22,6 +27,8 @@ export const theme = {
     sm: '0.375rem',
     md: '0.5rem',
     lg: '0.75rem',
+    input: '14px',
+    pill: '999px',
   },
 } as const
 
