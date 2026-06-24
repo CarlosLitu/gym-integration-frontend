@@ -31,10 +31,9 @@ export function LoginDecorations() {
       <img
         src={illustration}
         alt=""
-        className="absolute max-w-none select-none"
+        className="fixed bottom-0 max-w-none select-none"
         style={{
           left: toPercent(ILLUSTRATION.x, FIGMA_FRAME.width),
-          top: toPercent(ILLUSTRATION.y, FIGMA_FRAME.height),
           width: toPercent(ILLUSTRATION.width, FIGMA_FRAME.width),
           height: toPercent(ILLUSTRATION.height, FIGMA_FRAME.height),
         }}
