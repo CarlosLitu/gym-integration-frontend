@@ -1,8 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import { Alert, Button, Input } from '@/components'
-import { AUTH_MESSAGES } from '../constants/auth-messages'
 import { useLoginForm } from '../hooks/useLoginForm'
 
 export function LoginForm() {
+  const { t } = useTranslation()
   const {
     credentials,
     fieldErrors,
@@ -16,22 +17,22 @@ export function LoginForm() {
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
       <Input
-        label={AUTH_MESSAGES.emailLabel}
+        label={t('auth.emailLabel')}
         type="email"
         name="email"
         autoComplete="email"
-        placeholder={AUTH_MESSAGES.emailPlaceholder}
+        placeholder={t('auth.emailPlaceholder')}
         value={credentials.email}
         error={fieldErrors.email}
         onChange={(event) => handleChange('email', event.target.value)}
       />
 
       <Input
-        label={AUTH_MESSAGES.passwordLabel}
+        label={t('auth.passwordLabel')}
         type="password"
         name="password"
         autoComplete="current-password"
-        placeholder={AUTH_MESSAGES.passwordPlaceholder}
+        placeholder={t('auth.passwordPlaceholder')}
         value={credentials.password}
         error={fieldErrors.password}
         onChange={(event) => handleChange('password', event.target.value)}
@@ -44,7 +45,7 @@ export function LoginForm() {
         className="w-fit font-sans text-[13px] font-medium text-pulse-blue hover:underline"
         onClick={(event) => event.preventDefault()}
       >
-        {AUTH_MESSAGES.forgotPassword}
+        {t('auth.forgotPassword')}
       </a>
 
       <Button
@@ -54,7 +55,7 @@ export function LoginForm() {
         className="w-full"
         disabled={isLoading || !canSubmit}
       >
-        {isLoading ? 'Entrando...' : AUTH_MESSAGES.submitLabel}
+        {isLoading ? t('auth.submittingLabel') : t('auth.submitLabel')}
       </Button>
     </form>
   )

@@ -1,0 +1,63 @@
+{
+  "responses": {
+    "HEALTH_OK": "Service is available",
+    "ROUTE_NOT_FOUND": "Route not found",
+    "INTERNAL_SERVER_ERROR": "Internal server error. Please try again.",
+
+    "AUTH_LOGIN_REQUIRED_FIELDS": "Email and password are required",
+    "AUTH_LOGIN_SUCCESS": "Login successful",
+    "AUTH_LOGOUT_SUCCESS": "Logout successful",
+    "AUTH_TOKEN_REQUIRED": "Authentication token is required",
+    "AUTH_INVALID_CREDENTIALS": "Invalid email or password",
+    "AUTH_TENANT_INACTIVE": "Your account is inactive. Contact support.",
+    "AUTH_TOKEN_INVALID_OR_EXPIRED": "Session expired. Please log in again.",
+    "AUTH_SESSION_NOT_FOUND": "Session not found. Please log in again.",
+    "AUTH_USER_NOT_AUTHORIZED": "User not authorized",
+    "AUTH_ADMIN_REQUIRED": "Administrator access required",
+
+    "TENANT_LIST_SUCCESS": "Tenants listed successfully",
+    "TENANT_FETCH_SUCCESS": "Tenant loaded successfully",
+    "TENANT_CREATE_SUCCESS": "Tenant created successfully",
+    "TENANT_UPDATE_SUCCESS": "Tenant updated successfully",
+    "TENANT_DELETE_SUCCESS": "Tenant deleted successfully",
+    "TENANT_NOT_FOUND": "Tenant not found",
+    "TENANT_ACCESS_DENIED": "Tenant access denied",
+    "TENANT_REQUIRED_FIELDS": "Fill in the required tenant fields",
+    "TENANT_INVALID_GATEWAY": "Invalid gateway",
+    "TENANT_NO_VALID_FIELDS_FOR_UPDATE": "No valid fields to update",
+    "TENANT_REFERENCE_NOT_FOUND": "Tenant reference not found",
+    "TENANT_CHILD_REFERENCE_NOT_FOUND": "Child tenant reference not found",
+
+    "USER_LIST_SUCCESS": "Users listed successfully",
+    "USER_FETCH_SUCCESS": "User loaded successfully",
+    "USER_CREATE_SUCCESS": "User created successfully",
+    "USER_UPDATE_SUCCESS": "User updated successfully",
+    "USER_DELETE_SUCCESS": "User deleted successfully",
+    "USER_NOT_FOUND": "User not found",
+    "USER_REQUIRED_FIELDS": "Fill in the required user fields",
+    "USER_INVALID_TYPE": "Invalid user type",
+
+    "WEBHOOK_RECEIVED_SUCCESS": "Webhook received successfully",
+    "WEBHOOK_EVO_RECEIVED_SUCCESS": "EVO webhook received successfully",
+    "WEBHOOK_TENANT_REQUIRED": "Tenant is required for the webhook",
+    "WEBHOOK_ID_REQUIRED": "Webhook ID is required",
+    "WEBHOOK_GATEWAY_REGISTER_FAILED": "Failed to register webhook on gateway",
+    "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registered on gateway successfully",
+    "WEBHOOK_GATEWAY_DELETE_FAILED": "Failed to delete webhook from gateway",
+    "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook deleted from gateway successfully"
+  },
+  "auth": {
+    "loginSubtitle": "Sign in with your consultant or administrator account.",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "emailPlaceholder": "you@company.com",
+    "passwordPlaceholder": "••••••••",
+    "submitLabel": "Sign in",
+    "submittingLabel": "Signing in...",
+    "forgotPassword": "Forgot your password?",
+    "loginFailed": "Could not sign in. Please try again.",
+    "requiredField": "Required field",
+    "invalidEmail": "Invalid email. Check the format and try again.",
+    "registerSoon": "Registration coming soon"
+  }
+}

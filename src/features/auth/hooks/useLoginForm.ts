@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AUTH_MESSAGES } from '../constants/auth-messages'
+import { useTranslation } from 'react-i18next'
 import { useAuthMutation } from './useAuthMutation'
 import { isValidEmail, isNotEmpty } from '@/utils/validators'
 import type { LoginCredentials } from '../types/auth.types'
@@ -11,6 +11,7 @@ interface LoginFormErrors {
 }
 
 export function useLoginForm() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { login, isLoading, error } = useAuthMutation()
 
@@ -25,18 +26,18 @@ export function useLoginForm() {
     const errors: LoginFormErrors = {}
 
     if (!isNotEmpty(credentials.email)) {
-      errors.email = AUTH_MESSAGES.requiredField
+      errors.email = t('auth.requiredField')
     } else if (!isValidEmail(credentials.email)) {
-      errors.email = AUTH_MESSAGES.invalidEmail
+      errors.email = t('auth.invalidEmail')
     }
 
     if (!isNotEmpty(credentials.password)) {
-      errors.password = AUTH_MESSAGES.requiredField
+      errors.password = t('auth.requiredField')
     }
 
     setFieldErrors(errors)
     return Object.keys(errors).length === 0
-  }, [credentials])
+  }, [credentials, t])
 
   const handleChange = useCallback((field: keyof LoginCredentials, value: string) => {
     setCredentials((current) => ({ ...current, [field]: value }))
