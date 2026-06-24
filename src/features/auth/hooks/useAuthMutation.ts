@@ -1,10 +1,11 @@
 import { useCallback, useState } from 'react'
 import { loginRequest } from '../api/login'
-import { getLoginErrorMessage } from '../utils/api-error'
+import { useApiMessage } from '@/hooks/useApiMessage'
 import { storage } from '@/services/storage'
 import type { LoginCredentials } from '../types/auth.types'
 
 export function useAuthMutation() {
+  const { getErrorMessage } = useApiMessage()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -19,12 +20,12 @@ export function useAuthMutation() {
       window.dispatchEvent(new Event('auth-changed'))
       return response
     } catch (loginError) {
-      setError(getLoginErrorMessage(loginError))
+      setError(getErrorMessage(loginError))
       throw new Error('login_failed')
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }, [getErrorMessage])
 
   const logout = useCallback(() => {
     storage.clearSession()
