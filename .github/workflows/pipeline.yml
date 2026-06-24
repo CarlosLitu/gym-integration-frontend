@@ -103,7 +103,8 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           PORT="${SSH_PORT:-22}"
-          ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          # accept-new nos steps seguintes já confia no host; aqui só pré-popula e não pode derrubar o job
+          ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Enviar chart e deploy com Helm (SSH)
         if: github.event_name != 'pull_request'
