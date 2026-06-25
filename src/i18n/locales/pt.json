@@ -59,5 +59,12 @@
     "requiredField": "Campo obrigatório",
     "invalidEmail": "E-mail inválido. Revise o formato e tente de novo.",
     "registerSoon": "Cadastro em breve"
+  },
+  "status": {
+    "unknown": "Desconhecido",
+    "connected": "Conectado"
+  },
+  "tenant": {
+    "lastEvent": "Último evento {{time}}"
   }
 }

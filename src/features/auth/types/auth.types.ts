@@ -9,9 +9,17 @@ export interface RegisterPayload extends LoginCredentials {
 
 export type UserRole = 'ADMIN' | 'CONSULTANT' | string
 
-export interface UserSession {
+export interface ApiTenant {
+  _id: string
+  name: string
+  gateway?: string
+  isActive?: boolean
+  updatedAt?: string
+}
+
+export interface ApiUser {
   id: string
-  tenantId: string
+  tenantId: ApiTenant
   name: string
   email: string
   role: UserRole
@@ -21,8 +29,20 @@ export interface UserSession {
   deletedAt: string | null
 }
 
+export interface UserSession {
+  id: string
+  name: string
+  email: string
+  role: UserRole
+  tenant: {
+    id: string
+    name: string
+    updatedAt: string | null
+  }
+}
+
 export interface AuthResponse {
   message: string
   token: string
-  user: UserSession
+  user: ApiUser
 }

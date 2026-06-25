@@ -1,30 +1,12 @@
-import { useEffect, useState } from 'react'
-import { getMetricsRequest } from '../api/get-metrics'
+import { useState } from 'react'
 import type { DashboardMetrics } from '../api/get-metrics'
 
+// A rota /dashboard/metrics esta desativada no front por enquanto.
+// Para reativar, voltar a chamar getMetricsRequest() em um useEffect.
 export function useDashboardData() {
-  const [metrics, setMetrics] = useState<DashboardMetrics | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    let isMounted = true
-
-    getMetricsRequest()
-      .then((data) => {
-        if (isMounted) setMetrics(data)
-      })
-      .catch(() => {
-        if (isMounted) setError('Não foi possível carregar os dados do dashboard.')
-      })
-      .finally(() => {
-        if (isMounted) setIsLoading(false)
-      })
-
-    return () => {
-      isMounted = false
-    }
-  }, [])
+  const [metrics] = useState<DashboardMetrics | null>(null)
+  const [isLoading] = useState(false)
+  const [error] = useState<string | null>(null)
 
   return { metrics, isLoading, error }
 }

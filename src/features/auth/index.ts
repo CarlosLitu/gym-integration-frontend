@@ -1,4 +1,6 @@
 export { useAuth } from './hooks/useAuth'
+export { useCurrentTenant } from './hooks/useCurrentTenant'
+export type { CurrentTenant, TenantStatus } from './hooks/useCurrentTenant'
 export { LoginForm } from './components/LoginForm'
 export { LoginPage } from './pages/LoginPage'
 export type { UserSession, AuthResponse, LoginCredentials } from './types/auth.types'

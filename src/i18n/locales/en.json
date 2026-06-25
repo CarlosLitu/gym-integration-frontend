@@ -59,5 +59,12 @@
     "requiredField": "Required field",
     "invalidEmail": "Invalid email. Check the format and try again.",
     "registerSoon": "Registration coming soon"
+  },
+  "status": {
+    "unknown": "Unknown",
+    "connected": "Connected"
+  },
+  "tenant": {
+    "lastEvent": "Last event {{time}}"
   }
 }

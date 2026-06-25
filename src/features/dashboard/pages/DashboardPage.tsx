@@ -9,8 +9,8 @@ export function DashboardPage() {
     return <p className="text-sm text-slate-500">Carregando dashboard...</p>
   }
 
-  if (error || !metrics) {
-    return <p className="text-sm text-red-500">{error ?? 'Dados indisponíveis.'}</p>
+  if (error) {
+    return <p className="text-sm text-red-500">{error}</p>
   }
 
   return (
@@ -20,7 +20,7 @@ export function DashboardPage() {
         <p className="mt-1 text-sm text-slate-500">Visão geral da integração</p>
       </header>
 
-      <MetricsGrid metrics={metrics} />
+      {metrics ? <MetricsGrid metrics={metrics} /> : null}
       <PerformanceChart />
     </div>
   )
