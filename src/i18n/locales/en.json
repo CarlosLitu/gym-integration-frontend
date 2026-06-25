@@ -67,5 +67,24 @@
   "tenant": {
     "lastEvent": "Last event {{time}}",
     "changeTenant": "Change Tenant"
+  },
+  "tenants": {
+    "title": "Gyms",
+    "newTenant": "New tenant",
+    "searchPlaceholder": "Search by name, city or gym ID...",
+    "sortAz": "A-Z",
+    "count": "{{total}} gyms",
+    "showing": "Showing {{shown}} of {{total}}",
+    "loading": "Loading gyms...",
+    "empty": "No gyms found",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "filters": {
+      "all": "All",
+      "connected": "Connected",
+      "waiting": "Waiting",
+      "error": "Error",
+      "pending": "Pending"
+    }
   }
 }

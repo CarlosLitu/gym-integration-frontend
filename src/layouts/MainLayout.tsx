@@ -1,13 +1,16 @@
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import hexConnected from '@/assets/images/hex-connected.svg'
 import { Button, StatusBadge } from '@/components'
 import { useCurrentTenant } from '@/features/auth'
+import { TenantSwitcherModal } from '@/features/tenants'
 import { formatTimeAgo } from '@/utils/formatters'
 
 export function MainLayout() {
   const { t, i18n } = useTranslation()
   const { name, status, lastEvent } = useCurrentTenant()
+  const [isTenantModalOpen, setIsTenantModalOpen] = useState(false)
 
   const tenantName = name ?? '—'
   const tenantInitial = name?.charAt(0).toUpperCase() ?? '?'
@@ -32,7 +35,7 @@ export function MainLayout() {
             ) : null}
           </div>
           <StatusBadge status={status}>{t(`status.${status}`)}</StatusBadge>
-          <Button variant="brand" size="md">
+          <Button variant="brand" size="md" onClick={() => setIsTenantModalOpen(true)}>
             {t('tenant.changeTenant')}
           </Button>
           <span className="ml-auto grid h-9 w-9 place-items-center rounded-full bg-pulse-surface font-sans font-semibold text-pulse-navy">
@@ -44,6 +47,11 @@ export function MainLayout() {
           <Outlet />
         </main>
       </div>
+
+      <TenantSwitcherModal
+        isOpen={isTenantModalOpen}
+        onClose={() => setIsTenantModalOpen(false)}
+      />
     </div>
   )
 }

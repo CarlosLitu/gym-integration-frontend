@@ -67,5 +67,24 @@
   "tenant": {
     "lastEvent": "Último evento {{time}}",
     "changeTenant": "Mudar Tenant"
+  },
+  "tenants": {
+    "title": "Academias",
+    "newTenant": "Novo tenant",
+    "searchPlaceholder": "Buscar por nome, cidade ou ID da academia...",
+    "sortAz": "A-Z",
+    "count": "{{total}} academias",
+    "showing": "Mostrando {{shown}} de {{total}}",
+    "loading": "Carregando academias...",
+    "empty": "Nenhuma academia encontrada",
+    "previousPage": "Página anterior",
+    "nextPage": "Próxima página",
+    "filters": {
+      "all": "Todos",
+      "connected": "Conectado",
+      "waiting": "Aguardando",
+      "error": "Erro",
+      "pending": "Pendente"
+    }
   }
 }
