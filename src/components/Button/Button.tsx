@@ -15,6 +15,8 @@ const buttonVariants = cva(
         outline:
           'border border-pulse-border bg-transparent text-pulse-navy hover:bg-pulse-surface disabled:opacity-60',
         idle: 'bg-pulse-border text-pulse-muted disabled:opacity-60',
+        brand:
+          'rounded-pill bg-pulse-blue text-white hover:bg-pulse-blue/90 disabled:opacity-60',
       },
       size: {
         sm: 'h-8 px-3 text-sm',

@@ -65,6 +65,7 @@
     "connected": "Conectado"
   },
   "tenant": {
-    "lastEvent": "Último evento {{time}}"
+    "lastEvent": "Último evento {{time}}",
+    "changeTenant": "Mudar Tenant"
   }
 }

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import hexConnected from '@/assets/images/hex-connected.svg'
-import { StatusBadge } from '@/components'
+import { Button, StatusBadge } from '@/components'
 import { useCurrentTenant } from '@/features/auth'
 import { formatTimeAgo } from '@/utils/formatters'
 
@@ -32,6 +32,9 @@ export function MainLayout() {
             ) : null}
           </div>
           <StatusBadge status={status}>{t(`status.${status}`)}</StatusBadge>
+          <Button variant="brand" size="md">
+            {t('tenant.changeTenant')}
+          </Button>
           <span className="ml-auto grid h-9 w-9 place-items-center rounded-full bg-pulse-surface font-sans font-semibold text-pulse-navy">
             {tenantInitial}
           </span>
