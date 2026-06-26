@@ -1,7 +1,17 @@
+export type TenantStatus =
+  | 'INTEGRATION_PENDING'
+  | 'INVALID_CREDENTIALS'
+  | 'WAITING_EVENTS'
+  | 'CONNECTED'
+
+export type TenantSyncStatus = 'OFF' | 'ON' | 'ERROR'
+
 export interface ApiTenant {
   _id: string
   name: string
   gateway?: string
+  status?: TenantStatus
+  sync?: TenantSyncStatus
   updatedAt?: string
 }
 
@@ -9,6 +19,8 @@ export interface TenantListItem {
   id: string
   name: string
   gateway: string | null
+  status: TenantStatus
+  sync: TenantSyncStatus
   updatedAt: string | null
 }
 

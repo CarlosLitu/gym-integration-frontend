@@ -8,6 +8,8 @@ export async function listTenantsRequest(): Promise<TenantListItem[]> {
     id: tenant._id,
     name: tenant.name,
     gateway: tenant.gateway ?? null,
+    status: tenant.status ?? 'INTEGRATION_PENDING',
+    sync: tenant.sync ?? 'OFF',
     updatedAt: tenant.updatedAt ?? null,
   }))
 }

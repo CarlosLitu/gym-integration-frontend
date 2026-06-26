@@ -80,6 +80,12 @@
     "empty": "Nenhuma academia encontrada",
     "edit": "Editar",
     "sync": "Sync",
+    "statusLabels": {
+      "INTEGRATION_PENDING": "Integração pendente",
+      "INVALID_CREDENTIALS": "Credenciais inválidas",
+      "WAITING_EVENTS": "Aguardando eventos",
+      "CONNECTED": "Conectado"
+    },
     "previousPage": "Página anterior",
     "nextPage": "Próxima página",
     "filters": {

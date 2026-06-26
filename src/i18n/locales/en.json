@@ -80,6 +80,12 @@
     "empty": "No gyms found",
     "edit": "Edit",
     "sync": "Sync",
+    "statusLabels": {
+      "INTEGRATION_PENDING": "Integration pending",
+      "INVALID_CREDENTIALS": "Invalid credentials",
+      "WAITING_EVENTS": "Waiting for events",
+      "CONNECTED": "Connected"
+    },
     "previousPage": "Previous page",
     "nextPage": "Next page",
     "filters": {
