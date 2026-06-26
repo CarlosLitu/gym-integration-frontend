@@ -88,6 +88,43 @@
       "waiting": "Waiting",
       "error": "Error",
       "pending": "Pending"
+    },
+    "create": {
+      "back": "back",
+      "title": "Add Gym",
+      "next": "Next",
+      "integrationNote": "These credentials come from the gym's own EVO panel. They are only used to authenticate and register the webhook – they are not shown again after being saved.",
+      "testConnection": "Test connection",
+      "createGym": "Create Gym",
+      "createHint": "To create, you must test the connection first.",
+      "steps": {
+        "data": "Gym details",
+        "integration": "Integration"
+      },
+      "fields": {
+        "name": "Gym name",
+        "cnpj": "Tax ID",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "city": "City",
+        "state": "State",
+        "token": "Token",
+        "apiKey": "API Key",
+        "apiSecret": "API Secret"
+      },
+      "placeholders": {
+        "name": "Ex: Academia Vitta",
+        "cnpj": "00.000.000/0001-00",
+        "phone": "(00) 00000-0000",
+        "email": "contact@gym.com",
+        "address": "Street, number, district",
+        "city": "City",
+        "state": "State",
+        "token": "evo_tk_...",
+        "apiKey": "evo_key_...",
+        "apiSecret": "••••••••••••"
+      }
     }
   }
 }

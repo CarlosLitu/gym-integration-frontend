@@ -88,6 +88,43 @@
       "waiting": "Aguardando",
       "error": "Erro",
       "pending": "Pendente"
+    },
+    "create": {
+      "back": "voltar",
+      "title": "Adicionar Academia",
+      "next": "Próximo",
+      "integrationNote": "Essas credenciais vêm do painel do EVO da própria academia. Elas só são usadas para autenticar e registrar o webhook – não são exibidas de novo depois de salvas.",
+      "testConnection": "Testar conexão",
+      "createGym": "Criar Academia",
+      "createHint": "Para criar, é necessário testar a conexão primeiro.",
+      "steps": {
+        "data": "Dados da academia",
+        "integration": "Integração"
+      },
+      "fields": {
+        "name": "Nome da academia",
+        "cnpj": "CNPJ",
+        "phone": "Telefone",
+        "email": "E-mail",
+        "address": "Endereço",
+        "city": "Cidade",
+        "state": "Estado",
+        "token": "Token",
+        "apiKey": "API Key",
+        "apiSecret": "API Secret"
+      },
+      "placeholders": {
+        "name": "Ex: Academia Vitta",
+        "cnpj": "00.000.000/0001-00",
+        "phone": "(00) 00000-0000",
+        "email": "contato@academia.com",
+        "address": "Rua, número, bairro",
+        "city": "Cidade",
+        "state": "Estado",
+        "token": "evo_tk_...",
+        "apiKey": "evo_key_...",
+        "apiSecret": "••••••••••••"
+      }
     }
   }
 }
