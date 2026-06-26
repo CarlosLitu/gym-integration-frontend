@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components'
 import type { TenantFormValues } from '../../types/tenant.types'
+import { maskCnpj, maskPhone } from '../../utils/masks'
 
 interface TenantStepDataProps {
   values: TenantFormValues
@@ -23,13 +24,15 @@ export function TenantStepData({ values, onChange }: TenantStepDataProps) {
           label={t('tenants.create.fields.cnpj')}
           placeholder={t('tenants.create.placeholders.cnpj')}
           value={values.cnpj}
-          onChange={(event) => onChange('cnpj', event.target.value)}
+          inputMode="numeric"
+          onChange={(event) => onChange('cnpj', maskCnpj(event.target.value))}
         />
         <Input
           label={t('tenants.create.fields.phone')}
           placeholder={t('tenants.create.placeholders.phone')}
           value={values.phone}
-          onChange={(event) => onChange('phone', event.target.value)}
+          inputMode="numeric"
+          onChange={(event) => onChange('phone', maskPhone(event.target.value))}
         />
       </div>
       <Input
