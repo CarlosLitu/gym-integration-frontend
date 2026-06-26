@@ -22,7 +22,7 @@ export function Modal({ isOpen, onClose, className, hideOverlay = false, childre
   return (
     <div
       className={clsx(
-        'fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-8',
+        'fixed inset-0 z-50 flex animate-fade-in items-center justify-center overflow-y-auto p-4 sm:p-8',
         hideOverlay ? null : 'bg-pulse-surface bg-cover bg-center bg-no-repeat',
       )}
       style={overlayStyle}
@@ -33,7 +33,7 @@ export function Modal({ isOpen, onClose, className, hideOverlay = false, childre
         aria-modal="true"
         className={twMerge(
           clsx(
-            'relative flex w-full max-w-2xl flex-col overflow-hidden rounded-lg bg-white shadow-card',
+            'relative flex w-full max-w-2xl animate-scale-in flex-col overflow-hidden rounded-lg bg-white shadow-card',
             className,
           ),
         )}

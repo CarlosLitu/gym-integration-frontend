@@ -18,18 +18,23 @@ export function TenantListItem({ tenant }: TenantListItemProps) {
   return (
     <div className="flex items-center gap-3 px-4 py-4">
       <img src={hexConnected} alt="" className="h-8 w-8 shrink-0" />
-      <div className="flex min-w-0 flex-col">
-        <p className="truncate font-sans text-sm font-semibold text-pulse-navy">
+      <div className="flex w-48 shrink-0 flex-col">
+        <p
+          title={tenant.name}
+          className="truncate font-sans text-sm font-semibold text-pulse-navy"
+        >
           {tenant.name}
         </p>
         {subtitle ? (
           <p className="truncate font-sans text-xs text-pulse-muted">{subtitle}</p>
         ) : null}
       </div>
-      <span className="inline-flex shrink-0 items-center gap-1.5 rounded-[999px] border border-slate-200 bg-white px-3 py-1 font-sans text-xs font-medium text-[#505458]">
-        <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
-        {t('tenants.sync')}
-      </span>
+      <div className="w-24 shrink-0">
+        <span className="inline-flex items-center gap-1.5 rounded-[999px] border border-slate-200 bg-white px-3 py-1 font-sans text-xs font-medium text-[#505458]">
+          <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
+          {t('tenants.sync')}
+        </span>
+      </div>
       <div className="ml-auto flex shrink-0 items-center gap-3">
         <StatusBadge status="unknown" className="rounded-[999px]">
           {t('status.unknown')}
