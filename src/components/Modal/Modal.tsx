@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { X } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import overlayBackground from '@/assets/images/overlay.svg'
 
 interface ModalProps {
   isOpen: boolean
@@ -14,12 +15,17 @@ interface ModalProps {
 export function Modal({ isOpen, onClose, className, hideOverlay = false, children }: ModalProps) {
   if (!isOpen) return null
 
+  const overlayStyle: CSSProperties | undefined = hideOverlay
+    ? undefined
+    : { backgroundImage: `url(${overlayBackground})` }
+
   return (
     <div
       className={clsx(
         'fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-8',
-        hideOverlay ? null : 'bg-pulse-navy/40',
+        hideOverlay ? null : 'bg-pulse-surface bg-cover bg-center bg-no-repeat',
       )}
+      style={overlayStyle}
       role="presentation"
     >
       <div

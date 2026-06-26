@@ -17,7 +17,7 @@ const EMPTY_VALUES: TenantFormValues = {
   address: '',
   city: '',
   state: '',
-  token: '',
+  gateway: DEFAULT_GATEWAY,
   apiKey: '',
   apiSecret: '',
 }
@@ -101,7 +101,7 @@ export function useCreateTenant() {
       name: values.name.trim(),
       apiKey: values.apiKey.trim(),
       apiSecret: values.apiSecret.trim(),
-      gateway: DEFAULT_GATEWAY,
+      gateway: values.gateway || DEFAULT_GATEWAY,
     }
 
     try {
@@ -112,7 +112,7 @@ export function useCreateTenant() {
     } finally {
       setIsLoading(false)
     }
-  }, [values.name, values.apiKey, values.apiSecret, getErrorMessage])
+  }, [values.name, values.apiKey, values.apiSecret, values.gateway, getErrorMessage])
 
   return {
     values,

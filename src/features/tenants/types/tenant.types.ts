@@ -20,7 +20,7 @@ export interface TenantFormValues {
   address: string
   city: string
   state: string
-  token: string
+  gateway: string
   apiKey: string
   apiSecret: string
 }

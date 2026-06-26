@@ -119,7 +119,7 @@
         "address": "Address",
         "city": "City",
         "state": "State",
-        "token": "Token",
+        "gateway": "Gateway",
         "apiKey": "API Key",
         "apiSecret": "API Secret"
       },
