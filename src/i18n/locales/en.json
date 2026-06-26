@@ -96,6 +96,7 @@
       "integrationNote": "These credentials come from the gym's own EVO panel. They are only used to authenticate and register the webhook – they are not shown again after being saved.",
       "testConnection": "Test connection",
       "createGym": "Create Gym",
+      "creating": "Creating...",
       "createHint": "To create, you must test the connection first.",
       "steps": {
         "data": "Gym details",

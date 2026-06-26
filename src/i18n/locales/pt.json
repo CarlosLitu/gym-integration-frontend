@@ -96,6 +96,7 @@
       "integrationNote": "Essas credenciais vêm do painel do EVO da própria academia. Elas só são usadas para autenticar e registrar o webhook – não são exibidas de novo depois de salvas.",
       "testConnection": "Testar conexão",
       "createGym": "Criar Academia",
+      "creating": "Criando...",
       "createHint": "Para criar, é necessário testar a conexão primeiro.",
       "steps": {
         "data": "Dados da academia",

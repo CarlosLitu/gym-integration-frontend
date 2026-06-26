@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components'
+import type { TenantFormValues } from '../../types/tenant.types'
 
 interface TenantStepDataProps {
-  onInput?: () => void
+  values: TenantFormValues
+  onChange: (field: keyof TenantFormValues, value: string) => void
 }
 
-export function TenantStepData({ onInput }: TenantStepDataProps) {
+export function TenantStepData({ values, onChange }: TenantStepDataProps) {
   const { t } = useTranslation()
 
   return (
@@ -13,41 +15,48 @@ export function TenantStepData({ onInput }: TenantStepDataProps) {
       <Input
         label={t('tenants.create.fields.name')}
         placeholder={t('tenants.create.placeholders.name')}
-        onChange={onInput}
+        value={values.name}
+        onChange={(event) => onChange('name', event.target.value)}
       />
       <div className="grid grid-cols-2 gap-4">
         <Input
           label={t('tenants.create.fields.cnpj')}
           placeholder={t('tenants.create.placeholders.cnpj')}
-          onChange={onInput}
+          value={values.cnpj}
+          onChange={(event) => onChange('cnpj', event.target.value)}
         />
         <Input
           label={t('tenants.create.fields.phone')}
           placeholder={t('tenants.create.placeholders.phone')}
-          onChange={onInput}
+          value={values.phone}
+          onChange={(event) => onChange('phone', event.target.value)}
         />
       </div>
       <Input
         type="email"
         label={t('tenants.create.fields.email')}
         placeholder={t('tenants.create.placeholders.email')}
-        onChange={onInput}
+        value={values.email}
+        onChange={(event) => onChange('email', event.target.value)}
       />
       <Input
         label={t('tenants.create.fields.address')}
         placeholder={t('tenants.create.placeholders.address')}
-        onChange={onInput}
+        value={values.address}
+        onChange={(event) => onChange('address', event.target.value)}
       />
       <div className="grid grid-cols-2 gap-4">
         <Input
           label={t('tenants.create.fields.city')}
           placeholder={t('tenants.create.placeholders.city')}
-          onChange={onInput}
+          value={values.city}
+          onChange={(event) => onChange('city', event.target.value)}
         />
         <Input
           label={t('tenants.create.fields.state')}
           placeholder={t('tenants.create.placeholders.state')}
-          onChange={onInput}
+          value={values.state}
+          onChange={(event) => onChange('state', event.target.value)}
         />
       </div>
     </div>

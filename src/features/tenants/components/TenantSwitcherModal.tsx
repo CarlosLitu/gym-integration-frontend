@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { clsx } from 'clsx'
 import { Modal } from '@/components'
 import { useTenantModalView } from '../hooks/useTenantModalView'
 import { useTenantWizard } from '../hooks/useTenantWizard'
+import { useCreateTenant } from '../hooks/useCreateTenant'
 import { TenantListView } from './TenantListView'
 import { TenantCreateForm } from './TenantCreateForm'
 
@@ -13,10 +15,13 @@ interface TenantSwitcherModalProps {
 export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProps) {
   const { view, showCreate, showList } = useTenantModalView()
   const { step, next, back, reset } = useTenantWizard()
+  const { values, setField, reset: resetForm, isValid, isLoading, error, submit } = useCreateTenant()
+  const [reloadToken, setReloadToken] = useState(0)
 
   function handleClose() {
     showList()
     reset()
+    resetForm()
     onClose()
   }
 
@@ -25,6 +30,18 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
       showList()
     } else {
       back()
+    }
+  }
+
+  async function handleSubmit() {
+    try {
+      await submit()
+      resetForm()
+      reset()
+      setReloadToken((current) => current + 1)
+      showList()
+    } catch {
+      // Erro ja tratado e exibido pelo hook useCreateTenant.
     }
   }
 
@@ -41,7 +58,7 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
             view === 'list' ? 'translate-x-0' : '-translate-x-full',
           )}
         >
-          <TenantListView isOpen={isOpen} onNewTenant={showCreate} />
+          <TenantListView isOpen={isOpen} onNewTenant={showCreate} reloadToken={reloadToken} />
         </div>
         <div
           className={clsx(
@@ -49,7 +66,17 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
             view === 'create' ? 'translate-x-0' : 'translate-x-full',
           )}
         >
-          <TenantCreateForm step={step} onNext={next} onBack={handleBack} />
+          <TenantCreateForm
+            step={step}
+            onNext={next}
+            onBack={handleBack}
+            values={values}
+            onChange={setField}
+            isValid={isValid}
+            isLoading={isLoading}
+            error={error}
+            onSubmit={handleSubmit}
+          />
         </div>
       </div>
     </Modal>

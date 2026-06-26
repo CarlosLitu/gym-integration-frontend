@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import { ArrowRight, CaretLeft } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components'
 import type { TenantWizardStep } from '../hooks/useTenantWizard'
+import type { TenantFormValues } from '../types/tenant.types'
 import { TenantStepper } from './TenantStepper'
 import { TenantStepData } from './steps/TenantStepData'
 import { TenantStepIntegration } from './steps/TenantStepIntegration'
@@ -12,11 +12,27 @@ interface TenantCreateFormProps {
   step: TenantWizardStep
   onNext: () => void
   onBack: () => void
+  values: TenantFormValues
+  onChange: (field: keyof TenantFormValues, value: string) => void
+  isValid: boolean
+  isLoading: boolean
+  error: string | null
+  onSubmit: () => void
 }
 
-export function TenantCreateForm({ step, onNext, onBack }: TenantCreateFormProps) {
+export function TenantCreateForm({
+  step,
+  onNext,
+  onBack,
+  values,
+  onChange,
+  isValid,
+  isLoading,
+  error,
+  onSubmit,
+}: TenantCreateFormProps) {
   const { t } = useTranslation()
-  const [canProceed, setCanProceed] = useState(false)
+  const canProceed = values.name.trim().length > 0
 
   return (
     <div className="flex h-full flex-col gap-4">
@@ -43,7 +59,7 @@ export function TenantCreateForm({ step, onNext, onBack }: TenantCreateFormProps
           )}
         >
           <div className="flex-1 overflow-y-auto">
-            <TenantStepData onInput={() => setCanProceed(true)} />
+            <TenantStepData values={values} onChange={onChange} />
           </div>
           <Button
             variant={canProceed ? 'brand' : 'idle'}
@@ -64,7 +80,7 @@ export function TenantCreateForm({ step, onNext, onBack }: TenantCreateFormProps
           )}
         >
           <div className="flex-1 overflow-y-auto">
-            <TenantStepIntegration />
+            <TenantStepIntegration values={values} onChange={onChange} />
           </div>
           <div className="flex flex-col gap-2">
             <Button
@@ -74,12 +90,22 @@ export function TenantCreateForm({ step, onNext, onBack }: TenantCreateFormProps
             >
               {t('tenants.create.testConnection')}
             </Button>
-            <Button variant="idle" size="lg" disabled className="w-full !rounded-[12px]">
-              {t('tenants.create.createGym')}
+            <Button
+              variant={isValid && !isLoading ? 'brand' : 'idle'}
+              size="lg"
+              disabled={!isValid || isLoading}
+              className="w-full !rounded-[12px]"
+              onClick={onSubmit}
+            >
+              {isLoading ? t('tenants.create.creating') : t('tenants.create.createGym')}
             </Button>
-            <p className="font-sans text-xs text-pulse-muted">
-              {t('tenants.create.createHint')}
-            </p>
+            {error ? (
+              <p className="font-sans text-xs text-pulse-error-border">{error}</p>
+            ) : (
+              <p className="font-sans text-xs text-pulse-muted">
+                {t('tenants.create.createHint')}
+              </p>
+            )}
           </div>
         </div>
       </div>

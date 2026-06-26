@@ -3,7 +3,7 @@ import { useApiMessage } from '@/hooks/useApiMessage'
 import { listTenantsRequest } from '../api/list-tenants'
 import type { TenantListItem } from '../types/tenant.types'
 
-export function useTenants(enabled: boolean) {
+export function useTenants(enabled: boolean, reloadToken = 0) {
   const { getErrorMessage } = useApiMessage()
   const [tenants, setTenants] = useState<TenantListItem[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -30,7 +30,7 @@ export function useTenants(enabled: boolean) {
     return () => {
       isMounted = false
     }
-  }, [enabled, getErrorMessage])
+  }, [enabled, reloadToken, getErrorMessage])
 
   return { tenants, isLoading, error }
 }

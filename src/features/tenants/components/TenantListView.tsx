@@ -11,11 +11,12 @@ import { Pagination } from './Pagination'
 interface TenantListViewProps {
   isOpen: boolean
   onNewTenant: () => void
+  reloadToken?: number
 }
 
-export function TenantListView({ isOpen, onNewTenant }: TenantListViewProps) {
+export function TenantListView({ isOpen, onNewTenant, reloadToken }: TenantListViewProps) {
   const { t } = useTranslation()
-  const { tenants, isLoading, error } = useTenants(isOpen)
+  const { tenants, isLoading, error } = useTenants(isOpen, reloadToken)
   const {
     search,
     setSearch,
