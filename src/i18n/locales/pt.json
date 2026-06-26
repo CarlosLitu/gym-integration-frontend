@@ -79,6 +79,7 @@
     "loading": "Carregando academias...",
     "empty": "Nenhuma academia encontrada",
     "edit": "Editar",
+    "sync": "Sync",
     "previousPage": "Página anterior",
     "nextPage": "Próxima página",
     "filters": {

@@ -32,7 +32,7 @@ export function TenantSearch({ value, onChange }: TenantSearchProps) {
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={t('tenants.searchPlaceholder')}
-        className="h-10 rounded-[8px] border-slate-200 bg-white py-0 pl-11 placeholder:text-[#A6A6B8]"
+        className="h-10 !rounded-[12px] border-slate-200 bg-white py-0 pl-11 placeholder:text-[#A6A6B8]"
       />
     </div>
   )

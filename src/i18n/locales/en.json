@@ -79,6 +79,7 @@
     "loading": "Loading gyms...",
     "empty": "No gyms found",
     "edit": "Edit",
+    "sync": "Sync",
     "previousPage": "Previous page",
     "nextPage": "Next page",
     "filters": {

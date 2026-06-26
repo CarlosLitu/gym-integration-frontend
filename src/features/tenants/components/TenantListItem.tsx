@@ -26,11 +26,17 @@ export function TenantListItem({ tenant }: TenantListItemProps) {
           <p className="truncate font-sans text-xs text-pulse-muted">{subtitle}</p>
         ) : null}
       </div>
+      <span className="inline-flex shrink-0 items-center gap-1.5 rounded-[999px] border border-slate-200 bg-white px-3 py-1 font-sans text-xs font-medium text-[#505458]">
+        <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
+        {t('tenants.sync')}
+      </span>
       <div className="ml-auto flex shrink-0 items-center gap-3">
-        <StatusBadge status="unknown">{t('status.unknown')}</StatusBadge>
+        <StatusBadge status="unknown" className="rounded-[999px]">
+          {t('status.unknown')}
+        </StatusBadge>
         <button
           type="button"
-          className="inline-flex items-center gap-1.5 rounded-[999px] border border-slate-200 bg-[#F8F9FA] px-3 py-1.5 font-sans text-xs font-medium text-pulse-navy transition-colors hover:bg-pulse-surface"
+          className="inline-flex items-center gap-1.5 rounded-[8px] border border-slate-200 bg-[#F8F9FA] px-3 py-1.5 font-sans text-xs font-medium text-pulse-navy transition-colors hover:bg-pulse-surface"
         >
           <svg
             width="14"

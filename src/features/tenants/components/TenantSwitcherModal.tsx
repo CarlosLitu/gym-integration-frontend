@@ -34,17 +34,21 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
       onClose={onClose}
       className="h-[786px] max-h-[90vh] w-[868px] max-w-[95vw] gap-4 rounded-[24px] p-6"
     >
-      <div className="flex items-center justify-between gap-4">
+      <div className="pr-12">
         <h2 className="font-sans text-2xl font-semibold text-pulse-navy">
           {t('tenants.title')}
         </h2>
-        <Button variant="brand" size="md" className="gap-2">
+      </div>
+
+      <div className="flex items-center gap-3">
+        <div className="flex-1">
+          <TenantSearch value={search} onChange={setSearch} />
+        </div>
+        <Button variant="brand" size="md" className="shrink-0 gap-2 !rounded-[12px]">
           <PlusCircle size={20} weight="bold" aria-hidden="true" />
           {t('tenants.newTenant')}
         </Button>
       </div>
-
-      <TenantSearch value={search} onChange={setSearch} />
       <TenantFilters sortAsc={sortAsc} onToggleSort={toggleSort} total={total} />
 
       <div className="flex flex-1 flex-col overflow-hidden rounded-[12px] border border-slate-200">
