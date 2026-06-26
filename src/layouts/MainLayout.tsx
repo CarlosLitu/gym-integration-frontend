@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import hexConnected from '@/assets/images/hex-connected.svg'
 import { Button, StatusBadge } from '@/components'
-import { useCurrentTenant } from '@/features/auth'
+import { useCurrentTenant, UserMenu } from '@/features/auth'
 import { TenantSwitcherModal } from '@/features/tenants'
 import { formatTimeAgo } from '@/utils/formatters'
 
@@ -38,9 +38,7 @@ export function MainLayout() {
           <Button variant="brand" size="md" onClick={() => setIsTenantModalOpen(true)}>
             {t('tenant.changeTenant')}
           </Button>
-          <span className="ml-auto grid h-9 w-9 place-items-center rounded-full bg-pulse-surface font-sans font-semibold text-pulse-navy">
-            {tenantInitial}
-          </span>
+          <UserMenu initial={tenantInitial} className="ml-auto" />
         </header>
 
         <main className="flex-1 p-6">

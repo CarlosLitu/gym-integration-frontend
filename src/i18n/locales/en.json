@@ -58,7 +58,8 @@
     "loginFailed": "Could not sign in. Please try again.",
     "requiredField": "Required field",
     "invalidEmail": "Invalid email. Check the format and try again.",
-    "registerSoon": "Registration coming soon"
+    "registerSoon": "Registration coming soon",
+    "logout": "Logout"
   },
   "status": {
     "unknown": "Unknown",
@@ -77,6 +78,7 @@
     "showing": "Showing {{shown}} of {{total}}",
     "loading": "Loading gyms...",
     "empty": "No gyms found",
+    "edit": "Edit",
     "previousPage": "Previous page",
     "nextPage": "Next page",
     "filters": {

@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { loginRequest } from '../api/login'
+import { logoutRequest } from '../api/logout'
 import { useApiMessage } from '@/hooks/useApiMessage'
 import { storage } from '@/services/storage'
 import type { ApiUser, LoginCredentials, UserSession } from '../types/auth.types'
@@ -41,9 +42,15 @@ export function useAuthMutation() {
     }
   }, [getErrorMessage])
 
-  const logout = useCallback(() => {
-    storage.clearSession()
-    window.dispatchEvent(new Event('auth-changed'))
+  const logout = useCallback(async () => {
+    try {
+      await logoutRequest()
+    } catch {
+      // Best-effort: ignora falha de rede ou 401 (sessao ja expirada).
+    } finally {
+      storage.clearSession()
+      window.dispatchEvent(new Event('auth-changed'))
+    }
   }, [])
 
   return { login, logout, isLoading, error }

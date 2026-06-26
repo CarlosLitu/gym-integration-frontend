@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import type { ReactNode } from 'react'
 
 const badgeVariants = cva(
-  'inline-flex items-center gap-1.5 rounded-pill px-3 py-[5px] font-sans text-xs font-medium',
+  'inline-flex items-center gap-1.5 rounded-[4px] px-3 py-[5px] font-sans text-xs font-medium',
   {
     variants: {
       status: {

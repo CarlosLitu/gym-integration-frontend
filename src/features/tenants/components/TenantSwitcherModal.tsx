@@ -1,3 +1,4 @@
+import { PlusCircle } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
 import { Button, Modal } from '@/components'
 import { useTenants } from '../hooks/useTenants'
@@ -37,7 +38,8 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
         <h2 className="font-sans text-2xl font-semibold text-pulse-navy">
           {t('tenants.title')}
         </h2>
-        <Button variant="brand" size="md">
+        <Button variant="brand" size="md" className="gap-2">
+          <PlusCircle size={20} weight="bold" aria-hidden="true" />
           {t('tenants.newTenant')}
         </Button>
       </div>
@@ -45,35 +47,38 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
       <TenantSearch value={search} onChange={setSearch} />
       <TenantFilters sortAsc={sortAsc} onToggleSort={toggleSort} total={total} />
 
-      {isLoading ? (
-        <p className="flex-1 py-8 text-center font-sans text-sm text-pulse-muted">
-          {t('tenants.loading')}
-        </p>
-      ) : error ? (
-        <p className="flex-1 py-8 text-center font-sans text-sm text-pulse-error-border">
-          {error}
-        </p>
-      ) : total === 0 ? (
-        <p className="flex-1 py-8 text-center font-sans text-sm text-pulse-muted">
-          {t('tenants.empty')}
-        </p>
-      ) : (
-        <div className="-mx-6 flex-1 divide-y divide-slate-200 overflow-y-auto border-y border-slate-200">
-          {pageItems.map((tenant) => (
-            <TenantListItem key={tenant.id} tenant={tenant} />
-          ))}
-        </div>
-      )}
-
-      {!isLoading && !error && total > 0 ? (
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          shown={pageItems.length}
-          total={total}
-          onPageChange={setPage}
-        />
-      ) : null}
+      <div className="flex flex-1 flex-col overflow-hidden rounded-[12px] border border-slate-200">
+        {isLoading ? (
+          <p className="flex-1 py-8 text-center font-sans text-sm text-pulse-muted">
+            {t('tenants.loading')}
+          </p>
+        ) : error ? (
+          <p className="flex-1 py-8 text-center font-sans text-sm text-pulse-error-border">
+            {error}
+          </p>
+        ) : total === 0 ? (
+          <p className="flex-1 py-8 text-center font-sans text-sm text-pulse-muted">
+            {t('tenants.empty')}
+          </p>
+        ) : (
+          <>
+            <div className="flex-1 divide-y divide-slate-200 overflow-y-auto">
+              {pageItems.map((tenant) => (
+                <TenantListItem key={tenant.id} tenant={tenant} />
+              ))}
+            </div>
+            <div className="border-t border-slate-200 px-4 py-3">
+              <Pagination
+                page={page}
+                totalPages={totalPages}
+                shown={pageItems.length}
+                total={total}
+                onPageChange={setPage}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </Modal>
   )
 }

@@ -58,7 +58,8 @@
     "loginFailed": "Não foi possível realizar o login. Tente novamente.",
     "requiredField": "Campo obrigatório",
     "invalidEmail": "E-mail inválido. Revise o formato e tente de novo.",
-    "registerSoon": "Cadastro em breve"
+    "registerSoon": "Cadastro em breve",
+    "logout": "Sair"
   },
   "status": {
     "unknown": "Desconhecido",
@@ -77,6 +78,7 @@
     "showing": "Mostrando {{shown}} de {{total}}",
     "loading": "Carregando academias...",
     "empty": "Nenhuma academia encontrada",
+    "edit": "Editar",
     "previousPage": "Página anterior",
     "nextPage": "Próxima página",
     "filters": {
