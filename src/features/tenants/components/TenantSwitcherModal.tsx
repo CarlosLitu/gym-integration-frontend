@@ -15,7 +15,20 @@ interface TenantSwitcherModalProps {
 export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProps) {
   const { view, showCreate, showList } = useTenantModalView()
   const { step, next, back, reset } = useTenantWizard()
-  const { values, setField, reset: resetForm, isValid, isLoading, error, submit } = useCreateTenant()
+  const {
+    values,
+    setField,
+    reset: resetForm,
+    isValid,
+    isLoading,
+    error,
+    submit,
+    canTest,
+    isTesting,
+    testStatus,
+    testMessage,
+    testConnection,
+  } = useCreateTenant()
   const [reloadToken, setReloadToken] = useState(0)
 
   function handleClose() {
@@ -76,6 +89,11 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
             isLoading={isLoading}
             error={error}
             onSubmit={handleSubmit}
+            canTest={canTest}
+            isTesting={isTesting}
+            testStatus={testStatus}
+            testMessage={testMessage}
+            onTestConnection={testConnection}
           />
         </div>
       </div>

@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { ArrowRight, CaretLeft } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components'
+import { Button, Modal } from '@/components'
 import type { TenantWizardStep } from '../hooks/useTenantWizard'
+import type { TestConnectionStatus } from '../hooks/useCreateTenant'
 import type { TenantFormValues } from '../types/tenant.types'
 import { TenantStepper } from './TenantStepper'
 import { TenantStepData } from './steps/TenantStepData'
@@ -18,6 +20,11 @@ interface TenantCreateFormProps {
   isLoading: boolean
   error: string | null
   onSubmit: () => void
+  canTest: boolean
+  isTesting: boolean
+  testStatus: TestConnectionStatus
+  testMessage: string | null
+  onTestConnection: () => void
 }
 
 export function TenantCreateForm({
@@ -30,9 +37,29 @@ export function TenantCreateForm({
   isLoading,
   error,
   onSubmit,
+  canTest,
+  isTesting,
+  testStatus,
+  testMessage,
+  onTestConnection,
 }: TenantCreateFormProps) {
   const { t } = useTranslation()
+  const [showConfirm, setShowConfirm] = useState(false)
   const canProceed = values.name.trim().length > 0
+
+  function handleCreateClick() {
+    if (testStatus === 'success') {
+      onSubmit()
+      return
+    }
+
+    setShowConfirm(true)
+  }
+
+  function handleConfirm() {
+    setShowConfirm(false)
+    onSubmit()
+  }
 
   return (
     <div className="flex h-full flex-col gap-4">
@@ -80,25 +107,35 @@ export function TenantCreateForm({
           )}
         >
           <div className="flex-1 overflow-y-auto">
-            <TenantStepIntegration values={values} onChange={onChange} />
+            <TenantStepIntegration
+              values={values}
+              onChange={onChange}
+              testStatus={testStatus}
+              testMessage={testMessage}
+            />
           </div>
           <div className="flex flex-col gap-2">
             <Button
               variant="outline"
               size="lg"
+              disabled={!canTest || isTesting}
               className="w-full !rounded-[12px] border-pulse-blue text-pulse-blue hover:bg-pulse-blue/5"
+              onClick={onTestConnection}
             >
-              {t('tenants.create.testConnection')}
+              {isTesting ? t('tenants.create.testing') : t('tenants.create.testConnection')}
             </Button>
             <Button
               variant={isValid && !isLoading ? 'brand' : 'idle'}
               size="lg"
               disabled={!isValid || isLoading}
               className="w-full !rounded-[12px]"
-              onClick={onSubmit}
+              onClick={handleCreateClick}
             >
               {isLoading ? t('tenants.create.creating') : t('tenants.create.createGym')}
             </Button>
+            {testStatus === 'success' && testMessage ? (
+              <p className="font-sans text-xs text-emerald-600">{testMessage}</p>
+            ) : null}
             {error ? (
               <p className="font-sans text-xs text-pulse-error-border">{error}</p>
             ) : (
@@ -109,6 +146,38 @@ export function TenantCreateForm({
           </div>
         </div>
       </div>
+
+      <Modal
+        isOpen={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        hideOverlay
+        className="max-w-md gap-4 rounded-[20px] p-6"
+      >
+        <h3 className="pr-8 font-sans text-lg font-semibold text-pulse-navy">
+          {t('tenants.create.confirmNoTest.title')}
+        </h3>
+        <p className="font-sans text-sm text-pulse-muted">
+          {t('tenants.create.confirmNoTest.message')}
+        </p>
+        <div className="mt-2 flex gap-3">
+          <Button
+            variant="outline"
+            size="lg"
+            className="flex-1 !rounded-[12px] border-pulse-blue text-pulse-blue hover:bg-pulse-blue/5"
+            onClick={() => setShowConfirm(false)}
+          >
+            {t('tenants.create.confirmNoTest.cancel')}
+          </Button>
+          <Button
+            variant="brand"
+            size="lg"
+            className="flex-1 !rounded-[12px]"
+            onClick={handleConfirm}
+          >
+            {t('tenants.create.confirmNoTest.confirm')}
+          </Button>
+        </div>
+      </Modal>
     </div>
   )
 }

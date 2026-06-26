@@ -1,13 +1,21 @@
 import { useTranslation } from 'react-i18next'
-import { Input } from '@/components'
+import { Alert, Input } from '@/components'
+import type { TestConnectionStatus } from '../../hooks/useCreateTenant'
 import type { TenantFormValues } from '../../types/tenant.types'
 
 interface TenantStepIntegrationProps {
   values: TenantFormValues
   onChange: (field: keyof TenantFormValues, value: string) => void
+  testStatus: TestConnectionStatus
+  testMessage: string | null
 }
 
-export function TenantStepIntegration({ values, onChange }: TenantStepIntegrationProps) {
+export function TenantStepIntegration({
+  values,
+  onChange,
+  testStatus,
+  testMessage,
+}: TenantStepIntegrationProps) {
   const { t } = useTranslation()
 
   return (
@@ -32,6 +40,7 @@ export function TenantStepIntegration({ values, onChange }: TenantStepIntegratio
         value={values.apiSecret}
         onChange={(event) => onChange('apiSecret', event.target.value)}
       />
+      {testStatus === 'error' && testMessage ? <Alert>{testMessage}</Alert> : null}
       <p className="font-sans text-xs leading-relaxed text-pulse-muted">
         {t('tenants.create.integrationNote')}
       </p>

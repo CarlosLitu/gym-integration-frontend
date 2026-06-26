@@ -95,9 +95,18 @@
       "next": "Next",
       "integrationNote": "These credentials come from the gym's own EVO panel. They are only used to authenticate and register the webhook – they are not shown again after being saved.",
       "testConnection": "Test connection",
+      "testing": "Testing...",
+      "testSuccess": "Connection validated successfully",
+      "testError": "Connection failed. Check the API Key and API Secret.",
       "createGym": "Create Gym",
       "creating": "Creating...",
-      "createHint": "To create, you must test the connection first.",
+      "createHint": "We recommend testing the connection before creating.",
+      "confirmNoTest": {
+        "title": "Create without testing the connection?",
+        "message": "You are about to save without testing the connection. Do you want to continue?",
+        "confirm": "Continue",
+        "cancel": "Cancel"
+      },
       "steps": {
         "data": "Gym details",
         "integration": "Integration"

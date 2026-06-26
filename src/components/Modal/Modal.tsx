@@ -7,15 +7,19 @@ interface ModalProps {
   isOpen: boolean
   onClose: () => void
   className?: string
+  hideOverlay?: boolean
   children: ReactNode
 }
 
-export function Modal({ isOpen, onClose, className, children }: ModalProps) {
+export function Modal({ isOpen, onClose, className, hideOverlay = false, children }: ModalProps) {
   if (!isOpen) return null
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-pulse-navy/40 p-4 sm:p-8"
+      className={clsx(
+        'fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-8',
+        hideOverlay ? null : 'bg-pulse-navy/40',
+      )}
       role="presentation"
     >
       <div

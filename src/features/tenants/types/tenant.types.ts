@@ -32,3 +32,10 @@ export interface CreateTenantPayload {
   gateway: string
   childTenantIds?: string[]
 }
+
+export interface SyncValidateResponse {
+  status: boolean
+  gateway?: string
+  gatewayUrl?: string
+  responseStatus?: number
+}

@@ -95,9 +95,18 @@
       "next": "Próximo",
       "integrationNote": "Essas credenciais vêm do painel do EVO da própria academia. Elas só são usadas para autenticar e registrar o webhook – não são exibidas de novo depois de salvas.",
       "testConnection": "Testar conexão",
+      "testing": "Testando...",
+      "testSuccess": "Conexão validada com sucesso",
+      "testError": "Falha na conexão. Verifique a API Key e o API Secret.",
       "createGym": "Criar Academia",
       "creating": "Criando...",
-      "createHint": "Para criar, é necessário testar a conexão primeiro.",
+      "createHint": "Recomendamos testar a conexão antes de criar.",
+      "confirmNoTest": {
+        "title": "Criar sem testar a conexão?",
+        "message": "Você vai salvar sem testar a conexão, deseja continuar?",
+        "confirm": "Continuar",
+        "cancel": "Cancelar"
+      },
       "steps": {
         "data": "Dados da academia",
         "integration": "Integração"
