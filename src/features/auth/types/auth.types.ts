@@ -1,3 +1,5 @@
+import type { TenantStatus } from '../../tenants/types/tenant.types'
+
 export interface LoginCredentials {
   email: string
   password: string
@@ -14,6 +16,8 @@ export interface ApiTenant {
   name: string
   gateway?: string
   isActive?: boolean
+  status?: TenantStatus
+  lastEventReceived?: string
   updatedAt?: string
 }
 
@@ -37,6 +41,8 @@ export interface UserSession {
   tenant: {
     id: string
     name: string
+    status: TenantStatus
+    lastEventReceived: string | null
     updatedAt: string | null
   }
 }

@@ -1,4 +1,9 @@
 {
+  "terms": {
+    "tenant": "academia",
+    "tenantCapitalized": "Academia",
+    "newPrefix": "Nova"
+  },
   "responses": {
     "HEALTH_OK": "Serviço disponível",
     "ROUTE_NOT_FOUND": "Rota não encontrada",
@@ -59,19 +64,24 @@
     "requiredField": "Campo obrigatório",
     "invalidEmail": "E-mail inválido. Revise o formato e tente de novo.",
     "registerSoon": "Cadastro em breve",
-    "logout": "Sair"
+    "logout": "Sair",
+    "loggingOut": "Saindo..."
   },
   "status": {
     "unknown": "Desconhecido",
     "connected": "Conectado"
   },
+  "nav": {
+    "dashboard": "Dashboard"
+  },
   "tenant": {
     "lastEvent": "Último evento {{time}}",
-    "changeTenant": "Mudar Tenant"
+    "noEvent": "Nenhum evento recebido",
+    "changeTenant": "Mudar $t(terms.tenantCapitalized)"
   },
   "tenants": {
     "title": "Academias",
-    "newTenant": "Novo tenant",
+    "newTenant": "$t(terms.newPrefix) $t(terms.tenant)",
     "searchPlaceholder": "Buscar por nome, cidade ou ID da academia...",
     "sortAz": "A-Z",
     "count": "{{total}} academias",
@@ -96,9 +106,11 @@
       "pending": "Pendente"
     },
     "create": {
-      "back": "voltar",
+      "back": "Voltar",
       "title": "Adicionar Academia",
       "next": "Próximo",
+      "reveal": "Mostrar",
+      "hide": "Ocultar",
       "integrationNote": "Essas credenciais vêm do painel do EVO da própria academia. Elas só são usadas para autenticar e registrar o webhook – não são exibidas de novo depois de salvas.",
       "testConnection": "Testar conexão",
       "testing": "Testando...",

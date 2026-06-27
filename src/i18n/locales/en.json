@@ -1,4 +1,9 @@
 {
+  "terms": {
+    "tenant": "gym",
+    "tenantCapitalized": "Gym",
+    "newPrefix": "New"
+  },
   "responses": {
     "HEALTH_OK": "Service is available",
     "ROUTE_NOT_FOUND": "Route not found",
@@ -59,19 +64,24 @@
     "requiredField": "Required field",
     "invalidEmail": "Invalid email. Check the format and try again.",
     "registerSoon": "Registration coming soon",
-    "logout": "Logout"
+    "logout": "Logout",
+    "loggingOut": "Signing out..."
   },
   "status": {
     "unknown": "Unknown",
     "connected": "Connected"
   },
+  "nav": {
+    "dashboard": "Dashboard"
+  },
   "tenant": {
     "lastEvent": "Last event {{time}}",
-    "changeTenant": "Change Tenant"
+    "noEvent": "No events received yet",
+    "changeTenant": "Change $t(terms.tenantCapitalized)"
   },
   "tenants": {
     "title": "Gyms",
-    "newTenant": "New tenant",
+    "newTenant": "$t(terms.newPrefix) $t(terms.tenant)",
     "searchPlaceholder": "Search by name, city or gym ID...",
     "sortAz": "A-Z",
     "count": "{{total}} gyms",
@@ -96,9 +106,11 @@
       "pending": "Pending"
     },
     "create": {
-      "back": "back",
+      "back": "Back",
       "title": "Add Gym",
       "next": "Next",
+      "reveal": "Show",
+      "hide": "Hide",
       "integrationNote": "These credentials come from the gym's own EVO panel. They are only used to authenticate and register the webhook – they are not shown again after being saved.",
       "testConnection": "Test connection",
       "testing": "Testing...",

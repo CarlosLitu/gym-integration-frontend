@@ -108,6 +108,9 @@ export function TenantStepIntegration({
       </div>
       <Input
         type="password"
+        revealToggle
+        revealLabel={t('tenants.create.reveal')}
+        hideLabel={t('tenants.create.hide')}
         label={t('tenants.create.fields.apiKey')}
         placeholder={t('tenants.create.placeholders.apiKey')}
         value={values.apiKey}
@@ -115,6 +118,9 @@ export function TenantStepIntegration({
       />
       <Input
         type="password"
+        revealToggle
+        revealLabel={t('tenants.create.reveal')}
+        hideLabel={t('tenants.create.hide')}
         label={t('tenants.create.fields.apiSecret')}
         placeholder={t('tenants.create.placeholders.apiSecret')}
         value={values.apiSecret}

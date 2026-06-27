@@ -12,6 +12,7 @@ export interface ApiTenant {
   gateway?: string
   status?: TenantStatus
   sync?: TenantSyncStatus
+  lastEventReceived?: string
   updatedAt?: string
 }
 
@@ -21,6 +22,7 @@ export interface TenantListItem {
   gateway: string | null
   status: TenantStatus
   sync: TenantSyncStatus
+  lastEventReceived: string | null
   updatedAt: string | null
 }
 

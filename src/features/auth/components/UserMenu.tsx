@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { useAuth } from '../hooks/useAuth'
+import { useLogout } from '../hooks/useLogout'
 
 interface UserMenuProps {
   initial: string
@@ -11,7 +11,7 @@ interface UserMenuProps {
 
 export function UserMenu({ initial, className }: UserMenuProps) {
   const { t } = useTranslation()
-  const { logout } = useAuth()
+  const { startLogout } = useLogout()
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -58,7 +58,7 @@ export function UserMenu({ initial, className }: UserMenuProps) {
             role="menuitem"
             onClick={() => {
               setIsOpen(false)
-              void logout()
+              startLogout()
             }}
             className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left font-sans text-sm text-pulse-navy transition-colors hover:bg-pulse-surface"
           >

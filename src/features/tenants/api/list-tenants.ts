@@ -10,6 +10,7 @@ export async function listTenantsRequest(): Promise<TenantListItem[]> {
     gateway: tenant.gateway ?? null,
     status: tenant.status ?? 'INTEGRATION_PENDING',
     sync: tenant.sync ?? 'OFF',
+    lastEventReceived: tenant.lastEventReceived ?? null,
     updatedAt: tenant.updatedAt ?? null,
   }))
 }
