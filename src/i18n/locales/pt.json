@@ -74,7 +74,12 @@
     "connected": "Conectado"
   },
   "nav": {
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "settings": "Configurações",
+    "reports": "Relatórios",
+    "support": "Suporte",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
   },
   "tenant": {
     "lastEvent": "Último evento {{time}}",
