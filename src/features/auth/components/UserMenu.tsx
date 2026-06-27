@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { useLogout } from '../hooks/useLogout'
+import { useSessionTransition } from '../hooks/useSessionTransition'
 
 interface UserMenuProps {
   initial: string
@@ -11,7 +11,7 @@ interface UserMenuProps {
 
 export function UserMenu({ initial, className }: UserMenuProps) {
   const { t } = useTranslation()
-  const { startLogout } = useLogout()
+  const { startLogout } = useSessionTransition()
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 

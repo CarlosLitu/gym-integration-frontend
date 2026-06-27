@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuthMutation } from './useAuthMutation'
+import { useSessionTransition } from './useSessionTransition'
 import { isValidEmail, isNotEmpty } from '@/utils/validators'
 import type { LoginCredentials } from '../types/auth.types'
 
@@ -14,6 +15,7 @@ export function useLoginForm() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { login, isLoading, error } = useAuthMutation()
+  const { startLogin } = useSessionTransition()
 
   const [credentials, setCredentials] = useState<LoginCredentials>({
     email: '',
@@ -50,13 +52,12 @@ export function useLoginForm() {
 
       if (!validate()) return
 
-      try {
+      startLogin(async () => {
         await login(credentials)
         navigate('/dashboard')
-      } catch {
-      }
+      })
     },
-    [credentials, login, navigate, validate],
+    [credentials, login, navigate, startLogin, validate],
   )
 
   const formError = useMemo(() => error, [error])

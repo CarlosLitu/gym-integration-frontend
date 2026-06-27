@@ -49,7 +49,8 @@
     "WEBHOOK_GATEWAY_REGISTER_FAILED": "Falha ao registrar webhook no gateway",
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registrado no gateway com sucesso",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Falha ao remover webhook do gateway",
-    "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook removido do gateway com sucesso"
+    "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook removido do gateway com sucesso",
+    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00."
   },
   "auth": {
     "loginSubtitle": "Acesse com sua conta de consultor ou administrador.",
@@ -65,7 +66,8 @@
     "invalidEmail": "E-mail inválido. Revise o formato e tente de novo.",
     "registerSoon": "Cadastro em breve",
     "logout": "Sair",
-    "loggingOut": "Saindo..."
+    "loggingOut": "Saindo...",
+    "loggingIn": "Entrando..."
   },
   "status": {
     "unknown": "Desconhecido",
@@ -90,6 +92,11 @@
     "empty": "Nenhuma academia encontrada",
     "edit": "Editar",
     "sync": "Sync",
+    "syncFeedback": {
+      "loading": "Sincronizando...",
+      "started": "Sincronização iniciada",
+      "running": "Sincronização já em andamento"
+    },
     "statusLabels": {
       "INTEGRATION_PENDING": "Integração pendente",
       "INVALID_CREDENTIALS": "Credenciais inválidas",

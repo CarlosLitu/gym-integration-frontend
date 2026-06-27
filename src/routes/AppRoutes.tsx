@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { LogoutOverlay, LogoutProvider } from '@/features/auth'
+import { SessionTransitionOverlay, SessionTransitionProvider } from '@/features/auth'
 import { MainLayout } from '@/layouts'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -23,7 +23,7 @@ function PageLoader() {
 export function AppRoutes() {
   return (
     <BrowserRouter>
-      <LogoutProvider>
+      <SessionTransitionProvider>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -38,8 +38,8 @@ export function AppRoutes() {
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         </Suspense>
-        <LogoutOverlay />
-      </LogoutProvider>
+        <SessionTransitionOverlay />
+      </SessionTransitionProvider>
     </BrowserRouter>
   )
 }

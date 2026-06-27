@@ -1,11 +1,11 @@
 import { CircleNotch } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
 import logo from '@/assets/images/logo.svg'
-import { useLogout } from '../hooks/useLogout'
+import { useSessionTransition } from '../hooks/useSessionTransition'
 
-export function LogoutOverlay() {
+export function SessionTransitionOverlay() {
   const { t } = useTranslation()
-  const { phase } = useLogout()
+  const { phase, messageKey } = useSessionTransition()
 
   if (phase === null) return null
 
@@ -18,7 +18,7 @@ export function LogoutOverlay() {
       <div className="flex flex-col items-center gap-5">
         <img src={logo} alt="Pulse" className="h-9 w-[126px] animate-pulse" />
         <CircleNotch size={28} weight="bold" className="animate-spin text-pulse-blue" />
-        <p className="font-sans text-sm text-pulse-muted">{t('auth.loggingOut')}</p>
+        <p className="font-sans text-sm text-pulse-muted">{t(messageKey)}</p>
       </div>
     </div>
   )
