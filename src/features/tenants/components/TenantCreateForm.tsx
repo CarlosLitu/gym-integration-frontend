@@ -118,7 +118,7 @@ export function TenantCreateForm({
             <Button
               variant="outline"
               size="lg"
-              disabled={!canTest || isTesting}
+              disabled={!canTest || isTesting || testStatus !== 'idle'}
               className="w-full !rounded-[12px] border-pulse-blue text-pulse-blue hover:bg-pulse-blue/5"
               onClick={onTestConnection}
             >
