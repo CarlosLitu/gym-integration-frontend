@@ -166,5 +166,78 @@
         "apiSecret": "••••••••••••"
       }
     }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Visão geral de vendas da academia",
+    "presets": {
+      "currentMonth": "Mês atual",
+      "lastMonth": "Mês passado",
+      "last7Days": "7 dias",
+      "last30Days": "30 dias",
+      "last12Months": "12 meses"
+    },
+    "granularity": {
+      "day": "Dia",
+      "week": "Semana",
+      "month": "Mês"
+    },
+    "kpis": {
+      "revenue": "Receita",
+      "paid": "Recebido",
+      "pending": "Pendente",
+      "pendingInfo": "Inadimplência: {{rate}} da receita do mês",
+      "salesCount": "Nº de vendas",
+      "averageTicket": "Ticket médio",
+      "averageTicketInfo": "Calculado como receita dividida pelo número de vendas",
+      "collectionRate": "Taxa de recebimento"
+    },
+    "series": {
+      "revenue": "Receita",
+      "paid": "Recebido",
+      "pending": "Pendente",
+      "sales": "Vendas",
+      "averageTicket": "Ticket médio",
+      "defaultRate": "Inadimplência",
+      "new": "Novos",
+      "renewal": "Renovações",
+      "total": "Total",
+      "value": "Valor",
+      "share": "Participação",
+      "transactions": "Transações",
+      "quantity": "Quantidade"
+    },
+    "charts": {
+      "revenue": {
+        "title": "Faturamento no período",
+        "subtitle": "Receita total e valor recebido",
+        "info": "Receita total (área) e valor efetivamente recebido (linha) por período."
+      },
+      "paidVsPending": {
+        "title": "Recebido x Pendente",
+        "subtitle": "Saúde da cobrança",
+        "info": "Comparativo entre valores recebidos e pendentes por período."
+      },
+      "paymentMethods": {
+        "title": "Formas de pagamento",
+        "subtitle": "Distribuição por método",
+        "info": "Valor por forma de pagamento, agregado a partir das vendas do período."
+      },
+      "newVsRenewal": {
+        "title": "Novos x Renovações",
+        "subtitle": "Aquisição vs retenção",
+        "info": "Quantidade de matrículas novas e renovações por período."
+      },
+      "plans": {
+        "title": "Mix de planos",
+        "subtitle": "Receita por plano/produto",
+        "info": "Principais planos e produtos por receita no período."
+      },
+      "sellers": {
+        "title": "Ranking de vendedores",
+        "subtitle": "Receita por vendedor",
+        "info": "Principais vendedores por receita no período."
+      }
+    }
   }
 }

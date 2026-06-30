@@ -2,6 +2,31 @@ export function formatCurrency(value: number, locale = 'pt-BR', currency = 'BRL'
   return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(value)
 }
 
+export function formatCompactCurrency(
+  value: number,
+  locale = 'pt-BR',
+  currency = 'BRL',
+): string {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency,
+    notation: 'compact',
+    maximumFractionDigits: 1,
+  }).format(value)
+}
+
+export function formatPercent(value: number, locale = 'pt-BR', fractionDigits = 1): string {
+  return new Intl.NumberFormat(locale, {
+    style: 'percent',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: fractionDigits,
+  }).format(value)
+}
+
+export function formatNumber(value: number, locale = 'pt-BR'): string {
+  return new Intl.NumberFormat(locale).format(value)
+}
+
 export function formatDate(
   value: string | Date,
   locale = 'pt-BR',

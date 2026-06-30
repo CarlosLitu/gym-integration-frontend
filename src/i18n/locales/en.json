@@ -166,5 +166,78 @@
         "apiSecret": "••••••••••••"
       }
     }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Sales overview for the gym",
+    "presets": {
+      "currentMonth": "This month",
+      "lastMonth": "Last month",
+      "last7Days": "7 days",
+      "last30Days": "30 days",
+      "last12Months": "12 months"
+    },
+    "granularity": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month"
+    },
+    "kpis": {
+      "revenue": "Revenue",
+      "paid": "Received",
+      "pending": "Pending",
+      "pendingInfo": "Overdue: {{rate}} of this month's revenue",
+      "salesCount": "Sales",
+      "averageTicket": "Average ticket",
+      "averageTicketInfo": "Calculated as revenue divided by number of sales",
+      "collectionRate": "Collection rate"
+    },
+    "series": {
+      "revenue": "Revenue",
+      "paid": "Received",
+      "pending": "Pending",
+      "sales": "Sales",
+      "averageTicket": "Average ticket",
+      "defaultRate": "Overdue",
+      "new": "New",
+      "renewal": "Renewals",
+      "total": "Total",
+      "value": "Value",
+      "share": "Share",
+      "transactions": "Transactions",
+      "quantity": "Quantity"
+    },
+    "charts": {
+      "revenue": {
+        "title": "Revenue over time",
+        "subtitle": "Total revenue and received value",
+        "info": "Total revenue (area) and value actually received (line) per period."
+      },
+      "paidVsPending": {
+        "title": "Received x Pending",
+        "subtitle": "Billing health",
+        "info": "Comparison between received and pending amounts per period."
+      },
+      "paymentMethods": {
+        "title": "Payment methods",
+        "subtitle": "Distribution by method",
+        "info": "Value per payment method, aggregated from the period's sales."
+      },
+      "newVsRenewal": {
+        "title": "New x Renewals",
+        "subtitle": "Acquisition vs retention",
+        "info": "Number of new enrollments and renewals per period."
+      },
+      "plans": {
+        "title": "Plan mix",
+        "subtitle": "Revenue by plan/product",
+        "info": "Top plans and products by revenue in the period."
+      },
+      "sellers": {
+        "title": "Sellers ranking",
+        "subtitle": "Revenue by seller",
+        "info": "Top sellers by revenue in the period."
+      }
+    }
   }
 }

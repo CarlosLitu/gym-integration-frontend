@@ -1,12 +1,23 @@
-import { useState } from 'react'
-import type { DashboardMetrics } from '../api/get-metrics'
+import { useAuth } from '@/features/auth/hooks/useAuth'
+import { useDateRange } from './useDateRange'
+import { useSalesKpis } from './useSalesKpis'
+import { useSalesSeries } from './useSalesSeries'
+import { useSalesBreakdown } from './useSalesBreakdown'
 
-// A rota /dashboard/metrics esta desativada no front por enquanto.
-// Para reativar, voltar a chamar getMetricsRequest() em um useEffect.
 export function useDashboardData() {
-  const [metrics] = useState<DashboardMetrics | null>(null)
-  const [isLoading] = useState(false)
-  const [error] = useState<string | null>(null)
+  const { user } = useAuth()
+  const tenantId = user?.tenant?.id ?? null
 
-  return { metrics, isLoading, error }
+  const dateRange = useDateRange('currentMonth')
+  const kpis = useSalesKpis(tenantId)
+  const series = useSalesSeries(tenantId, dateRange.granularity, dateRange.range)
+  const breakdown = useSalesBreakdown(tenantId, dateRange.granularity, dateRange.range)
+
+  return {
+    tenantId,
+    dateRange,
+    kpis,
+    series,
+    breakdown,
+  }
 }
