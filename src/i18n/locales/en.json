@@ -67,7 +67,8 @@
     "registerSoon": "Registration coming soon",
     "logout": "Logout",
     "loggingOut": "Signing out...",
-    "loggingIn": "Signing in..."
+    "loggingIn": "Connecting...",
+    "loading": "Loading..."
   },
   "status": {
     "unknown": "Unknown",

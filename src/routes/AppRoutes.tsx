@@ -1,6 +1,11 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { SessionTransitionOverlay, SessionTransitionProvider } from '@/features/auth'
+import {
+  RouteLoadingFallback,
+  RouteLoadingListener,
+  SessionTransitionOverlay,
+  SessionTransitionProvider,
+} from '@/features/auth'
 import { MainLayout } from '@/layouts'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -12,19 +17,12 @@ const DashboardPage = lazy(() =>
   import('@/features/dashboard').then((module) => ({ default: module.DashboardPage })),
 )
 
-function PageLoader() {
-  return (
-    <div className="flex min-h-[200px] items-center justify-center text-sm text-slate-500">
-      Carregando...
-    </div>
-  )
-}
-
 export function AppRoutes() {
   return (
     <BrowserRouter>
       <SessionTransitionProvider>
-        <Suspense fallback={<PageLoader />}>
+        <RouteLoadingListener />
+        <Suspense fallback={<RouteLoadingFallback />}>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
 

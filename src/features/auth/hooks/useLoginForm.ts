@@ -54,6 +54,7 @@ export function useLoginForm() {
 
       startLogin(async () => {
         await login(credentials)
+        await import('@/features/dashboard')
         navigate('/dashboard')
       })
     },

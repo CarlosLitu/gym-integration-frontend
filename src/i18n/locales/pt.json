@@ -67,7 +67,8 @@
     "registerSoon": "Cadastro em breve",
     "logout": "Sair",
     "loggingOut": "Saindo...",
-    "loggingIn": "Entrando..."
+    "loggingIn": "Conectando...",
+    "loading": "Carregando..."
   },
   "status": {
     "unknown": "Desconhecido",
