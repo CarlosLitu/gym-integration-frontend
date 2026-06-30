@@ -26,6 +26,13 @@ export interface TenantListItem {
   updatedAt: string | null
 }
 
+export interface SelectedTenant {
+  id: string
+  name: string
+  status: TenantStatus
+  lastEventReceived: string | null
+}
+
 export interface TenantFormValues {
   name: string
   cnpj: string

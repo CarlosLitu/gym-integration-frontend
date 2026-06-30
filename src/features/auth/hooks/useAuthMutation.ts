@@ -3,6 +3,7 @@ import { loginRequest } from '../api/login'
 import { logoutRequest } from '../api/logout'
 import { useApiMessage } from '@/hooks/useApiMessage'
 import { storage } from '@/services/storage'
+import { resetSelectedTenantFromSession } from '@/features/tenants/hooks/useSelectedTenant'
 import type { ApiUser, LoginCredentials, UserSession } from '../types/auth.types'
 
 function toUserSession(user: ApiUser): UserSession {
@@ -32,8 +33,10 @@ export function useAuthMutation() {
 
     try {
       const response = await loginRequest(credentials)
+      const session = toUserSession(response.user)
       storage.setToken(response.token)
-      storage.setUser(toUserSession(response.user))
+      storage.setUser(session)
+      resetSelectedTenantFromSession(session)
       window.dispatchEvent(new Event('auth-changed'))
       return response
     } catch (loginError) {

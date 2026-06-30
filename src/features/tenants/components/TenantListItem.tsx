@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CircleNotch } from '@phosphor-icons/react'
+import { clsx } from 'clsx'
 import { useApiMessage } from '@/hooks/useApiMessage'
 import { formatTimeAgo } from '@/utils/formatters'
 import { runSyncRequest } from '../api/run-sync'
@@ -11,13 +12,15 @@ import { TenantStatusHexagon } from './TenantStatusHexagon'
 
 interface TenantListItemProps {
   tenant: TenantListItemType
+  isSelected?: boolean
+  onSelect?: (tenant: TenantListItemType) => void
 }
 
 type SyncState = 'idle' | 'loading' | 'success' | 'error'
 
 const SUCCESS_DISMISS_MS = 4000
 
-export function TenantListItem({ tenant }: TenantListItemProps) {
+export function TenantListItem({ tenant, isSelected = false, onSelect }: TenantListItemProps) {
   const { t, i18n } = useTranslation()
   const { getErrorMessage } = useApiMessage()
 
@@ -55,8 +58,41 @@ export function TenantListItem({ tenant }: TenantListItemProps) {
     }
   }
 
+  const handleRowSelect = () => {
+    onSelect?.(tenant)
+  }
+
+  const handleSyncClick = async (event: MouseEvent) => {
+    event.stopPropagation()
+    await handleSync()
+  }
+
+  const handleEditClick = (event: MouseEvent) => {
+    event.stopPropagation()
+  }
+
   return (
-    <div className="grid grid-cols-[2rem_12rem_6rem_1fr] items-center gap-x-3 gap-y-2 px-4 py-4">
+    <div
+      role="button"
+      tabIndex={0}
+      aria-selected={isSelected}
+      aria-label={
+        isSelected
+          ? t('tenants.selected', { name: tenant.name })
+          : t('tenants.selectTenant', { name: tenant.name })
+      }
+      onClick={handleRowSelect}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          handleRowSelect()
+        }
+      }}
+      className={clsx(
+        'grid cursor-pointer grid-cols-[2rem_12rem_6rem_1fr] items-center gap-x-3 gap-y-2 border-l-2 px-4 py-4 transition-colors hover:bg-pulse-surface/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pulse-blue/30',
+        isSelected ? 'border-l-pulse-blue bg-pulse-blue/5' : 'border-l-transparent',
+      )}
+    >
       <TenantStatusHexagon status={tenant.status} className="h-8 w-8 shrink-0" />
       <div className="flex min-w-0 flex-col">
         <p
@@ -72,7 +108,7 @@ export function TenantListItem({ tenant }: TenantListItemProps) {
       <div>
         <button
           type="button"
-          onClick={handleSync}
+          onClick={handleSyncClick}
           disabled={syncState === 'loading'}
           className="inline-flex items-center gap-1.5 rounded-[999px] border border-slate-200 bg-white px-3 py-1 font-sans text-xs font-medium text-[#505458] transition-colors hover:bg-pulse-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pulse-blue/30 disabled:cursor-not-allowed disabled:opacity-60"
         >
@@ -88,6 +124,7 @@ export function TenantListItem({ tenant }: TenantListItemProps) {
         <TenantStatusBadge status={tenant.status} />
         <button
           type="button"
+          onClick={handleEditClick}
           className="inline-flex items-center gap-1.5 rounded-[8px] border border-slate-200 bg-[#F8F9FA] px-3 py-1.5 font-sans text-xs font-medium text-pulse-navy transition-colors hover:bg-pulse-surface"
         >
           <svg

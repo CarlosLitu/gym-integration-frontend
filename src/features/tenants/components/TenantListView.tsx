@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components'
 import { useTenants } from '../hooks/useTenants'
 import { useTenantFilters } from '../hooks/useTenantFilters'
+import { useSelectedTenant } from '../hooks/useSelectedTenant'
+import type { TenantListItem as TenantListItemType } from '../types/tenant.types'
 import { TenantSearch } from './TenantSearch'
 import { TenantFilters } from './TenantFilters'
 import { TenantListItem } from './TenantListItem'
@@ -11,11 +13,18 @@ import { Pagination } from './Pagination'
 interface TenantListViewProps {
   isOpen: boolean
   onNewTenant: () => void
+  onTenantSelect?: (tenant: TenantListItemType) => void
   reloadToken?: number
 }
 
-export function TenantListView({ isOpen, onNewTenant, reloadToken }: TenantListViewProps) {
+export function TenantListView({
+  isOpen,
+  onNewTenant,
+  onTenantSelect,
+  reloadToken,
+}: TenantListViewProps) {
   const { t } = useTranslation()
+  const { selectedTenantId } = useSelectedTenant()
   const { tenants, isLoading, error } = useTenants(isOpen, reloadToken)
   const {
     search,
@@ -70,7 +79,12 @@ export function TenantListView({ isOpen, onNewTenant, reloadToken }: TenantListV
           <>
             <div className="flex-1 divide-y divide-slate-200 overflow-y-auto">
               {pageItems.map((tenant) => (
-                <TenantListItem key={tenant.id} tenant={tenant} />
+                <TenantListItem
+                  key={tenant.id}
+                  tenant={tenant}
+                  isSelected={tenant.id === selectedTenantId}
+                  onSelect={onTenantSelect}
+                />
               ))}
             </div>
             <div className="border-t border-slate-200 px-4 py-3">

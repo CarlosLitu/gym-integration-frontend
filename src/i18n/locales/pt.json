@@ -98,6 +98,8 @@
     "empty": "Nenhuma academia encontrada",
     "edit": "Editar",
     "sync": "Sync",
+    "selected": "Academia selecionada: {{name}}",
+    "selectTenant": "Selecionar {{name}}",
     "syncFeedback": {
       "loading": "Sincronizando...",
       "started": "Sincronização iniciada",

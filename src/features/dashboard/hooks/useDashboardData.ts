@@ -1,12 +1,12 @@
-import { useAuth } from '@/features/auth/hooks/useAuth'
+import { useSelectedTenant } from '@/features/tenants/hooks/useSelectedTenant'
 import { useDateRange } from './useDateRange'
 import { useSalesKpis } from './useSalesKpis'
 import { useSalesSeries } from './useSalesSeries'
 import { useSalesBreakdown } from './useSalesBreakdown'
 
 export function useDashboardData() {
-  const { user } = useAuth()
-  const tenantId = user?.tenant?.id ?? null
+  const { selectedTenantId } = useSelectedTenant()
+  const tenantId = selectedTenantId
 
   const dateRange = useDateRange('currentMonth')
   const kpis = useSalesKpis(tenantId)

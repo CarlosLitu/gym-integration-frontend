@@ -6,6 +6,7 @@ import {
   SessionTransitionOverlay,
   SessionTransitionProvider,
 } from '@/features/auth'
+import { SelectedTenantProvider } from '@/features/tenants'
 import { MainLayout } from '@/layouts'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -21,22 +22,24 @@ export function AppRoutes() {
   return (
     <BrowserRouter>
       <SessionTransitionProvider>
-        <RouteLoadingListener />
-        <Suspense fallback={<RouteLoadingFallback />}>
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
+        <SelectedTenantProvider>
+          <RouteLoadingListener />
+          <Suspense fallback={<RouteLoadingFallback />}>
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
 
-            <Route element={<ProtectedRoute />}>
-              <Route element={<MainLayout />}>
-                <Route index element={<Navigate to="/dashboard" replace />} />
-                <Route path="/dashboard" element={<DashboardPage />} />
+              <Route element={<ProtectedRoute />}>
+                <Route element={<MainLayout />}>
+                  <Route index element={<Navigate to="/dashboard" replace />} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                </Route>
               </Route>
-            </Route>
 
-            <Route path="*" element={<Navigate to="/login" replace />} />
-          </Routes>
-        </Suspense>
-        <SessionTransitionOverlay />
+              <Route path="*" element={<Navigate to="/login" replace />} />
+            </Routes>
+          </Suspense>
+          <SessionTransitionOverlay />
+        </SelectedTenantProvider>
       </SessionTransitionProvider>
     </BrowserRouter>
   )

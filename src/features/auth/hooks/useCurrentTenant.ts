@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getTenantRequest } from '../../tenants/api/get-tenant'
+import { useSelectedTenant } from '../../tenants/hooks/useSelectedTenant'
 import type { TenantStatus } from '../../tenants/types/tenant.types'
-import { useAuth } from './useAuth'
 
 export type { TenantStatus }
 
@@ -12,34 +12,39 @@ export interface CurrentTenant {
 }
 
 export function useCurrentTenant(): CurrentTenant {
-  const { user } = useAuth()
-  const tenantId = user?.tenant?.id ?? null
+  const { selectedTenant, selectedTenantId } = useSelectedTenant()
 
   const [status, setStatus] = useState<TenantStatus>(
-    user?.tenant?.status ?? 'INTEGRATION_PENDING',
+    selectedTenant?.status ?? 'INTEGRATION_PENDING',
   )
 
   useEffect(() => {
-    if (!tenantId) return
+    if (selectedTenant) {
+      setStatus(selectedTenant.status)
+    }
+  }, [selectedTenant])
+
+  useEffect(() => {
+    if (!selectedTenantId) return
 
     let isMounted = true
 
-    getTenantRequest(tenantId)
+    getTenantRequest(selectedTenantId)
       .then((tenant) => {
         if (isMounted) setStatus(tenant.status ?? 'INTEGRATION_PENDING')
       })
       .catch(() => {
-        // Best-effort: mantem o status da sessao se a busca falhar.
+        // Best-effort: mantem o status do tenant selecionado se a busca falhar.
       })
 
     return () => {
       isMounted = false
     }
-  }, [tenantId])
+  }, [selectedTenantId])
 
   return {
-    name: user?.tenant?.name ?? null,
+    name: selectedTenant?.name ?? null,
     status,
-    lastEvent: user?.tenant?.lastEventReceived ?? null,
+    lastEvent: selectedTenant?.lastEventReceived ?? null,
   }
 }

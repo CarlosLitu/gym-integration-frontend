@@ -98,6 +98,8 @@
     "empty": "No gyms found",
     "edit": "Edit",
     "sync": "Sync",
+    "selected": "Selected gym: {{name}}",
+    "selectTenant": "Select {{name}}",
     "syncFeedback": {
       "loading": "Syncing...",
       "started": "Sync started",

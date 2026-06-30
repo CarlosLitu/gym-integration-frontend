@@ -4,6 +4,8 @@ import { Modal } from '@/components'
 import { useTenantModalView } from '../hooks/useTenantModalView'
 import { useTenantWizard } from '../hooks/useTenantWizard'
 import { useCreateTenant } from '../hooks/useCreateTenant'
+import { tenantListItemToSelected, useSelectedTenant } from '../hooks/useSelectedTenant'
+import type { TenantListItem as TenantListItemType } from '../types/tenant.types'
 import { TenantListView } from './TenantListView'
 import { TenantCreateForm } from './TenantCreateForm'
 
@@ -30,6 +32,7 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
     testConnection,
   } = useCreateTenant()
   const [reloadToken, setReloadToken] = useState(0)
+  const { selectTenant, selectedTenantId } = useSelectedTenant()
 
   function handleClose() {
     showList()
@@ -58,6 +61,13 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
     }
   }
 
+  function handleTenantSelect(tenant: TenantListItemType) {
+    if (tenant.id !== selectedTenantId) {
+      selectTenant(tenantListItemToSelected(tenant))
+    }
+    handleClose()
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -71,7 +81,12 @@ export function TenantSwitcherModal({ isOpen, onClose }: TenantSwitcherModalProp
             view === 'list' ? 'translate-x-0' : '-translate-x-full',
           )}
         >
-          <TenantListView isOpen={isOpen} onNewTenant={showCreate} reloadToken={reloadToken} />
+          <TenantListView
+            isOpen={isOpen}
+            onNewTenant={showCreate}
+            onTenantSelect={handleTenantSelect}
+            reloadToken={reloadToken}
+          />
         </div>
         <div
           className={clsx(
