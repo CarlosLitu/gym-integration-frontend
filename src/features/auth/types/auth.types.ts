@@ -9,7 +9,7 @@ export interface RegisterPayload extends LoginCredentials {
   name: string
 }
 
-export type UserRole = 'ADMIN' | 'CONSULTANT' | string
+export type UserRole = 'ADMIN' | 'USER'
 
 export interface ApiTenant {
   _id: string

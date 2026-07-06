@@ -79,8 +79,54 @@
     "settings": "Settings",
     "reports": "Reports",
     "support": "Support",
+    "users": "Users",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Manage users for {{tenant}}",
+    "newUser": "New user",
+    "edit": "Edit",
+    "searchPlaceholder": "Search by name or email...",
+    "sortAz": "A-Z",
+    "count": "{{total}} users",
+    "loading": "Loading users...",
+    "empty": "No users found",
+    "noTenantSelected": "Select a gym to view users",
+    "columns": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "createdAt": "Created at",
+      "actions": "Actions"
+    },
+    "roles": {
+      "ADMIN": "Administrator",
+      "USER": "User"
+    },
+    "form": {
+      "createTitle": "New user",
+      "editTitle": "Edit user",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "role": "Role",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "placeholders": {
+        "name": "e.g. John Smith",
+        "email": "user@gym.com",
+        "password": "Enter password"
+      }
+    },
+    "deactivate": {
+      "title": "Deactivate user",
+      "confirm": "Are you sure you want to deactivate {{name}}? This cannot be undone from the UI.",
+      "action": "Deactivate",
+      "deactivating": "Deactivating..."
+    }
   },
   "tenant": {
     "lastEvent": "Last event {{time}}",

@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Info } from '@phosphor-icons/react'
 import { clsx } from 'clsx'
+import { PulseHexagonMark } from '@/components'
 
 interface ChartCardProps {
   title: string
@@ -12,6 +14,17 @@ interface ChartCardProps {
   emptyLabel?: string
   className?: string
   children: ReactNode
+}
+
+function ChartLoading() {
+  const { t } = useTranslation()
+
+  return (
+    <div className="flex h-64 items-center justify-center" role="status" aria-live="polite">
+      <PulseHexagonMark variant="chart" className="h-16 w-16" />
+      <span className="sr-only">{t('auth.loading')}</span>
+    </div>
+  )
 }
 
 function ChartState({ message }: { message: string }) {
@@ -62,7 +75,7 @@ export function ChartCard({
       </header>
 
       {isLoading ? (
-        <ChartState message="Carregando..." />
+        <ChartLoading />
       ) : error ? (
         <ChartState message={error} />
       ) : isEmpty ? (

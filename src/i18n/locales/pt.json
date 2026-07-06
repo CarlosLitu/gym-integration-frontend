@@ -79,8 +79,54 @@
     "settings": "Configurações",
     "reports": "Relatórios",
     "support": "Suporte",
+    "users": "Usuários",
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu"
+  },
+  "users": {
+    "title": "Usuários",
+    "subtitle": "Gerencie os usuários da academia {{tenant}}",
+    "newUser": "Novo usuário",
+    "edit": "Editar",
+    "searchPlaceholder": "Buscar por nome ou e-mail...",
+    "sortAz": "A-Z",
+    "count": "{{total}} usuários",
+    "loading": "Carregando usuários...",
+    "empty": "Nenhum usuário encontrado",
+    "noTenantSelected": "Selecione uma academia para visualizar os usuários",
+    "columns": {
+      "name": "Nome",
+      "email": "E-mail",
+      "role": "Perfil",
+      "createdAt": "Criado em",
+      "actions": "Ações"
+    },
+    "roles": {
+      "ADMIN": "Administrador",
+      "USER": "Usuário"
+    },
+    "form": {
+      "createTitle": "Novo usuário",
+      "editTitle": "Editar usuário",
+      "name": "Nome",
+      "email": "E-mail",
+      "password": "Senha",
+      "role": "Perfil",
+      "cancel": "Cancelar",
+      "save": "Salvar",
+      "saving": "Salvando...",
+      "placeholders": {
+        "name": "Ex: João Silva",
+        "email": "usuario@academia.com",
+        "password": "Digite a senha"
+      }
+    },
+    "deactivate": {
+      "title": "Desativar usuário",
+      "confirm": "Tem certeza que deseja desativar {{name}}? Esta ação não pode ser desfeita pela interface.",
+      "action": "Desativar",
+      "deactivating": "Desativando..."
+    }
   },
   "tenant": {
     "lastEvent": "Último evento {{time}}",

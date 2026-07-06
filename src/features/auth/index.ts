@@ -1,4 +1,5 @@
 export { useAuth } from './hooks/useAuth'
+export { useIsAdmin } from './hooks/useIsAdmin'
 export { useCurrentTenant } from './hooks/useCurrentTenant'
 export type { CurrentTenant, TenantStatus } from './hooks/useCurrentTenant'
 export { SessionTransitionProvider, useSessionTransition } from './hooks/useSessionTransition'

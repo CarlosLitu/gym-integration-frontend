@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components'
 
-interface TenantSearchProps {
+interface UserSearchProps {
   value: string
   onChange: (value: string) => void
 }
 
-export function TenantSearch({ value, onChange }: TenantSearchProps) {
+export function UserSearch({ value, onChange }: UserSearchProps) {
   const { t } = useTranslation()
 
   return (
@@ -29,11 +29,9 @@ export function TenantSearch({ value, onChange }: TenantSearchProps) {
       </span>
       <Input
         type="search"
-        name="tenant-search"
-        autoComplete="off"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder={t('tenants.searchPlaceholder')}
+        placeholder={t('users.searchPlaceholder')}
         className="h-10 !rounded-[12px] border-slate-200 bg-white py-0 pl-11 placeholder:text-[#A6A6B8]"
       />
     </div>

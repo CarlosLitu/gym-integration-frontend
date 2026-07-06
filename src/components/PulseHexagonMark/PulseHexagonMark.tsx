@@ -1,7 +1,10 @@
 import { motion } from 'motion/react'
+import ellipse from '@/assets/images/Ellipse.svg'
 import polygon from '@/assets/images/Polygon.svg'
 import {
   PULSE_MARK_ELLIPSE_COLORS,
+  PULSE_MARK_ELLIPSE_OPACITY,
+  PULSE_MARK_POLYGON_OPACITY,
   type PulseMarkVariant,
 } from '@/constants/pulse-mark-colors'
 
@@ -15,6 +18,8 @@ export function PulseHexagonMark({
   className = 'h-20 w-20',
 }: PulseHexagonMarkProps) {
   const ellipseColor = PULSE_MARK_ELLIPSE_COLORS[variant]
+  const ellipseOpacityKeyframes = [...PULSE_MARK_ELLIPSE_OPACITY[variant]]
+  const polygonOpacity = PULSE_MARK_POLYGON_OPACITY[variant]
 
   return (
     <div className={`relative ${className}`} aria-hidden="true">
@@ -31,15 +36,30 @@ export function PulseHexagonMark({
           },
         }}
       >
-        <img src={polygon} alt="" className="h-full w-full" />
+        <img
+          src={polygon}
+          alt=""
+          className="h-full w-full"
+          style={{ opacity: polygonOpacity }}
+        />
       </motion.div>
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <motion.span
-          className="h-7 w-7 rounded-full"
-          style={{ backgroundColor: ellipseColor }}
-          initial={{ opacity: 0.08 }}
-          animate={{ opacity: [0.08, 1, 0.08, 0.08] }}
+        <motion.div
+          className="h-[35%] w-[35%]"
+          style={{
+            backgroundColor: ellipseColor,
+            WebkitMaskImage: `url(${ellipse})`,
+            maskImage: `url(${ellipse})`,
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+          }}
+          initial={{ opacity: ellipseOpacityKeyframes[0] }}
+          animate={{ opacity: ellipseOpacityKeyframes }}
           transition={{
             opacity: {
               duration: 2,

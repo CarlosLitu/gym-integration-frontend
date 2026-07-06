@@ -8,6 +8,7 @@ import {
 } from '@/features/auth'
 import { SelectedTenantProvider } from '@/features/tenants'
 import { MainLayout } from '@/layouts'
+import { AdminRoute } from './AdminRoute'
 import { ProtectedRoute } from './ProtectedRoute'
 
 const LoginPage = lazy(() =>
@@ -16,6 +17,10 @@ const LoginPage = lazy(() =>
 
 const DashboardPage = lazy(() =>
   import('@/features/dashboard').then((module) => ({ default: module.DashboardPage })),
+)
+
+const UsersPage = lazy(() =>
+  import('@/features/users').then((module) => ({ default: module.UsersPage })),
 )
 
 export function AppRoutes() {
@@ -32,6 +37,9 @@ export function AppRoutes() {
                 <Route element={<MainLayout />}>
                   <Route index element={<Navigate to="/dashboard" replace />} />
                   <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route element={<AdminRoute />}>
+                    <Route path="/users" element={<UsersPage />} />
+                  </Route>
                 </Route>
               </Route>
 

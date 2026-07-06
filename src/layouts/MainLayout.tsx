@@ -2,18 +2,19 @@ import { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { ChartBar, GearSix, Headset, List, SquaresFour } from '@phosphor-icons/react'
+import { ChartBar, GearSix, Headset, List, SquaresFour, Users } from '@phosphor-icons/react'
 import logo from '@/assets/images/logo.svg'
 import { Button } from '@/components'
-import { useCurrentTenant, UserMenu } from '@/features/auth'
+import { useCurrentTenant, useIsAdmin, UserMenu } from '@/features/auth'
 import { TenantStatusBadge, TenantStatusHexagon, TenantSwitcherModal } from '@/features/tenants'
 import { formatTimeAgo } from '@/utils/formatters'
 
 interface SidebarNavProps {
   onNavigate?: () => void
+  isAdmin?: boolean
 }
 
-function SidebarNav({ onNavigate }: SidebarNavProps) {
+function SidebarNav({ onNavigate, isAdmin = false }: SidebarNavProps) {
   const { t } = useTranslation()
 
   return (
@@ -33,6 +34,23 @@ function SidebarNav({ onNavigate }: SidebarNavProps) {
         <SquaresFour className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
         {t('nav.dashboard')}
       </NavLink>
+      {isAdmin ? (
+        <NavLink
+          to="/users"
+          onClick={onNavigate}
+          className={({ isActive }) =>
+            clsx(
+              'flex items-center gap-2.5 rounded-[8px] px-3 py-2 font-sans text-sm font-medium transition-colors',
+              isActive
+                ? 'bg-pulse-blue/10 text-pulse-blue'
+                : 'text-pulse-navy hover:bg-pulse-surface',
+            )
+          }
+        >
+          <Users className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+          {t('nav.users')}
+        </NavLink>
+      ) : null}
       <button
         type="button"
         onClick={onNavigate}
@@ -63,6 +81,7 @@ function SidebarNav({ onNavigate }: SidebarNavProps) {
 
 export function MainLayout() {
   const { t, i18n } = useTranslation()
+  const isAdmin = useIsAdmin()
   const { name, status, lastEvent } = useCurrentTenant()
   const [isTenantModalOpen, setIsTenantModalOpen] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -93,7 +112,7 @@ export function MainLayout() {
     <div className="flex min-h-screen bg-slate-50">
       <aside className="hidden w-52 flex-col border-r border-slate-200 bg-white p-4 md:flex">
         <img src={logo} alt="Pulse" className="h-[36px] w-[126px] pl-3" />
-        <SidebarNav />
+        <SidebarNav isAdmin={isAdmin} />
       </aside>
 
       {isSidebarOpen ? (
@@ -104,7 +123,7 @@ export function MainLayout() {
           />
           <aside className="absolute left-0 top-0 flex h-full w-64 flex-col border-r border-slate-200 bg-white p-4 shadow-card animate-slide-in-left">
             <img src={logo} alt="Pulse" className="h-[36px] w-[126px] pl-3" />
-            <SidebarNav onNavigate={() => setIsSidebarOpen(false)} />
+            <SidebarNav isAdmin={isAdmin} onNavigate={() => setIsSidebarOpen(false)} />
           </aside>
         </div>
       ) : null}
