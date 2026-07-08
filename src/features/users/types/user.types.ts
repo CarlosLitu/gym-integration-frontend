@@ -45,7 +45,12 @@ export interface UserFormValues {
   name: string
   email: string
   password: string
+  confirmPassword: string
   role: UserRole
+}
+
+export interface UserFormFieldErrors {
+  confirmPassword?: string
 }
 
 export function resolveTenantId(tenantId: string | ApiUserTenant): string {

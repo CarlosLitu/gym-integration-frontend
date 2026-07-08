@@ -4,7 +4,7 @@ import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { ChartBar, GearSix, Headset, List, SquaresFour, Users } from '@phosphor-icons/react'
 import logo from '@/assets/images/logo.svg'
-import { Button } from '@/components'
+import { Button, Footer } from '@/components'
 import { useCurrentTenant, useIsAdmin, UserMenu } from '@/features/auth'
 import { TenantStatusBadge, TenantStatusHexagon, TenantSwitcherModal } from '@/features/tenants'
 import { formatTimeAgo } from '@/utils/formatters'
@@ -146,26 +146,32 @@ export function MainLayout() {
             ) : null}
           </div>
           <TenantStatusBadge status={status} />
-          <Button
-            variant="outline"
-            size="sm"
-            className="rounded-[8px] border-slate-200 text-xs text-black"
-            onClick={() => setIsTenantModalOpen(true)}
-          >
-            {t('tenant.changeTenant')}
-          </Button>
+          {isAdmin ? (
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-[8px] border-slate-200 text-xs text-black"
+              onClick={() => setIsTenantModalOpen(true)}
+            >
+              {t('tenant.changeTenant')}
+            </Button>
+          ) : null}
           <UserMenu initial={tenantInitial} className="ml-auto" />
         </header>
 
         <main className="flex-1 p-6">
           <Outlet />
         </main>
+
+        <Footer />
       </div>
 
-      <TenantSwitcherModal
-        isOpen={isTenantModalOpen}
-        onClose={() => setIsTenantModalOpen(false)}
-      />
+      {isAdmin ? (
+        <TenantSwitcherModal
+          isOpen={isTenantModalOpen}
+          onClose={() => setIsTenantModalOpen(false)}
+        />
+      ) : null}
     </div>
   )
 }

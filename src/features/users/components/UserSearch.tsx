@@ -29,6 +29,8 @@ export function UserSearch({ value, onChange }: UserSearchProps) {
       </span>
       <Input
         type="search"
+        name="user-search"
+        autoComplete="off"
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={t('users.searchPlaceholder')}

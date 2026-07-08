@@ -2,13 +2,15 @@ import { useTranslation } from 'react-i18next'
 import { CircleNotch } from '@phosphor-icons/react'
 import { Alert, Button, Input, Modal } from '@/components'
 import type { UserFormMode } from '../hooks/useUserForm'
-import type { UserFormValues } from '../types/user.types'
+import type { UserFormFieldErrors, UserFormValues } from '../types/user.types'
+import { PasswordRequirementsList } from './PasswordRequirementsList'
 import { UserRoleSelect } from './UserRoleSelect'
 
 interface UserFormModalProps {
   isOpen: boolean
   mode: UserFormMode
   values: UserFormValues
+  fieldErrors: UserFormFieldErrors
   isValid: boolean
   isLoading: boolean
   error: string | null
@@ -21,6 +23,7 @@ export function UserFormModal({
   isOpen,
   mode,
   values,
+  fieldErrors,
   isValid,
   isLoading,
   error,
@@ -66,14 +69,36 @@ export function UserFormModal({
         />
 
         {mode === 'create' ? (
-          <Input
-            label={t('users.form.password')}
-            type="password"
-            placeholder={t('users.form.placeholders.password')}
-            value={values.password}
-            onChange={(event) => onChange('password', event.target.value)}
-            required
-          />
+          <>
+            <Input
+              label={t('users.form.password')}
+              type="password"
+              autoComplete="new-password"
+              placeholder={t('users.form.placeholders.password')}
+              value={values.password}
+              onChange={(event) => onChange('password', event.target.value)}
+              revealToggle
+              revealLabel={t('users.form.reveal')}
+              hideLabel={t('users.form.hide')}
+              required
+            />
+
+            <Input
+              label={t('users.form.confirmPassword')}
+              type="password"
+              autoComplete="new-password"
+              placeholder={t('users.form.placeholders.confirmPassword')}
+              value={values.confirmPassword}
+              onChange={(event) => onChange('confirmPassword', event.target.value)}
+              error={fieldErrors.confirmPassword}
+              revealToggle
+              revealLabel={t('users.form.reveal')}
+              hideLabel={t('users.form.hide')}
+              required
+            />
+
+            <PasswordRequirementsList password={values.password} />
+          </>
         ) : null}
 
         <div className="flex flex-col gap-1.5">

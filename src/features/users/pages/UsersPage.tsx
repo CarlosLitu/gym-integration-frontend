@@ -72,6 +72,7 @@ export function UsersPage() {
         isOpen={isFormOpen}
         mode={userForm.mode}
         values={userForm.values}
+        fieldErrors={userForm.fieldErrors}
         isValid={userForm.isValid}
         isLoading={userForm.isLoading}
         error={userForm.error}

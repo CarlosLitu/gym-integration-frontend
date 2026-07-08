@@ -41,6 +41,7 @@
     "USER_NOT_FOUND": "Usuário não encontrado",
     "USER_REQUIRED_FIELDS": "Preencha os campos obrigatórios do usuário",
     "USER_INVALID_TYPE": "Tipo de usuário inválido",
+    "USER_EMAIL_ALREADY_EXISTS": "Este e-mail já está cadastrado",
 
     "WEBHOOK_RECEIVED_SUCCESS": "Webhook recebido com sucesso",
     "WEBHOOK_EVO_RECEIVED_SUCCESS": "Webhook EVO recebido com sucesso",
@@ -83,6 +84,9 @@
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu"
   },
+  "footer": {
+    "copyright": "© {{year}} Pulse. Todos os direitos reservados."
+  },
   "users": {
     "title": "Usuários",
     "subtitle": "Gerencie os usuários da academia {{tenant}}",
@@ -111,14 +115,30 @@
       "name": "Nome",
       "email": "E-mail",
       "password": "Senha",
+      "confirmPassword": "Confirmar senha",
       "role": "Perfil",
       "cancel": "Cancelar",
       "save": "Salvar",
       "saving": "Salvando...",
+      "reveal": "Mostrar senha",
+      "hide": "Ocultar senha",
       "placeholders": {
         "name": "Ex: João Silva",
         "email": "usuario@academia.com",
-        "password": "Digite a senha"
+        "password": "Digite a senha",
+        "confirmPassword": "Digite a senha novamente"
+      },
+      "errors": {
+        "passwordMismatch": "As senhas não coincidem"
+      },
+      "passwordRequirements": {
+        "title": "Requisitos de senha",
+        "subtitle": "Siga este guia para uma senha forte",
+        "minLength": "Pelo menos 8 caracteres",
+        "uppercase": "Pelo menos uma letra maiúscula (A-Z)",
+        "lowercase": "Pelo menos uma letra minúscula (a-z)",
+        "number": "Pelo menos um número (0-9)",
+        "special": "Pelo menos um caractere especial (!@#$%^&* etc.)"
       }
     },
     "deactivate": {
