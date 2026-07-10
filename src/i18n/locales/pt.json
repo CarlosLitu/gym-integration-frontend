@@ -61,6 +61,8 @@
     "WHATSAPP_INSTANCE_CONNECT_FAILED": "Não foi possível gerar o QR Code do WhatsApp",
     "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Não foi possível configurar o webhook do WhatsApp",
     "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Não foi possível consultar o status do WhatsApp",
+    "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "Conversas do WhatsApp carregadas com sucesso",
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "Mensagens do WhatsApp carregadas com sucesso",
     "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00."
   },
   "auth": {
@@ -86,6 +88,7 @@
     "connected": "Conectado"
   },
   "nav": {
+    "chat": "Chat",
     "dashboard": "Dashboard",
     "settings": "Configurações",
     "reports": "Relatórios",
@@ -342,5 +345,17 @@
         }
       }
     }
+  },
+  "chat": {
+    "title": "Chat",
+    "subtitle": "Conversas recebidas via WhatsApp da academia {{tenant}}",
+    "searchPlaceholder": "Buscar por nome, telefone ou mensagem...",
+    "refresh": "Atualizar",
+    "noTenantSelected": "Selecione uma academia para visualizar as conversas",
+    "activeConversation": "Conversa ativa: {{contact}}",
+    "emptyConversations": "Nenhuma conversa encontrada para este tenant.",
+    "emptyConversationSelection": "Selecione uma conversa para visualizar as mensagens.",
+    "emptyMessages": "Nenhuma mensagem encontrada para esta conversa.",
+    "loadingMessages": "Carregando mensagens..."
   }
 }

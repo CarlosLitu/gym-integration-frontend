@@ -19,6 +19,10 @@ const DashboardPage = lazy(() =>
   import('@/features/dashboard').then((module) => ({ default: module.DashboardPage })),
 )
 
+const ChatPage = lazy(() =>
+  import('@/features/chat').then((module) => ({ default: module.ChatPage })),
+)
+
 const UsersPage = lazy(() =>
   import('@/features/users').then((module) => ({ default: module.UsersPage })),
 )
@@ -37,6 +41,7 @@ export function AppRoutes() {
                 <Route element={<MainLayout />}>
                   <Route index element={<Navigate to="/dashboard" replace />} />
                   <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/chat" element={<ChatPage />} />
                   <Route element={<AdminRoute />}>
                     <Route path="/users" element={<UsersPage />} />
                   </Route>

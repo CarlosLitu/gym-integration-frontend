@@ -10,6 +10,7 @@ export interface WhatsappQrCodeData {
   instanceName: string
   status: WhatsappConnectionStatus
   connectionState: string
+  isSynced: boolean
   qrCodeImageUrl: string | null
   qrCodeValue: string | null
   pairingCode: string | null

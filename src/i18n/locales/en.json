@@ -61,6 +61,8 @@
     "WHATSAPP_INSTANCE_CONNECT_FAILED": "Could not generate the WhatsApp QR code",
     "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Could not configure the WhatsApp webhook",
     "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Could not fetch the WhatsApp connection status",
+    "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "WhatsApp conversations loaded successfully",
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "WhatsApp messages loaded successfully",
     "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sync is only allowed between 00:00 and 03:00."
   },
   "auth": {
@@ -86,6 +88,7 @@
     "connected": "Connected"
   },
   "nav": {
+    "chat": "Chat",
     "dashboard": "Dashboard",
     "settings": "Settings",
     "reports": "Reports",
@@ -342,5 +345,17 @@
         }
       }
     }
+  },
+  "chat": {
+    "title": "Chat",
+    "subtitle": "Conversations received via WhatsApp for {{tenant}}",
+    "searchPlaceholder": "Search by name, phone or message...",
+    "refresh": "Refresh",
+    "noTenantSelected": "Select a gym to view conversations",
+    "activeConversation": "Active conversation: {{contact}}",
+    "emptyConversations": "No conversations found for this tenant.",
+    "emptyConversationSelection": "Select a conversation to view messages.",
+    "emptyMessages": "No messages found for this conversation.",
+    "loadingMessages": "Loading messages..."
   }
 }

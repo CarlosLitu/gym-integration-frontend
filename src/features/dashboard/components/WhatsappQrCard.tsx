@@ -86,24 +86,26 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
             ) : null}
           </div>
 
-          {data?.status === 'CONNECTED' ? (
+          {data?.isSynced || data?.status === 'CONNECTED' ? (
             <p className="text-sm text-pulse-muted">{t('dashboard.charts.whatsapp.connectedHelp')}</p>
           ) : (
             <p className="text-sm text-pulse-muted">{t('dashboard.charts.whatsapp.qrHelp')}</p>
           )}
 
-          <div className="flex flex-wrap gap-3">
-            <Button onClick={() => void refresh()} disabled={!tenantId || isRefreshing}>
-              <span className="inline-flex items-center gap-2">
-                <ArrowsClockwise className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-                {isRefreshing
-                  ? t('dashboard.charts.whatsapp.refreshing')
-                  : t('dashboard.charts.whatsapp.refreshButton')}
-              </span>
-            </Button>
-          </div>
+          {!data?.isSynced ? (
+            <div className="flex flex-wrap gap-3">
+              <Button onClick={() => void refresh()} disabled={!tenantId || isRefreshing}>
+                <span className="inline-flex items-center gap-2">
+                  <ArrowsClockwise className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+                  {isRefreshing
+                    ? t('dashboard.charts.whatsapp.refreshing')
+                    : t('dashboard.charts.whatsapp.refreshButton')}
+                </span>
+              </Button>
+            </div>
+          ) : null}
 
-          {!data?.qrCodeImageUrl && data?.status !== 'CONNECTED' ? (
+          {!data?.qrCodeImageUrl && data?.status !== 'CONNECTED' && !data?.isSynced ? (
             <Alert>{t('dashboard.charts.whatsapp.qrUnavailable')}</Alert>
           ) : null}
         </div>
@@ -119,7 +121,7 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
             </div>
           ) : (
             <div className="flex h-64 w-64 items-center justify-center rounded-[12px] border border-dashed border-pulse-border bg-pulse-surface px-6 text-center text-sm text-pulse-muted">
-              {data?.status === 'CONNECTED'
+              {data?.isSynced || data?.status === 'CONNECTED'
                 ? t('dashboard.charts.whatsapp.connectedNoQr')
                 : t('dashboard.charts.whatsapp.waitingQr')}
             </div>
