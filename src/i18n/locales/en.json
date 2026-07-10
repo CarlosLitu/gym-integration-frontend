@@ -32,6 +32,7 @@
     "TENANT_NO_VALID_FIELDS_FOR_UPDATE": "No valid fields to update",
     "TENANT_REFERENCE_NOT_FOUND": "Tenant reference not found",
     "TENANT_CHILD_REFERENCE_NOT_FOUND": "Child tenant reference not found",
+    "TENANT_WHATSAPP_NOT_CONFIGURED": "Tenant WhatsApp is not configured yet",
 
     "USER_LIST_SUCCESS": "Users listed successfully",
     "USER_FETCH_SUCCESS": "User loaded successfully",
@@ -51,6 +52,15 @@
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registered on gateway successfully",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Failed to delete webhook from gateway",
     "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook deleted from gateway successfully",
+    "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "X-Webhook-Secret header is required",
+    "WEBHOOK_WHATSAPP_SECRET_INVALID": "Invalid X-Webhook-Secret header",
+    "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "WhatsApp webhook received successfully",
+    "WHATSAPP_QR_CODE_FETCH_SUCCESS": "WhatsApp QR code loaded successfully",
+    "WHATSAPP_EVOLUTION_NOT_CONFIGURED": "Evolution API is not configured on the backend",
+    "WHATSAPP_INSTANCE_CREATE_FAILED": "Could not create the WhatsApp instance",
+    "WHATSAPP_INSTANCE_CONNECT_FAILED": "Could not generate the WhatsApp QR code",
+    "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Could not configure the WhatsApp webhook",
+    "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Could not fetch the WhatsApp connection status",
     "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sync is only allowed between 00:00 and 03:00."
   },
   "auth": {
@@ -306,6 +316,30 @@
         "title": "Sellers ranking",
         "subtitle": "Revenue by seller",
         "info": "Top sellers by revenue in the period."
+      },
+      "whatsapp": {
+        "title": "Tenant WhatsApp",
+        "subtitle": "QR Code connection for the current instance",
+        "info": "Loads the tenant instance QR code from Evolution API and keeps the per-tenant webhook configured.",
+        "noTenantSelected": "Select a gym to load the WhatsApp QR code",
+        "instanceName": "Instance",
+        "connectionState": "Connection state",
+        "pairingCode": "Pairing code",
+        "refreshButton": "Refresh QR code",
+        "refreshing": "Refreshing...",
+        "qrHelp": "Scan this QR code in WhatsApp to connect the selected gym instance.",
+        "connectedHelp": "This tenant instance is already connected to WhatsApp.",
+        "connectedNoQr": "Instance already connected. No QR code is required right now.",
+        "waitingQr": "Waiting for the QR code to be generated.",
+        "qrUnavailable": "The backend queried the instance, but Evolution API did not return a QR code image in this attempt.",
+        "qrAlt": "Gym WhatsApp QR code",
+        "status": {
+          "DISCONNECTED": "Disconnected",
+          "CONNECTING": "Connecting",
+          "QRCODE": "Waiting for QR scan",
+          "CONNECTED": "Connected",
+          "ERROR": "Error"
+        }
       }
     }
   }

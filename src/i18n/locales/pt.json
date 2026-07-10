@@ -32,6 +32,7 @@
     "TENANT_NO_VALID_FIELDS_FOR_UPDATE": "Nenhum campo válido para atualização",
     "TENANT_REFERENCE_NOT_FOUND": "Referência de tenant não encontrada",
     "TENANT_CHILD_REFERENCE_NOT_FOUND": "Referência de tenant filho não encontrada",
+    "TENANT_WHATSAPP_NOT_CONFIGURED": "WhatsApp do tenant ainda não está configurado",
 
     "USER_LIST_SUCCESS": "Usuários listados com sucesso",
     "USER_FETCH_SUCCESS": "Usuário carregado com sucesso",
@@ -51,6 +52,15 @@
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registrado no gateway com sucesso",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Falha ao remover webhook do gateway",
     "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook removido do gateway com sucesso",
+    "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "Header X-Webhook-Secret obrigatório",
+    "WEBHOOK_WHATSAPP_SECRET_INVALID": "Header X-Webhook-Secret inválido",
+    "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "Webhook do WhatsApp recebido com sucesso",
+    "WHATSAPP_QR_CODE_FETCH_SUCCESS": "QR Code do WhatsApp carregado com sucesso",
+    "WHATSAPP_EVOLUTION_NOT_CONFIGURED": "Evolution API não configurada no backend",
+    "WHATSAPP_INSTANCE_CREATE_FAILED": "Não foi possível criar a instância do WhatsApp",
+    "WHATSAPP_INSTANCE_CONNECT_FAILED": "Não foi possível gerar o QR Code do WhatsApp",
+    "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Não foi possível configurar o webhook do WhatsApp",
+    "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Não foi possível consultar o status do WhatsApp",
     "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00."
   },
   "auth": {
@@ -306,6 +316,30 @@
         "title": "Ranking de vendedores",
         "subtitle": "Receita por vendedor",
         "info": "Principais vendedores por receita no período."
+      },
+      "whatsapp": {
+        "title": "WhatsApp do tenant",
+        "subtitle": "Conexão por QR Code da instância atual",
+        "info": "Busca o QR Code da instância do tenant na Evolution API e mantém o webhook por tenant configurado.",
+        "noTenantSelected": "Selecione uma academia para carregar o QR Code do WhatsApp",
+        "instanceName": "Instância",
+        "connectionState": "Estado da conexão",
+        "pairingCode": "Código de pareamento",
+        "refreshButton": "Atualizar QR Code",
+        "refreshing": "Atualizando...",
+        "qrHelp": "Escaneie este QR Code no WhatsApp para conectar a instância da academia selecionada.",
+        "connectedHelp": "A instância deste tenant já está conectada ao WhatsApp.",
+        "connectedNoQr": "Instância já conectada. Nenhum QR Code é necessário no momento.",
+        "waitingQr": "Aguardando geração do QR Code.",
+        "qrUnavailable": "O backend consultou a instância, mas a Evolution API não retornou uma imagem de QR Code nesta tentativa.",
+        "qrAlt": "QR Code do WhatsApp da academia",
+        "status": {
+          "DISCONNECTED": "Desconectado",
+          "CONNECTING": "Conectando",
+          "QRCODE": "Aguardando leitura do QR",
+          "CONNECTED": "Conectado",
+          "ERROR": "Erro"
+        }
       }
     }
   }
