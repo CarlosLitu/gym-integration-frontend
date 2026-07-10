@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { getWhatsappQrCodeRequest } from '../api/get-whatsapp-qr-code'
 import type { WhatsappQrCodeData } from '../types/whatsapp.types'
 import { useApiMessage } from '@/hooks/useApiMessage'
@@ -13,10 +13,15 @@ interface UseWhatsappQrCodeResult {
 
 export function useWhatsappQrCode(tenantId: string | null): UseWhatsappQrCodeResult {
   const { getErrorMessage } = useApiMessage()
+  const getErrorMessageRef = useRef(getErrorMessage)
   const [data, setData] = useState<WhatsappQrCodeData | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    getErrorMessageRef.current = getErrorMessage
+  }, [getErrorMessage])
 
   const load = useCallback(
     async (refresh = false) => {
@@ -40,13 +45,13 @@ export function useWhatsappQrCode(tenantId: string | null): UseWhatsappQrCodeRes
         const response = await getWhatsappQrCodeRequest(tenantId)
         setData(response)
       } catch (requestError) {
-        setError(getErrorMessage(requestError))
+        setError(getErrorMessageRef.current(requestError))
       } finally {
         setIsLoading(false)
         setIsRefreshing(false)
       }
     },
-    [getErrorMessage, tenantId],
+    [tenantId],
   )
 
   useEffect(() => {
