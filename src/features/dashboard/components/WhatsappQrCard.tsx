@@ -27,16 +27,16 @@ function getStatusVariant(status: WhatsappConnectionStatus | undefined) {
 function getStatusLabel(status: WhatsappConnectionStatus | undefined, t: (key: string) => string) {
   switch (status) {
     case 'CONNECTED':
-      return t('dashboard.whatsapp.status.CONNECTED')
+      return t('dashboard.charts.whatsapp.status.CONNECTED')
     case 'CONNECTING':
-      return t('dashboard.whatsapp.status.CONNECTING')
+      return t('dashboard.charts.whatsapp.status.CONNECTING')
     case 'QRCODE':
-      return t('dashboard.whatsapp.status.QRCODE')
+      return t('dashboard.charts.whatsapp.status.QRCODE')
     case 'ERROR':
-      return t('dashboard.whatsapp.status.ERROR')
+      return t('dashboard.charts.whatsapp.status.ERROR')
     case 'DISCONNECTED':
     default:
-      return t('dashboard.whatsapp.status.DISCONNECTED')
+      return t('dashboard.charts.whatsapp.status.DISCONNECTED')
   }
 }
 
@@ -46,13 +46,13 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
 
   return (
     <ChartCard
-      title={t('dashboard.whatsapp.title')}
-      subtitle={t('dashboard.whatsapp.subtitle')}
-      info={t('dashboard.whatsapp.info')}
+      title={t('dashboard.charts.whatsapp.title')}
+      subtitle={t('dashboard.charts.whatsapp.subtitle')}
+      info={t('dashboard.charts.whatsapp.info')}
       isLoading={isLoading}
       error={error}
       isEmpty={!tenantId}
-      emptyLabel={t('dashboard.whatsapp.noTenantSelected')}
+      emptyLabel={t('dashboard.charts.whatsapp.noTenantSelected')}
     >
       <div className="flex min-h-[18rem] flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="space-y-3">
@@ -66,20 +66,20 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
           <div className="space-y-1 text-sm text-pulse-muted">
             <p>
               <span className="font-semibold text-pulse-navy">
-                {t('dashboard.whatsapp.instanceName')}:
+                  {t('dashboard.charts.whatsapp.instanceName')}:
               </span>{' '}
               {data?.instanceName ?? '-'}
             </p>
             <p>
               <span className="font-semibold text-pulse-navy">
-                {t('dashboard.whatsapp.connectionState')}:
+                  {t('dashboard.charts.whatsapp.connectionState')}:
               </span>{' '}
               {data?.connectionState || '-'}
             </p>
             {data?.pairingCode ? (
               <p>
                 <span className="font-semibold text-pulse-navy">
-                  {t('dashboard.whatsapp.pairingCode')}:
+                  {t('dashboard.charts.whatsapp.pairingCode')}:
                 </span>{' '}
                 {data.pairingCode}
               </p>
@@ -87,9 +87,9 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
           </div>
 
           {data?.status === 'CONNECTED' ? (
-            <p className="text-sm text-pulse-muted">{t('dashboard.whatsapp.connectedHelp')}</p>
+            <p className="text-sm text-pulse-muted">{t('dashboard.charts.whatsapp.connectedHelp')}</p>
           ) : (
-            <p className="text-sm text-pulse-muted">{t('dashboard.whatsapp.qrHelp')}</p>
+            <p className="text-sm text-pulse-muted">{t('dashboard.charts.whatsapp.qrHelp')}</p>
           )}
 
           <div className="flex flex-wrap gap-3">
@@ -97,14 +97,14 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
               <span className="inline-flex items-center gap-2">
                 <ArrowsClockwise className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
                 {isRefreshing
-                  ? t('dashboard.whatsapp.refreshing')
-                  : t('dashboard.whatsapp.refreshButton')}
+                  ? t('dashboard.charts.whatsapp.refreshing')
+                  : t('dashboard.charts.whatsapp.refreshButton')}
               </span>
             </Button>
           </div>
 
           {!data?.qrCodeImageUrl && data?.status !== 'CONNECTED' ? (
-            <Alert>{t('dashboard.whatsapp.qrUnavailable')}</Alert>
+            <Alert>{t('dashboard.charts.whatsapp.qrUnavailable')}</Alert>
           ) : null}
         </div>
 
@@ -113,15 +113,15 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
             <div className="rounded-[12px] border border-pulse-border bg-white p-3 shadow-sm">
               <img
                 src={data.qrCodeImageUrl}
-                alt={t('dashboard.whatsapp.qrAlt')}
+                alt={t('dashboard.charts.whatsapp.qrAlt')}
                 className="h-64 w-64 rounded-[8px] object-contain"
               />
             </div>
           ) : (
             <div className="flex h-64 w-64 items-center justify-center rounded-[12px] border border-dashed border-pulse-border bg-pulse-surface px-6 text-center text-sm text-pulse-muted">
               {data?.status === 'CONNECTED'
-                ? t('dashboard.whatsapp.connectedNoQr')
-                : t('dashboard.whatsapp.waitingQr')}
+                ? t('dashboard.charts.whatsapp.connectedNoQr')
+                : t('dashboard.charts.whatsapp.waitingQr')}
             </div>
           )}
         </div>
