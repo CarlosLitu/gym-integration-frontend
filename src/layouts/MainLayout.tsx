@@ -20,21 +20,6 @@ function SidebarNav({ onNavigate, isAdmin = false }: SidebarNavProps) {
   return (
     <nav className="mt-8 flex flex-col gap-4">
       <NavLink
-        to="/chat"
-        onClick={onNavigate}
-        className={({ isActive }) =>
-          clsx(
-            'flex items-center gap-2.5 rounded-[8px] px-3 py-2 font-sans text-sm font-medium transition-colors',
-            isActive
-              ? 'bg-pulse-blue/10 text-pulse-blue'
-              : 'text-pulse-navy hover:bg-pulse-surface',
-          )
-        }
-      >
-        <ChatCircleDots className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
-        {t('nav.chat')}
-      </NavLink>
-      <NavLink
         to="/dashboard"
         onClick={onNavigate}
         className={({ isActive }) =>
@@ -48,6 +33,21 @@ function SidebarNav({ onNavigate, isAdmin = false }: SidebarNavProps) {
       >
         <SquaresFour className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
         {t('nav.dashboard')}
+      </NavLink>
+      <NavLink
+        to="/chat"
+        onClick={onNavigate}
+        className={({ isActive }) =>
+          clsx(
+            'flex items-center gap-2.5 rounded-[8px] px-3 py-2 font-sans text-sm font-medium transition-colors',
+            isActive
+              ? 'bg-pulse-blue/10 text-pulse-blue'
+              : 'text-pulse-navy hover:bg-pulse-surface',
+          )
+        }
+      >
+        <ChatCircleDots className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+        {t('nav.chat')}
       </NavLink>
       {isAdmin ? (
         <NavLink

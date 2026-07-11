@@ -32,11 +32,19 @@ export interface ChatMessage {
 
 export interface ChatConversationListData {
   tenantId: string
+  skip: number
+  limit: number
+  total: number
+  hasMore: boolean
   conversations: ChatConversation[]
 }
 
 export interface ChatMessageListData {
   tenantId: string
   remoteJid: string
+  skip: number
+  limit: number
+  total: number
+  hasMore: boolean
   messages: ChatMessage[]
 }

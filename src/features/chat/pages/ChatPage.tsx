@@ -15,8 +15,24 @@ export function ChatPage() {
   const [reloadToken, setReloadToken] = useState(0)
   const [search, setSearch] = useState('')
   const [selectedConversation, setSelectedConversation] = useState<ChatConversation | null>(null)
-  const { conversations, isLoading, error } = useChatConversations(selectedTenantId, reloadToken)
-  const { messages, isLoading: isLoadingMessages, error: messagesError } = useChatMessages(
+  const {
+    conversations,
+    isLoading,
+    isLoadingMore: isLoadingMoreConversations,
+    error,
+    hasMore: hasMoreConversations,
+    total: totalConversations,
+    loadMore: loadMoreConversations,
+  } = useChatConversations(selectedTenantId, reloadToken)
+  const {
+    messages,
+    isLoading: isLoadingMessages,
+    isLoadingMore: isLoadingMoreMessages,
+    error: messagesError,
+    hasMore: hasMoreMessages,
+    total: totalMessages,
+    loadMore: loadMoreMessages,
+  } = useChatMessages(
     selectedTenantId,
     selectedConversation?.remoteJid || null,
   )
@@ -87,6 +103,24 @@ export function ChatPage() {
 
       <div className="grid gap-6 xl:grid-cols-[24rem_minmax(0,1fr)]">
         <div className="space-y-4">
+          <div className="flex items-center justify-between px-1">
+            <p className="text-sm text-pulse-muted">
+              {t('chat.conversationsCount', {
+                shown: conversations.length,
+                total: totalConversations,
+              })}
+            </p>
+            {hasMoreConversations ? (
+              <button
+                type="button"
+                onClick={() => void loadMoreConversations()}
+                disabled={isLoadingMoreConversations}
+                className="rounded-full border border-pulse-border bg-white px-4 py-2 text-sm font-semibold text-pulse-navy shadow-sm transition hover:border-pulse-blue hover:bg-pulse-blue/5 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isLoadingMoreConversations ? t('chat.loadingMore') : t('chat.showMore')}
+              </button>
+            ) : null}
+          </div>
           <ConversationList
             conversations={conversations}
             selectedRemoteJid={selectedConversation?.remoteJid ?? null}
@@ -102,10 +136,38 @@ export function ChatPage() {
           conversation={selectedConversation}
           messages={messages}
           isLoading={isLoadingMessages}
+          isLoadingMore={isLoadingMoreMessages}
           error={messagesError}
           loadingLabel={t('chat.loadingMessages')}
           emptyConversationLabel={t('chat.emptyConversationSelection')}
           emptyMessagesLabel={t('chat.emptyMessages')}
+          headerActions={
+            selectedConversation && hasMoreMessages ? (
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-pulse-muted">
+                  {t('chat.messagesCount', {
+                    shown: messages.length,
+                    total: totalMessages,
+                  })}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => void loadMoreMessages()}
+                  disabled={isLoadingMoreMessages}
+                  className="rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isLoadingMoreMessages ? t('chat.loadingMore') : t('chat.showMore')}
+                </button>
+              </div>
+            ) : selectedConversation ? (
+              <span className="text-xs text-pulse-muted">
+                {t('chat.messagesCount', {
+                  shown: messages.length,
+                  total: totalMessages,
+                })}
+              </span>
+            ) : null
+          }
         />
       </div>
     </div>

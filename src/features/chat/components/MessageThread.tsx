@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { clsx } from 'clsx'
 import type { ChatConversation, ChatMessage } from '../types/chat.types'
 
@@ -5,20 +6,24 @@ interface MessageThreadProps {
   conversation: ChatConversation | null
   messages: ChatMessage[]
   isLoading: boolean
+  isLoadingMore: boolean
   error: string | null
   loadingLabel: string
   emptyConversationLabel: string
   emptyMessagesLabel: string
+  headerActions?: ReactNode
 }
 
 export function MessageThread({
   conversation,
   messages,
   isLoading,
+  isLoadingMore,
   error,
   loadingLabel,
   emptyConversationLabel,
   emptyMessagesLabel,
+  headerActions,
 }: MessageThreadProps) {
   if (!conversation) {
     return (
@@ -30,11 +35,14 @@ export function MessageThread({
 
   return (
     <div className="overflow-hidden rounded-[12px] border border-pulse-border bg-white">
-      <header className="border-b border-pulse-border px-4 py-3">
-        <h2 className="font-semibold text-pulse-navy">
-          {conversation.name || conversation.phoneNumber || conversation.remoteJid}
-        </h2>
-        <p className="mt-1 text-sm text-pulse-muted">{conversation.remoteJid}</p>
+      <header className="flex items-start justify-between gap-4 border-b border-pulse-border px-4 py-3">
+        <div>
+          <h2 className="font-semibold text-pulse-navy">
+            {conversation.name || conversation.phoneNumber || conversation.remoteJid}
+          </h2>
+          <p className="mt-1 text-sm text-pulse-muted">{conversation.remoteJid}</p>
+        </div>
+        {headerActions ? <div className="shrink-0">{headerActions}</div> : null}
       </header>
 
       {isLoading ? (
@@ -45,6 +53,11 @@ export function MessageThread({
         <div className="p-6 text-sm text-pulse-muted">{emptyMessagesLabel}</div>
       ) : (
         <div className="flex max-h-[42rem] flex-col gap-3 overflow-y-auto bg-slate-50 p-4">
+          {isLoadingMore ? (
+            <div className="self-center rounded-full bg-white px-4 py-2 text-xs font-medium text-pulse-muted shadow-sm">
+              {loadingLabel}
+            </div>
+          ) : null}
           {messages.map((message) => (
             <div
               key={message.id}
