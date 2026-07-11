@@ -1,19 +1,40 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Alert, Button, Input } from '@/components'
-import { useLoginForm } from '../hooks/useLoginForm'
+import { useForgotPasswordForm } from '../hooks/useForgotPasswordForm'
 
-export function LoginForm() {
+export function ForgotPasswordForm() {
   const { t } = useTranslation()
   const {
-    credentials,
+    email,
     fieldErrors,
     formError,
+    isSuccess,
     isLoading,
     canSubmit,
     handleChange,
     handleSubmit,
-  } = useLoginForm()
+  } = useForgotPasswordForm()
+
+  if (isSuccess) {
+    return (
+      <div className="flex flex-col gap-4">
+        <p
+          className="rounded-input bg-[#F1FAF4] px-3 py-2 font-sans text-sm text-[#24893E]"
+          role="status"
+        >
+          {t('auth.forgotSuccess')}
+        </p>
+
+        <Link
+          to="/login"
+          className="inline-flex w-full items-center justify-center rounded-pill bg-[#007AFF] px-6 py-[13px] font-sans text-base font-semibold text-white transition-colors hover:bg-[#007AFF]/90"
+        >
+          {t('auth.goToLogin')}
+        </Link>
+      </div>
+    )
+  }
 
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
@@ -23,30 +44,12 @@ export function LoginForm() {
         name="email"
         autoComplete="email"
         placeholder={t('auth.emailPlaceholder')}
-        value={credentials.email}
+        value={email}
         error={fieldErrors.email}
-        onChange={(event) => handleChange('email', event.target.value)}
-      />
-
-      <Input
-        label={t('auth.passwordLabel')}
-        type="password"
-        name="password"
-        autoComplete="current-password"
-        placeholder={t('auth.passwordPlaceholder')}
-        value={credentials.password}
-        error={fieldErrors.password}
-        onChange={(event) => handleChange('password', event.target.value)}
+        onChange={(event) => handleChange(event.target.value)}
       />
 
       {formError ? <Alert>{formError}</Alert> : null}
-
-      <Link
-        to="/forgot-password"
-        className="w-fit font-sans text-[13px] font-medium text-pulse-blue hover:underline"
-      >
-        {t('auth.forgotPassword')}
-      </Link>
 
       <div className="relative z-20">
         <span
@@ -60,7 +63,7 @@ export function LoginForm() {
           className="relative w-full"
           disabled={isLoading || !canSubmit}
         >
-          {isLoading ? t('auth.submittingLabel') : t('auth.submitLabel')}
+          {isLoading ? t('auth.forgotSubmittingLabel') : t('auth.forgotSubmitLabel')}
         </Button>
       </div>
     </form>

@@ -9,4 +9,12 @@ export { RouteLoadingFallback } from './components/RouteLoadingFallback'
 export { RouteLoadingListener } from './components/RouteLoadingListener'
 export { UserMenu } from './components/UserMenu'
 export { LoginPage } from './pages/LoginPage'
-export type { UserSession, AuthResponse, LoginCredentials } from './types/auth.types'
+export { ForgotPasswordPage } from './pages/ForgotPasswordPage'
+export { ResetPasswordPage } from './pages/ResetPasswordPage'
+export type {
+  UserSession,
+  AuthResponse,
+  LoginCredentials,
+  ForgotPasswordPayload,
+  ResetPasswordPayload,
+} from './types/auth.types'

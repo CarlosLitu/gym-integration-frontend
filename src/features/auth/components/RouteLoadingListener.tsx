@@ -21,7 +21,11 @@ export function RouteLoadingListener() {
 
     previousPath.current = location.pathname
 
-    if (location.pathname === '/login') {
+    if (
+      location.pathname === '/login' ||
+      location.pathname === '/forgot-password' ||
+      location.pathname === '/reset-password'
+    ) {
       return
     }
 

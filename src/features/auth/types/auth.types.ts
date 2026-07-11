@@ -5,6 +5,19 @@ export interface LoginCredentials {
   password: string
 }
 
+export interface ForgotPasswordPayload {
+  email: string
+}
+
+export interface ResetPasswordPayload {
+  token: string
+  password: string
+}
+
+export interface AuthMessageResponse {
+  message: string
+}
+
 export interface RegisterPayload extends LoginCredentials {
   name: string
 }
