@@ -30,3 +30,27 @@
     @apply min-h-screen;
   }
 }
+
+@layer components {
+  /* Recharts focuses SVG nodes on click; hide the default black outline. */
+  .recharts-wrapper,
+  .recharts-wrapper *:focus,
+  .recharts-wrapper *:focus-visible,
+  .recharts-surface,
+  .recharts-surface:focus,
+  .recharts-surface:focus-visible,
+  .recharts-sector:focus,
+  .recharts-layer:focus {
+    outline: none !important;
+  }
+}
+
+/* Outside layers so it wins over the browser focus ring on SVG. */
+.recharts-wrapper:focus,
+.recharts-wrapper:focus-visible,
+.recharts-surface:focus,
+.recharts-surface:focus-visible,
+.recharts-wrapper svg:focus,
+.recharts-wrapper svg:focus-visible {
+  outline: none !important;
+}

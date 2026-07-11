@@ -53,6 +53,7 @@ export function SellersRankingChart({ data }: SellersRankingChartProps) {
         data={data}
         layout="vertical"
         margin={{ top: 4, right: 16, bottom: 4, left: 8 }}
+        accessibilityLayer={false}
       >
         <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={CHART_COLORS.grid} />
         <XAxis
