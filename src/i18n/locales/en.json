@@ -32,6 +32,7 @@
     "TENANT_NO_VALID_FIELDS_FOR_UPDATE": "No valid fields to update",
     "TENANT_REFERENCE_NOT_FOUND": "Tenant reference not found",
     "TENANT_CHILD_REFERENCE_NOT_FOUND": "Child tenant reference not found",
+    "TENANT_WHATSAPP_NOT_CONFIGURED": "Tenant WhatsApp is not configured yet",
 
     "USER_LIST_SUCCESS": "Users listed successfully",
     "USER_FETCH_SUCCESS": "User loaded successfully",
@@ -57,7 +58,18 @@
     "LEAD_INVALID_WHATSAPP": "Invalid WhatsApp number. Include the area code.",
     "LEAD_TERMS_NOT_ACCEPTED": "You must accept the terms to continue.",
     "LEAD_CREATE_SUCCESS": "Demo request sent successfully.",
-    "LEAD_RATE_LIMIT_EXCEEDED": "Too many attempts. Please wait a few minutes and try again."
+    "LEAD_RATE_LIMIT_EXCEEDED": "Too many attempts. Please wait a few minutes and try again.",
+    "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "X-Webhook-Secret header is required",
+    "WEBHOOK_WHATSAPP_SECRET_INVALID": "Invalid X-Webhook-Secret header",
+    "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "WhatsApp webhook received successfully",
+    "WHATSAPP_QR_CODE_FETCH_SUCCESS": "WhatsApp QR code loaded successfully",
+    "WHATSAPP_EVOLUTION_NOT_CONFIGURED": "Evolution API is not configured on the backend",
+    "WHATSAPP_INSTANCE_CREATE_FAILED": "Could not create the WhatsApp instance",
+    "WHATSAPP_INSTANCE_CONNECT_FAILED": "Could not generate the WhatsApp QR code",
+    "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Could not configure the WhatsApp webhook",
+    "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Could not fetch the WhatsApp connection status",
+    "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "WhatsApp conversations loaded successfully",
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "WhatsApp messages loaded successfully"
   },
   "auth": {
     "backToHome": "Back to site",
@@ -83,6 +95,7 @@
     "connected": "Connected"
   },
   "nav": {
+    "chat": "Chat",
     "dashboard": "Dashboard",
     "settings": "Settings",
     "reports": "Reports",
@@ -431,7 +444,47 @@
         "title": "Sellers ranking",
         "subtitle": "Revenue by seller",
         "info": "Top sellers by revenue in the period."
+      },
+      "whatsapp": {
+        "title": "Tenant WhatsApp",
+        "subtitle": "QR Code connection for the current instance",
+        "info": "Loads the tenant instance QR code from Evolution API and keeps the per-tenant webhook configured.",
+        "noTenantSelected": "Select a gym to load the WhatsApp QR code",
+        "instanceName": "Instance",
+        "connectionState": "Connection state",
+        "pairingCode": "Pairing code",
+        "refreshButton": "Refresh QR code",
+        "refreshing": "Refreshing...",
+        "qrHelp": "Scan this QR code in WhatsApp to connect the selected gym instance.",
+        "connectedHelp": "This tenant instance is already connected to WhatsApp.",
+        "connectedNoQr": "Instance already connected. No QR code is required right now.",
+        "waitingQr": "Waiting for the QR code to be generated.",
+        "qrUnavailable": "The backend queried the instance, but Evolution API did not return a QR code image in this attempt.",
+        "qrAlt": "Gym WhatsApp QR code",
+        "status": {
+          "DISCONNECTED": "Disconnected",
+          "CONNECTING": "Connecting",
+          "QRCODE": "Waiting for QR scan",
+          "CONNECTED": "Connected",
+          "ERROR": "Error"
+        }
       }
     }
+  },
+  "chat": {
+    "title": "Chat",
+    "subtitle": "Conversations received via WhatsApp for {{tenant}}",
+    "searchPlaceholder": "Search by name, phone or message...",
+    "refresh": "Refresh",
+    "showMore": "Show more",
+    "loadingMore": "Loading more...",
+    "noTenantSelected": "Select a gym to view conversations",
+    "activeConversation": "Active conversation: {{contact}}",
+    "conversationsCount": "{{shown}} of {{total}} conversations",
+    "messagesCount": "{{shown}} of {{total}} messages",
+    "emptyConversations": "No conversations found for this tenant.",
+    "emptyConversationSelection": "Select a conversation to view messages.",
+    "emptyMessages": "No messages found for this conversation.",
+    "loadingMessages": "Loading messages..."
   }
 }

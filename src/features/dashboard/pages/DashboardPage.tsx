@@ -8,11 +8,12 @@ import { PaymentMethodsChart } from '../components/PaymentMethodsChart'
 import { PlanMixChart } from '../components/PlanMixChart'
 import { RevenueAreaChart } from '../components/RevenueAreaChart'
 import { SellersRankingChart } from '../components/SellersRankingChart'
+import { WhatsappQrCard } from '../components/WhatsappQrCard'
 import { useDashboardData } from '../hooks/useDashboardData'
 
 export function DashboardPage() {
   const { t } = useTranslation()
-  const { dateRange, kpis, series, breakdown } = useDashboardData()
+  const { tenantId, dateRange, kpis, series, breakdown } = useDashboardData()
 
   const hasRevenue = series.series.some((point) => point.totalValue > 0)
   const hasFinancial = series.series.some(
@@ -37,6 +38,8 @@ export function DashboardPage() {
       </header>
 
       <KpiGrid kpis={kpis.kpis} isLoading={kpis.isLoading} error={kpis.error} />
+
+      <WhatsappQrCard tenantId={tenantId} />
 
       <div className="grid gap-4 xl:grid-cols-3">
         <ChartCard

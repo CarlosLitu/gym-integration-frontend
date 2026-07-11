@@ -32,6 +32,7 @@
     "TENANT_NO_VALID_FIELDS_FOR_UPDATE": "Nenhum campo válido para atualização",
     "TENANT_REFERENCE_NOT_FOUND": "Referência de tenant não encontrada",
     "TENANT_CHILD_REFERENCE_NOT_FOUND": "Referência de tenant filho não encontrada",
+    "TENANT_WHATSAPP_NOT_CONFIGURED": "WhatsApp do tenant ainda não está configurado",
 
     "USER_LIST_SUCCESS": "Usuários listados com sucesso",
     "USER_FETCH_SUCCESS": "Usuário carregado com sucesso",
@@ -57,7 +58,18 @@
     "LEAD_INVALID_WHATSAPP": "WhatsApp inválido. Informe um número com DDD.",
     "LEAD_TERMS_NOT_ACCEPTED": "É necessário aceitar os termos para continuar.",
     "LEAD_CREATE_SUCCESS": "Solicitação de demo enviada com sucesso.",
-    "LEAD_RATE_LIMIT_EXCEEDED": "Muitas tentativas. Aguarde alguns minutos e tente novamente."
+    "LEAD_RATE_LIMIT_EXCEEDED": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
+    "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "Header X-Webhook-Secret obrigatório",
+    "WEBHOOK_WHATSAPP_SECRET_INVALID": "Header X-Webhook-Secret inválido",
+    "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "Webhook do WhatsApp recebido com sucesso",
+    "WHATSAPP_QR_CODE_FETCH_SUCCESS": "QR Code do WhatsApp carregado com sucesso",
+    "WHATSAPP_EVOLUTION_NOT_CONFIGURED": "Evolution API não configurada no backend",
+    "WHATSAPP_INSTANCE_CREATE_FAILED": "Não foi possível criar a instância do WhatsApp",
+    "WHATSAPP_INSTANCE_CONNECT_FAILED": "Não foi possível gerar o QR Code do WhatsApp",
+    "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Não foi possível configurar o webhook do WhatsApp",
+    "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Não foi possível consultar o status do WhatsApp",
+    "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "Conversas do WhatsApp carregadas com sucesso",
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "Mensagens do WhatsApp carregadas com sucesso"
   },
   "auth": {
     "backToHome": "Voltar ao site",
@@ -83,6 +95,7 @@
     "connected": "Conectado"
   },
   "nav": {
+    "chat": "Chat",
     "dashboard": "Dashboard",
     "settings": "Configurações",
     "reports": "Relatórios",
@@ -431,7 +444,47 @@
         "title": "Ranking de vendedores",
         "subtitle": "Receita por vendedor",
         "info": "Principais vendedores por receita no período."
+      },
+      "whatsapp": {
+        "title": "WhatsApp do tenant",
+        "subtitle": "Conexão por QR Code da instância atual",
+        "info": "Busca o QR Code da instância do tenant na Evolution API e mantém o webhook por tenant configurado.",
+        "noTenantSelected": "Selecione uma academia para carregar o QR Code do WhatsApp",
+        "instanceName": "Instância",
+        "connectionState": "Estado da conexão",
+        "pairingCode": "Código de pareamento",
+        "refreshButton": "Atualizar QR Code",
+        "refreshing": "Atualizando...",
+        "qrHelp": "Escaneie este QR Code no WhatsApp para conectar a instância da academia selecionada.",
+        "connectedHelp": "A instância deste tenant já está conectada ao WhatsApp.",
+        "connectedNoQr": "Instância já conectada. Nenhum QR Code é necessário no momento.",
+        "waitingQr": "Aguardando geração do QR Code.",
+        "qrUnavailable": "O backend consultou a instância, mas a Evolution API não retornou uma imagem de QR Code nesta tentativa.",
+        "qrAlt": "QR Code do WhatsApp da academia",
+        "status": {
+          "DISCONNECTED": "Desconectado",
+          "CONNECTING": "Conectando",
+          "QRCODE": "Aguardando leitura do QR",
+          "CONNECTED": "Conectado",
+          "ERROR": "Erro"
+        }
       }
     }
+  },
+  "chat": {
+    "title": "Chat",
+    "subtitle": "Conversas recebidas via WhatsApp da academia {{tenant}}",
+    "searchPlaceholder": "Buscar por nome, telefone ou mensagem...",
+    "refresh": "Atualizar",
+    "showMore": "Mostrar mais",
+    "loadingMore": "Carregando mais...",
+    "noTenantSelected": "Selecione uma academia para visualizar as conversas",
+    "activeConversation": "Conversa ativa: {{contact}}",
+    "conversationsCount": "{{shown}} de {{total}} conversas",
+    "messagesCount": "{{shown}} de {{total}} mensagens",
+    "emptyConversations": "Nenhuma conversa encontrada para este tenant.",
+    "emptyConversationSelection": "Selecione uma conversa para visualizar as mensagens.",
+    "emptyMessages": "Nenhuma mensagem encontrada para esta conversa.",
+    "loadingMessages": "Carregando mensagens..."
   }
 }
