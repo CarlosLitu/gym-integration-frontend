@@ -42,14 +42,16 @@ export function SearchInput({
       </span>
       <Input
         id={id}
-        type="search"
+        type="text"
         name={name}
         autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        spellCheck={false}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
         className={clsx(
-          '[&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none',
           className ??
             'h-10 !rounded-[12px] border-slate-200 bg-white py-0 pl-11 placeholder:text-[#A6A6B8]',
           hasValue && 'pr-10',

@@ -212,7 +212,7 @@
       "submitting": "Enviando...",
       "termsLabel": "Li e aceito o tratamento dos meus dados para contato sobre a demonstração.",
       "footerNote": "Sem cartão de crédito · Resposta em até 1 dia útil",
-      "success": "Solicitação enviada com sucesso! Entraremos em contato em breve.",
+      "success": "Recebemos sua solicitação e ela já está com nossa equipe. Retornaremos o contato o mais breve possível.",
       "errors": {
         "required": "Campo obrigatório",
         "invalidEmail": "E-mail inválido",

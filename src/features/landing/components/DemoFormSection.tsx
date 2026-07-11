@@ -212,7 +212,14 @@ export function DemoFormSection() {
             ) : null}
           </div>
 
-          {isSuccess ? <Alert>{t('landing.demo.success')}</Alert> : null}
+          {isSuccess ? (
+            <p
+              role="status"
+              className="rounded-lg bg-[rgba(0,194,168,0.2)] p-3 font-sans text-[14px] font-medium leading-normal text-[#4AF2DB]"
+            >
+              {t('landing.demo.success')}
+            </p>
+          ) : null}
           {formError ? <Alert>{formError}</Alert> : null}
 
           <Button

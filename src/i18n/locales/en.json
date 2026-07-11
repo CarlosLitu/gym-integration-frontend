@@ -212,7 +212,7 @@
       "submitting": "Sending...",
       "termsLabel": "I agree to the processing of my data so you can contact me about the demo.",
       "footerNote": "No credit card · Response within 1 business day",
-      "success": "Request sent successfully! We'll be in touch soon.",
+      "success": "We received your request and our team already has it. We'll get back to you as soon as possible.",
       "errors": {
         "required": "Required field",
         "invalidEmail": "Invalid email",
