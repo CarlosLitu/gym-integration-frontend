@@ -51,9 +51,16 @@
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registrado no gateway com sucesso",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Falha ao remover webhook do gateway",
     "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook removido do gateway com sucesso",
-    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00."
+    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00.",
+    "LEAD_REQUIRED_FIELDS": "Preencha todos os campos obrigatórios da solicitação.",
+    "LEAD_INVALID_EMAIL": "E-mail inválido. Revise o formato e tente de novo.",
+    "LEAD_INVALID_WHATSAPP": "WhatsApp inválido. Informe um número com DDD.",
+    "LEAD_TERMS_NOT_ACCEPTED": "É necessário aceitar os termos para continuar.",
+    "LEAD_CREATE_SUCCESS": "Solicitação de demo enviada com sucesso.",
+    "LEAD_RATE_LIMIT_EXCEEDED": "Muitas tentativas. Aguarde alguns minutos e tente novamente."
   },
   "auth": {
+    "backToHome": "Voltar ao site",
     "loginSubtitle": "Acesse com sua conta de consultor ou administrador.",
     "emailLabel": "E-mail",
     "passwordLabel": "Senha",
@@ -86,6 +93,124 @@
   },
   "footer": {
     "copyright": "© {{year}} Pulse. Todos os direitos reservados."
+  },
+  "landing": {
+    "nav": {
+      "enter": "Entrar",
+      "requestDemo": "Solicitar Demo",
+      "goToDashboard": "Ir para o painel"
+    },
+    "hero": {
+      "pill": "CT Invictus acabou de se juntar a +1.000 academias.",
+      "pillMessages": {
+        "impacto": "Impacto Fitness <bold>acabou de assinar!</bold>",
+        "ironWorks": "A <bold>gestão</bold> da IronWorks ficou <bold>mais fácil agora.</bold>",
+        "vibeGym": "Vibe Gym <bold>acaba de modernizar sua gestão!</bold>",
+        "arenaBase": "Arena Base <bold>começou a usar agora mesmo.</bold>",
+        "ctInvictus": "CT Invictus <bold>acabou de se juntar a +1.000 academias.</bold>"
+      },
+      "title": "O CRM que mantém<br/>o <highlight>batimento</highlight> da sua academia.",
+      "subtitle": "Diga adeus ao fechamento de mês no escuro. Faturamento, saúde das cobranças e métricas de retenção centralizados em dashboards que guiam suas decisões.",
+      "ctaDemo": "Solicitar Demo",
+      "ctaLogin": "Acessar Minha Conta",
+      "dashboardAlt": "Prévia do dashboard Pulse"
+    },
+    "carousel": {
+      "label": "Usado por redes e academias independentes em todo o Brasil",
+      "ariaLabel": "Logos de academias parceiras"
+    },
+    "product": {
+      "overline": "O PRODUTO",
+      "title": "O controle financeiro da sua academia, em um único lugar.",
+      "description": "Pare de alternar entre planilhas e tentar adivinhar os seus resultados. O Pulse junta todos os dados de receita da sua operação em um painel só. Simples de visualizar, essencial para o seu crescimento.",
+      "imageAlt": "Estatísticas do produto Pulse",
+      "stats": {
+        "spreadsheets": {
+          "value": "0",
+          "label": "planilhas manuais"
+        },
+        "cashFlow": {
+          "value": "100%",
+          "label": "previsibilidade de caixa"
+        },
+        "billing": {
+          "value": "360º",
+          "label": "visão do seu faturamento"
+        }
+      },
+      "features": {
+        "billing": {
+          "title": "Faturamento e Vendas",
+          "description": "Acompanhe a evolução da sua receita, ticket médio e volume de vendas. Tenha clareza absoluta sobre o faturamento do dia, semana ou mês."
+        },
+        "collection": {
+          "title": "Saúde da Cobrança",
+          "description": "Monitore os valores recebidos, tudo que está pendente e a taxa de recebimento. Descubra gargalos no fluxo de caixa antes do fechamento."
+        },
+        "retention": {
+          "title": "Aquisição vs. Retenção",
+          "description": "Saiba com clareza de onde vem o seu dinheiro. Analise a proporção entre a entrada de novos alunos e renovações ao longo de todo o ano."
+        },
+        "payments": {
+          "title": "Análise de Pagamentos",
+          "description": "Mapeie o comportamento de compra de seus clientes. Visualize a distribuição das vendas por método de pagamento e otimize as suas taxas."
+        }
+      }
+    },
+    "potencialize": {
+      "overline": "POTENCIALIZE A SUA VISÃO",
+      "title": "Conecte o seu sistema atual com um clique.",
+      "description": "Sincronize sua conta com o EVO, Next Fit, Tecnofit e até com o seu WhatsApp. Nossa plataforma extrai seu histórico de alunos e pagamentos automaticamente para gerar painéis financeiros inteligentes, sem que você precise exportar planilhas ou digitar uma única linha.",
+      "dashboardAlt": "Dashboard Pulse integrado ao sistema da academia"
+    },
+    "demo": {
+      "badge": "Demonstração gratuita",
+      "title": "Descubra o impacto do Pulse na sua gestão.",
+      "description": "Reserve 30 minutos e veja nossa plataforma em ação com os seus próprios dados. Sem simulações prontas, apenas os seus problemas sendo resolvidos.",
+      "benefits": {
+        "noCard": "Sem cartão de crédito e sem compromisso.",
+        "dashboards": "Dashboards visuais focados em receita e retenção.",
+        "integrations": "Integração ao vivo com EVO, Next Fit, Tecnofit e WhatsApp.",
+        "cashFlow": "Descubra oportunidades ocultas no seu fluxo de caixa."
+      },
+      "formTitle": "Solicitar demonstração",
+      "formSubtitle": "Preencha os dados e entraremos em contato para agendar.",
+      "fields": {
+        "name": "Nome",
+        "gymName": "Academia",
+        "email": "E-mail",
+        "whatsapp": "WhatsApp",
+        "studentsRange": "Número de alunos"
+      },
+      "placeholders": {
+        "name": "Insira seu nome",
+        "gymName": "Ex: Academia Forma Física",
+        "email": "voce@academia.com",
+        "whatsapp": "(00) 00000-0000",
+        "studentsRange": "Selecione uma opção..."
+      },
+      "studentRanges": {
+        "upTo100": "Até 100 alunos",
+        "100to300": "100 a 300 alunos",
+        "300to1000": "300 a 1.000 alunos",
+        "1000plus": "Mais de 1.000 alunos"
+      },
+      "submit": "Solicitar Demo",
+      "submitting": "Enviando...",
+      "termsLabel": "Li e aceito o tratamento dos meus dados para contato sobre a demonstração.",
+      "footerNote": "Sem cartão de crédito · Resposta em até 1 dia útil",
+      "success": "Solicitação enviada com sucesso! Entraremos em contato em breve.",
+      "errors": {
+        "required": "Campo obrigatório",
+        "invalidEmail": "E-mail inválido",
+        "invalidWhatsapp": "WhatsApp inválido. Informe um número com DDD.",
+        "termsRequired": "Aceite os termos para continuar.",
+        "submitFailed": "Não foi possível enviar sua solicitação. Tente novamente."
+      }
+    },
+    "footer": {
+      "copyright": "© {{year}} Pulse. Todos os direitos reservados."
+    }
   },
   "users": {
     "title": "Usuários",

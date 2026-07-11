@@ -51,9 +51,16 @@
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registered on gateway successfully",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Failed to delete webhook from gateway",
     "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook deleted from gateway successfully",
-    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sync is only allowed between 00:00 and 03:00."
+    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sync is only allowed between 00:00 and 03:00.",
+    "LEAD_REQUIRED_FIELDS": "Please fill in all required fields.",
+    "LEAD_INVALID_EMAIL": "Invalid email. Check the format and try again.",
+    "LEAD_INVALID_WHATSAPP": "Invalid WhatsApp number. Include the area code.",
+    "LEAD_TERMS_NOT_ACCEPTED": "You must accept the terms to continue.",
+    "LEAD_CREATE_SUCCESS": "Demo request sent successfully.",
+    "LEAD_RATE_LIMIT_EXCEEDED": "Too many attempts. Please wait a few minutes and try again."
   },
   "auth": {
+    "backToHome": "Back to site",
     "loginSubtitle": "Sign in with your consultant or administrator account.",
     "emailLabel": "Email",
     "passwordLabel": "Password",
@@ -86,6 +93,124 @@
   },
   "footer": {
     "copyright": "© {{year}} Pulse. All rights reserved."
+  },
+  "landing": {
+    "nav": {
+      "enter": "Sign in",
+      "requestDemo": "Request Demo",
+      "goToDashboard": "Go to dashboard"
+    },
+    "hero": {
+      "pill": "CT Invictus just joined +1,000 gyms.",
+      "pillMessages": {
+        "impacto": "Impacto Fitness <bold>just signed up!</bold>",
+        "ironWorks": "IronWorks <bold>management</bold> just got <bold>easier.</bold>",
+        "vibeGym": "Vibe Gym <bold>just modernized its management!</bold>",
+        "arenaBase": "Arena Base <bold>started using it just now.</bold>",
+        "ctInvictus": "CT Invictus <bold>just joined +1,000 gyms.</bold>"
+      },
+      "title": "The CRM that keeps your gym's<br/><highlight>pulse</highlight> beating.",
+      "subtitle": "Say goodbye to month-end guesswork. Revenue, collection health, and retention metrics centralized in dashboards that guide your decisions.",
+      "ctaDemo": "Request Demo",
+      "ctaLogin": "Access My Account",
+      "dashboardAlt": "Pulse dashboard preview"
+    },
+    "carousel": {
+      "label": "Used by gym chains and independent studios across Brazil",
+      "ariaLabel": "Partner gym logos"
+    },
+    "product": {
+      "overline": "THE PRODUCT",
+      "title": "Your gym's financial control, in one place.",
+      "description": "Stop switching between spreadsheets and guessing your results. Pulse brings all your revenue data into a single panel. Easy to read, essential for growth.",
+      "imageAlt": "Pulse product statistics",
+      "stats": {
+        "spreadsheets": {
+          "value": "0",
+          "label": "manual spreadsheets"
+        },
+        "cashFlow": {
+          "value": "100%",
+          "label": "cash flow predictability"
+        },
+        "billing": {
+          "value": "360°",
+          "label": "view of your billing"
+        }
+      },
+      "features": {
+        "billing": {
+          "title": "Revenue & Sales",
+          "description": "Track revenue trends, average ticket, and sales volume. Get absolute clarity on daily, weekly, or monthly billing."
+        },
+        "collection": {
+          "title": "Collection Health",
+          "description": "Monitor received amounts, pending balances, and collection rate. Spot cash flow bottlenecks before month-end."
+        },
+        "retention": {
+          "title": "Acquisition vs. Retention",
+          "description": "Know exactly where your money comes from. Analyze the ratio between new members and renewals throughout the year."
+        },
+        "payments": {
+          "title": "Payment Analysis",
+          "description": "Map your customers' purchase behavior. See sales distribution by payment method and optimize your fees."
+        }
+      }
+    },
+    "potencialize": {
+      "overline": "SUPERCHARGE YOUR VIEW",
+      "title": "Connect your current system with one click.",
+      "description": "Sync your account with EVO, Next Fit, Tecnofit, and even WhatsApp. Our platform automatically extracts your member and payment history to generate smart financial dashboards — no spreadsheet exports or manual data entry.",
+      "dashboardAlt": "Pulse dashboard integrated with gym system"
+    },
+    "demo": {
+      "badge": "Free demo",
+      "title": "Discover Pulse's impact on your management.",
+      "description": "Book 30 minutes and see our platform in action with your own data. No canned demos — just your real problems being solved.",
+      "benefits": {
+        "noCard": "No credit card and no commitment.",
+        "dashboards": "Visual dashboards focused on revenue and retention.",
+        "integrations": "Live integration with EVO, Next Fit, Tecnofit, and WhatsApp.",
+        "cashFlow": "Uncover hidden opportunities in your cash flow."
+      },
+      "formTitle": "Request a demo",
+      "formSubtitle": "Fill in your details and we'll contact you to schedule.",
+      "fields": {
+        "name": "Name",
+        "gymName": "Gym",
+        "email": "Email",
+        "whatsapp": "WhatsApp",
+        "studentsRange": "Number of members"
+      },
+      "placeholders": {
+        "name": "Enter your name",
+        "gymName": "e.g. Forma Física Gym",
+        "email": "you@gym.com",
+        "whatsapp": "(00) 00000-0000",
+        "studentsRange": "Select an option..."
+      },
+      "studentRanges": {
+        "upTo100": "Up to 100 members",
+        "100to300": "100 to 300 members",
+        "300to1000": "300 to 1,000 members",
+        "1000plus": "More than 1,000 members"
+      },
+      "submit": "Request Demo",
+      "submitting": "Sending...",
+      "termsLabel": "I agree to the processing of my data so you can contact me about the demo.",
+      "footerNote": "No credit card · Response within 1 business day",
+      "success": "Request sent successfully! We'll be in touch soon.",
+      "errors": {
+        "required": "Required field",
+        "invalidEmail": "Invalid email",
+        "invalidWhatsapp": "Invalid WhatsApp number. Include the area code.",
+        "termsRequired": "Please accept the terms to continue.",
+        "submitFailed": "Could not send your request. Please try again."
+      }
+    },
+    "footer": {
+      "copyright": "© {{year}} Pulse. All rights reserved."
+    }
   },
   "users": {
     "title": "Users",

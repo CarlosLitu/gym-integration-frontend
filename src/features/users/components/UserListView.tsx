@@ -1,12 +1,11 @@
 import { PlusCircle } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components'
+import { Button, SearchInput } from '@/components'
 import { Pagination } from '@/features/tenants/components/Pagination'
 import { useUserFilters } from '../hooks/useUserFilters'
 import type { UserListItem as UserListItemType } from '../types/user.types'
 import { UserFilters } from './UserFilters'
 import { UserListItem } from './UserListItem'
-import { UserSearch } from './UserSearch'
 import { USER_TABLE_GRID } from './user-table-grid'
 
 interface UserListViewProps {
@@ -53,7 +52,12 @@ export function UserListView({
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <div className="flex-1">
-          <UserSearch value={search} onChange={setSearch} />
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            name="user-search"
+            placeholder={t('users.searchPlaceholder')}
+          />
         </div>
         <Button
           variant="brand"

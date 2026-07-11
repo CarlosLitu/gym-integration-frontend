@@ -9,8 +9,12 @@
     box-sizing: border-box;
   }
 
+  html {
+    @apply overflow-x-clip;
+  }
+
   body {
-    @apply m-0 min-h-screen font-sans text-slate-900 antialiased;
+    @apply m-0 min-h-screen overflow-x-clip font-sans text-slate-900 antialiased;
   }
 
   h1,

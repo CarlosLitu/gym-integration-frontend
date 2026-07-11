@@ -23,6 +23,10 @@ const UsersPage = lazy(() =>
   import('@/features/users').then((module) => ({ default: module.UsersPage })),
 )
 
+const LandingPage = lazy(() =>
+  import('@/features/landing').then((module) => ({ default: module.LandingPage })),
+)
+
 export function AppRoutes() {
   return (
     <BrowserRouter>
@@ -31,11 +35,11 @@ export function AppRoutes() {
           <RouteLoadingListener />
           <Suspense fallback={<RouteLoadingFallback />}>
             <Routes>
+              <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route element={<MainLayout />}>
-                  <Route index element={<Navigate to="/dashboard" replace />} />
                   <Route path="/dashboard" element={<DashboardPage />} />
                   <Route element={<AdminRoute />}>
                     <Route path="/users" element={<UsersPage />} />
@@ -43,7 +47,7 @@ export function AppRoutes() {
                 </Route>
               </Route>
 
-              <Route path="*" element={<Navigate to="/login" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
           <SessionTransitionOverlay />
