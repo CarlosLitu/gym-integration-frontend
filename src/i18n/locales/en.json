@@ -415,7 +415,7 @@
       "revenue": "Revenue",
       "paid": "Received",
       "pending": "Pending",
-      "pendingInfo": "Overdue: {{rate}} of this month's revenue",
+      "pendingInfo": "Overdue: {{rate}} of the selected period revenue",
       "salesCount": "Sales",
       "averageTicket": "Average ticket",
       "averageTicketInfo": "Calculated as revenue divided by number of sales",

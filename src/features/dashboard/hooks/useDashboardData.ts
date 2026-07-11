@@ -9,7 +9,12 @@ export function useDashboardData() {
   const tenantId = selectedTenantId
 
   const dateRange = useDateRange('currentMonth')
-  const kpis = useSalesKpis(tenantId)
+  const kpis = useSalesKpis(
+    tenantId,
+    dateRange.preset,
+    dateRange.granularity,
+    dateRange.range,
+  )
   const series = useSalesSeries(tenantId, dateRange.granularity, dateRange.range)
   const breakdown = useSalesBreakdown(tenantId, dateRange.granularity, dateRange.range)
 

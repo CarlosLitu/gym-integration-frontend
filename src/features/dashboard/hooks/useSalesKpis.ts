@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useApiMessage } from '@/hooks/useApiMessage'
+import { getSalesSummaryRequest } from '../api/get-sales-summary'
+import type { SalesBucket, SalesGranularity } from '../api/dashboard.types'
 import {
-  getCurrentMonthSalesRequest,
-  getLastMonthSalesRequest,
-} from '../api/get-sales-kpis'
-import type { SalesBucket } from '../api/dashboard.types'
+  buildPreviousRange,
+  type DateRange,
+  type DateRangePreset,
+} from './useDateRange'
 
 export interface KpiTotals {
   totalValue: number
@@ -58,7 +60,12 @@ function percentDelta(current: number, previous: number): number | null {
   return (current - previous) / previous
 }
 
-export function useSalesKpis(tenantId: string | null) {
+export function useSalesKpis(
+  tenantId: string | null,
+  preset: DateRangePreset,
+  granularity: SalesGranularity,
+  range: DateRange,
+) {
   const { getErrorMessage } = useApiMessage()
   const [kpis, setKpis] = useState<SalesKpis | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -73,9 +80,19 @@ export function useSalesKpis(tenantId: string | null) {
     setIsLoading(true)
     setError(null)
 
+    const previousRange = buildPreviousRange(preset)
+
     Promise.all([
-      getCurrentMonthSalesRequest(tenantId),
-      getLastMonthSalesRequest(tenantId),
+      getSalesSummaryRequest(granularity, {
+        tenantId,
+        startDate: range.startDate,
+        endDate: range.endDate,
+      }),
+      getSalesSummaryRequest(granularity, {
+        tenantId,
+        startDate: previousRange.startDate,
+        endDate: previousRange.endDate,
+      }),
     ])
       .then(([currentResponse, previousResponse]) => {
         if (!isMounted) {
@@ -112,7 +129,14 @@ export function useSalesKpis(tenantId: string | null) {
     return () => {
       isMounted = false
     }
-  }, [tenantId, getErrorMessage])
+  }, [
+    tenantId,
+    preset,
+    granularity,
+    range.startDate,
+    range.endDate,
+    getErrorMessage,
+  ])
 
   return { kpis, isLoading, error }
 }

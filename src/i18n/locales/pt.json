@@ -415,7 +415,7 @@
       "revenue": "Receita",
       "paid": "Recebido",
       "pending": "Pendente",
-      "pendingInfo": "Inadimplência: {{rate}} da receita do mês",
+      "pendingInfo": "Inadimplência: {{rate}} da receita do período",
       "salesCount": "Nº de vendas",
       "averageTicket": "Ticket médio",
       "averageTicketInfo": "Calculado como receita dividida pelo número de vendas",
