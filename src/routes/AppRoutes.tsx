@@ -35,6 +35,26 @@ const UsersPage = lazy(() =>
   import('@/features/users').then((module) => ({ default: module.UsersPage })),
 )
 
+const PaymentPlansPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentPlansPage })),
+)
+
+const PaymentPlanCreatePage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentPlanCreatePage })),
+)
+
+const PaymentPlanEditPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentPlanEditPage })),
+)
+
+const PaymentTransactionsPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentTransactionsPage })),
+)
+
+const UserPaymentPlansPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.UserPaymentPlansPage })),
+)
+
 const LandingPage = lazy(() =>
   import('@/features/landing').then((module) => ({ default: module.LandingPage })),
 )
@@ -56,8 +76,13 @@ export function AppRoutes() {
                 <Route element={<MainLayout />}>
                   <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/chat" element={<ChatPage />} />
+                  <Route path="/plans" element={<UserPaymentPlansPage />} />
                   <Route element={<AdminRoute />}>
                     <Route path="/users" element={<UsersPage />} />
+                    <Route path="/payments/plans" element={<PaymentPlansPage />} />
+                    <Route path="/payments/plans/new" element={<PaymentPlanCreatePage />} />
+                    <Route path="/payments/plans/:id" element={<PaymentPlanEditPage />} />
+                    <Route path="/payments/transactions" element={<PaymentTransactionsPage />} />
                   </Route>
                 </Route>
               </Route>
