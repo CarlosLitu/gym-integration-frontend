@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { motion } from 'motion/react'
 import { clsx } from 'clsx'
@@ -9,11 +9,13 @@ const STEP_DURATION_S = 0.45
 const HOLD_MS = 2500
 
 const PILL_MESSAGE_KEYS = [
-  'impacto',
-  'ironWorks',
-  'vibeGym',
-  'arenaBase',
+  'apexFitness',
+  'pulsarGym',
   'ctInvictus',
+  'vibeFitness',
+  'impacto',
+  'arenaBase',
+  'studioVigor',
 ] as const
 
 type HeroSocialProofPillProps = {
@@ -23,8 +25,21 @@ type HeroSocialProofPillProps = {
 export function HeroSocialProofPill({ className }: HeroSocialProofPillProps) {
   const [index, setIndex] = useState(0)
   const [instant, setInstant] = useState(false)
+  const [lineWidths, setLineWidths] = useState<number[]>([])
+  const measureRefs = useRef<(HTMLParagraphElement | null)[]>([])
   const slideCount = PILL_MESSAGE_KEYS.length
   const keysToRender = [...PILL_MESSAGE_KEYS, PILL_MESSAGE_KEYS[0]]
+  const activeWidth = lineWidths[index % slideCount] ?? 0
+
+  useLayoutEffect(() => {
+    const widths = measureRefs.current
+      .slice(0, slideCount)
+      .map((node) => Math.ceil(node?.scrollWidth ?? 0))
+
+    if (widths.some((width) => width > 0)) {
+      setLineWidths(widths)
+    }
+  }, [slideCount])
 
   useEffect(() => {
     if (index === slideCount) return
@@ -70,7 +85,15 @@ export function HeroSocialProofPill({ className }: HeroSocialProofPillProps) {
         />
       </span>
 
-      <div className="h-[30px] w-[min(424px,70vw)] overflow-hidden">
+      <motion.div
+        className="h-[30px] max-w-[calc(100vw-6rem)] overflow-hidden"
+        animate={{ width: activeWidth > 0 ? activeWidth : 'auto' }}
+        transition={
+          instant
+            ? { duration: 0 }
+            : { duration: STEP_DURATION_S, ease: 'easeInOut' }
+        }
+      >
         <motion.div
           animate={{ y: -LINE_HEIGHT_PX * index }}
           transition={
@@ -87,7 +110,12 @@ export function HeroSocialProofPill({ className }: HeroSocialProofPillProps) {
           {keysToRender.map((key, i) => (
             <p
               key={`${key}-${i}`}
-              className="h-[30px] truncate font-sans text-[18px] leading-[30px] text-[rgba(247,249,252,0.8)]"
+              ref={(node) => {
+                if (i < slideCount) {
+                  measureRefs.current[i] = node
+                }
+              }}
+              className="h-[30px] w-max whitespace-nowrap font-sans text-[18px] leading-[30px] text-[rgba(247,249,252,0.8)]"
             >
               <Trans
                 i18nKey={`landing.hero.pillMessages.${key}`}
@@ -98,7 +126,7 @@ export function HeroSocialProofPill({ className }: HeroSocialProofPillProps) {
             </p>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   )
 }

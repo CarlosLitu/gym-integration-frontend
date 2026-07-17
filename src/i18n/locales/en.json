@@ -138,14 +138,16 @@
     "hero": {
       "pill": "CT Invictus just joined +1,000 gyms.",
       "pillMessages": {
-        "impacto": "Impacto Fitness <bold>just signed up!</bold>",
-        "ironWorks": "IronWorks <bold>management</bold> just got <bold>easier.</bold>",
-        "vibeGym": "Vibe Gym <bold>just modernized its management!</bold>",
-        "arenaBase": "Arena Base <bold>started using it just now.</bold>",
-        "ctInvictus": "CT Invictus <bold>just joined +1,000 gyms.</bold>"
+        "apexFitness": "Apex Fitness <bold>unified everything in Pulse!</bold>",
+        "pulsarGym": "Pulsar Gym <bold>centralized WhatsApp.</bold>",
+        "ctInvictus": "CT Invictus <bold>synced their system.</bold>",
+        "vibeFitness": "Vibe Fitness <bold>now uses a single screen.</bold>",
+        "impacto": "Impacto Fitness <bold>integrated their operation.</bold>",
+        "arenaBase": "Arena Base <bold>unified system and networks.</bold>",
+        "studioVigor": "Studio Vigor <bold>centralized management.</bold>"
       },
-      "title": "The CRM that keeps your gym's<br/><highlight>pulse</highlight> beating.",
-      "subtitle": "Say goodbye to month-end guesswork. Revenue, collection health, and retention metrics centralized in dashboards that guide your decisions.",
+      "title": "The platform that <highlight>unifies</highlight> all of your<br/>gym's management and sales.",
+      "subtitle": "Stop jumping from tab to tab to cross-check data. Pulse centralizes your current system data and social contacts, delivering financial, commercial, and administrative control in a single screen.",
       "ctaDemo": "Request Demo",
       "ctaLogin": "Access My Account",
       "dashboardAlt": "Pulse dashboard preview"
@@ -156,46 +158,47 @@
     },
     "product": {
       "overline": "THE PRODUCT",
-      "title": "Your gym's financial control, in one place.",
-      "description": "Stop switching between spreadsheets and guessing your results. Pulse brings all your revenue data into a single panel. Easy to read, essential for growth.",
+      "title": "A complete view of your gym, synced in one place.",
+      "description": "Stop wasting time cross-checking information across different windows. Pulse connects the system your gym already uses with your support channels, centralizing everything into a single management view.",
       "imageAlt": "Pulse product statistics",
       "stats": {
         "spreadsheets": {
-          "value": "0",
-          "label": "manual spreadsheets"
+          "value": "1",
+          "valueSuffix": "single",
+          "label": "dashboard to cross-check information"
         },
         "cashFlow": {
-          "value": "100%",
-          "label": "cash flow predictability"
+          "value": "Zero",
+          "label": "need to jump between tabs"
         },
         "billing": {
-          "value": "360°",
-          "label": "view of your billing"
+          "value": "100%",
+          "label": "synced to your CRM and networks"
         }
       },
       "features": {
         "billing": {
-          "title": "Revenue & Sales",
-          "description": "Track revenue trends, average ticket, and sales volume. Get absolute clarity on daily, weekly, or monthly billing."
+          "title": "System Integration",
+          "description": "Connect the platform you already use. See your gym's data integrated in one place, without switching systems."
         },
         "collection": {
-          "title": "Collection Health",
-          "description": "Monitor received amounts, pending balances, and collection rate. Spot cash flow bottlenecks before month-end."
+          "title": "Sales Funnels",
+          "description": "Bring together contacts from WhatsApp, Instagram, and Facebook. Get a complete sales funnel integrated with your current member base."
         },
         "retention": {
-          "title": "Acquisition vs. Retention",
-          "description": "Know exactly where your money comes from. Analyze the ratio between new members and renewals throughout the year."
+          "title": "Lead Management",
+          "description": "Make your contacts visible and manageable. Track conversations and know exactly how many leads converted in clear dashboards."
         },
         "payments": {
-          "title": "Payment Analysis",
-          "description": "Map your customers' purchase behavior. See sales distribution by payment method and optimize your fees."
+          "title": "Centralized View",
+          "description": "Keep your current system running. Pulse syncs commercial and administrative information into a single panel."
         }
       }
     },
     "potencialize": {
       "overline": "SUPERCHARGE YOUR VIEW",
-      "title": "Connect your current system with one click.",
-      "description": "Sync your account with EVO, Next Fit, Tecnofit, and even WhatsApp. Our platform automatically extracts your member and payment history to generate smart financial dashboards — no spreadsheet exports or manual data entry.",
+      "title": "Your system and social networks,<br/>working together.",
+      "description": "Pulse pulls information from your current management system (like Next Fit, EVO, or Tecnofit) and combines it with contacts arriving via WhatsApp, Instagram, and Facebook. Everything becomes an integrated funnel so you can manage leads and conversions without leaving the screen.",
       "dashboardAlt": "Pulse dashboard integrated with gym system"
     },
     "demo": {
@@ -244,16 +247,34 @@
       }
     },
     "footer": {
-      "copyright": "© {{year}} Pulse. All rights reserved."
+      "tagline": "The synchronized command center for your gym.",
+      "usefulLinks": "Useful Links",
+      "home": "Home",
+      "product": "The Product",
+      "navigation": "Navigation",
+      "login": "Sign in",
+      "requestDemo": "Request Demo",
+      "contact": "Contact",
+      "email": "suporte@pulse.com.br",
+      "cnpj": "Tax ID: 00.000.000/0001-00",
+      "copyright": "© NOEV {{year}}. All rights reserved.",
+      "terms": "Terms of Use",
+      "privacy": "Privacy Policy"
     }
   },
   "users": {
     "title": "Users",
     "subtitle": "Manage users for {{tenant}}",
+    "createSubtitle": "Create a new user for {{tenant}}",
+    "editSubtitle": "Edit user details for {{tenant}}",
+    "backToList": "Back to users",
+    "notFound": "User not found",
     "newUser": "New user",
     "edit": "Edit",
     "searchPlaceholder": "Search by name or email...",
     "sortAz": "A-Z",
+    "sortNewest": "Newest first",
+    "sortOldest": "Oldest first",
     "count": "{{total}} users",
     "loading": "Loading users...",
     "empty": "No users found",
@@ -282,6 +303,21 @@
       "saving": "Saving...",
       "reveal": "Show password",
       "hide": "Hide password",
+      "requiredHint": "All required fields must be filled in",
+      "aside": {
+        "tenant": "Gym",
+        "roleTitle": "Access level",
+        "adminHint": "Can manage users and gym settings.",
+        "userHint": "Access to day-to-day operational features."
+      },
+      "sections": {
+        "identity": "Identity",
+        "identityHint": "Name and email used to access the platform",
+        "security": "Access password",
+        "securityHint": "Set a strong password for the new user",
+        "permission": "Permission",
+        "permissionHint": "Choose this user's access level"
+      },
       "placeholders": {
         "name": "e.g. John Smith",
         "email": "user@gym.com",

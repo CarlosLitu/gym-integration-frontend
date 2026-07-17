@@ -138,14 +138,16 @@
     "hero": {
       "pill": "CT Invictus acabou de se juntar a +1.000 academias.",
       "pillMessages": {
-        "impacto": "Impacto Fitness <bold>acabou de assinar!</bold>",
-        "ironWorks": "A <bold>gestão</bold> da IronWorks ficou <bold>mais fácil agora.</bold>",
-        "vibeGym": "Vibe Gym <bold>acaba de modernizar sua gestão!</bold>",
-        "arenaBase": "Arena Base <bold>começou a usar agora mesmo.</bold>",
-        "ctInvictus": "CT Invictus <bold>acabou de se juntar a +1.000 academias.</bold>"
+        "apexFitness": "Apex Fitness <bold>unificou tudo no Pulse!</bold>",
+        "pulsarGym": "Pulsar Gym <bold>centralizou o WhatsApp.</bold>",
+        "ctInvictus": "CT Invictus <bold>sincronizou seu sistema.</bold>",
+        "vibeFitness": "Vibe Fitness <bold>agora usa uma só tela.</bold>",
+        "impacto": "Impacto Fitness <bold>integrou sua operação.</bold>",
+        "arenaBase": "Arena Base <bold>unificou sistema e redes.</bold>",
+        "studioVigor": "Studio Vigor <bold>centralizou a gestão.</bold>"
       },
-      "title": "O CRM que mantém<br/>o <highlight>batimento</highlight> da sua academia.",
-      "subtitle": "Diga adeus ao fechamento de mês no escuro. Faturamento, saúde das cobranças e métricas de retenção centralizados em dashboards que guiam suas decisões.",
+      "title": "A plataforma que <highlight>unifica</highlight> toda a<br/>gestão e vendas da sua academia.",
+      "subtitle": "Pare de pular de aba em aba para cruzar dados. O Pulse centraliza os dados do seu sistema atual e os contatos de suas redes, entregando controle financeiro, comercial e administrativo em uma única tela.",
       "ctaDemo": "Solicitar Demo",
       "ctaLogin": "Acessar Minha Conta",
       "dashboardAlt": "Prévia do dashboard Pulse"
@@ -156,46 +158,47 @@
     },
     "product": {
       "overline": "O PRODUTO",
-      "title": "O controle financeiro da sua academia, em um único lugar.",
-      "description": "Pare de alternar entre planilhas e tentar adivinhar os seus resultados. O Pulse junta todos os dados de receita da sua operação em um painel só. Simples de visualizar, essencial para o seu crescimento.",
+      "title": "A visão total da sua academia, sincronizada em um único lugar.",
+      "description": "Chega de perder tempo cruzando informações entre janelas diferentes. O Pulse conecta o sistema que a sua academia já possui com seus canais de atendimento, centralizando tudo em uma única visão gerencial.",
       "imageAlt": "Estatísticas do produto Pulse",
       "stats": {
         "spreadsheets": {
-          "value": "0",
-          "label": "planilhas manuais"
+          "value": "1",
+          "valueSuffix": "único",
+          "label": "painel para cruzar informações"
         },
         "cashFlow": {
-          "value": "100%",
-          "label": "previsibilidade de caixa"
+          "value": "Zero",
+          "label": "necessidade de pular de abas"
         },
         "billing": {
-          "value": "360º",
-          "label": "visão do seu faturamento"
+          "value": "100%",
+          "label": "sincronizado ao seu CRM e redes"
         }
       },
       "features": {
         "billing": {
-          "title": "Faturamento e Vendas",
-          "description": "Acompanhe a evolução da sua receita, ticket médio e volume de vendas. Tenha clareza absoluta sobre o faturamento do dia, semana ou mês."
+          "title": "Integração de Sistemas",
+          "description": "Conecte a plataforma que você já usa. Visualize os dados da sua academia integrados em um só lugar, sem precisar trocar de sistema."
         },
         "collection": {
-          "title": "Saúde da Cobrança",
-          "description": "Monitore os valores recebidos, tudo que está pendente e a taxa de recebimento. Descubra gargalos no fluxo de caixa antes do fechamento."
+          "title": "Funis de Vendas",
+          "description": "Reúna os contatos do seu WhatsApp, Instagram e Facebook. Tenha um funil de vendas completo e integrado com a sua base atual de alunos."
         },
         "retention": {
-          "title": "Aquisição vs. Retenção",
-          "description": "Saiba com clareza de onde vem o seu dinheiro. Analise a proporção entre a entrada de novos alunos e renovações ao longo de todo o ano."
+          "title": "Gestão de Leads",
+          "description": "Torne seus contatos visíveis e gerenciáveis. Acompanhe os atendimentos e saiba exatamente quantos leads converteram em dashboards claros."
         },
         "payments": {
-          "title": "Análise de Pagamentos",
-          "description": "Mapeie o comportamento de compra de seus clientes. Visualize a distribuição das vendas por método de pagamento e otimize as suas taxas."
+          "title": "Visão Centralizada",
+          "description": "Mantenha o seu sistema atual funcionando. O Pulse atua sincronizando as informações comerciais e administrativas em um único painel."
         }
       }
     },
     "potencialize": {
       "overline": "POTENCIALIZE A SUA VISÃO",
-      "title": "Conecte o seu sistema atual com um clique.",
-      "description": "Sincronize sua conta com o EVO, Next Fit, Tecnofit e até com o seu WhatsApp. Nossa plataforma extrai seu histórico de alunos e pagamentos automaticamente para gerar painéis financeiros inteligentes, sem que você precise exportar planilhas ou digitar uma única linha.",
+      "title": "Seu sistema e suas redes sociais,<br/>trabalhando juntos.",
+      "description": "O Pulse puxa as informações do seu sistema de gestão atual (como Next Fit, EVO ou Tecnofit) e une aos contatos que chegam via WhatsApp, Instagram e Facebook. Tudo se transforma em um funil integrado para você gerenciar leads e conversões sem sair da tela.",
       "dashboardAlt": "Dashboard Pulse integrado ao sistema da academia"
     },
     "demo": {
@@ -244,16 +247,34 @@
       }
     },
     "footer": {
-      "copyright": "© {{year}} Pulse. Todos os direitos reservados."
+      "tagline": "O centro de comando sincronizado da sua academia.",
+      "usefulLinks": "Links Úteis",
+      "home": "Home",
+      "product": "O Produto",
+      "navigation": "Navegação",
+      "login": "Entrar",
+      "requestDemo": "Solicitar Demo",
+      "contact": "Contato",
+      "email": "suporte@pulse.com.br",
+      "cnpj": "CNPJ: 00.000.000/0001-00",
+      "copyright": "© NOEV {{year}}. Todos os direitos reservados.",
+      "terms": "Termos de Uso",
+      "privacy": "Políticas de Privacidade"
     }
   },
   "users": {
     "title": "Usuários",
     "subtitle": "Gerencie os usuários da academia {{tenant}}",
+    "createSubtitle": "Cadastre um novo usuário para a academia {{tenant}}",
+    "editSubtitle": "Edite os dados do usuário da academia {{tenant}}",
+    "backToList": "Voltar para usuários",
+    "notFound": "Usuário não encontrado",
     "newUser": "Novo usuário",
     "edit": "Editar",
     "searchPlaceholder": "Buscar por nome ou e-mail...",
     "sortAz": "A-Z",
+    "sortNewest": "Mais recentes",
+    "sortOldest": "Mais antigos",
     "count": "{{total}} usuários",
     "loading": "Carregando usuários...",
     "empty": "Nenhum usuário encontrado",
@@ -282,6 +303,21 @@
       "saving": "Salvando...",
       "reveal": "Mostrar senha",
       "hide": "Ocultar senha",
+      "requiredHint": "Todos os campos marcados são obrigatórios",
+      "aside": {
+        "tenant": "Academia",
+        "roleTitle": "Nível de acesso",
+        "adminHint": "Pode gerenciar usuários e configurações da academia.",
+        "userHint": "Acesso às funcionalidades operacionais do dia a dia."
+      },
+      "sections": {
+        "identity": "Identificação",
+        "identityHint": "Nome e e-mail usados para acessar a plataforma",
+        "security": "Senha de acesso",
+        "securityHint": "Defina uma senha forte para o novo usuário",
+        "permission": "Permissão",
+        "permissionHint": "Escolha o nível de acesso deste usuário"
+      },
       "placeholders": {
         "name": "Ex: João Silva",
         "email": "usuario@academia.com",

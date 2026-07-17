@@ -31,7 +31,7 @@ export function UserListView({
   const {
     search,
     setSearch,
-    sortAsc,
+    newestFirst,
     toggleSort,
     page,
     setPage,
@@ -70,7 +70,7 @@ export function UserListView({
         </Button>
       </div>
 
-      <UserFilters sortAsc={sortAsc} onToggleSort={toggleSort} total={total} />
+      <UserFilters newestFirst={newestFirst} onToggleSort={toggleSort} total={total} />
 
       <div className="flex flex-col overflow-hidden rounded-[12px] border border-slate-200 bg-white">
         <div

@@ -3,7 +3,7 @@ import { useTranslation, Trans } from 'react-i18next'
 import { clsx } from 'clsx'
 import { useAuth } from '@/features/auth'
 import heroBackground from '@/assets/images/Header - HERO.svg'
-import dashboardPreview from '@/assets/images/Dashboard - Hero.svg'
+import dashboardPreview from '@/assets/images/Hero-Dash.svg'
 import { scrollToDemo } from '../utils/scroll-to-demo'
 import { landingMedia } from '../utils/media-scale'
 import { LandingContainer } from './LandingContainer'
@@ -50,7 +50,7 @@ export function HeroSection() {
 
         <div className="flex w-full max-w-[1279px] flex-col items-center gap-8">
           <div className="flex w-full flex-col items-center gap-3">
-            <h1 className="w-full text-center font-heading text-[32px] font-bold leading-[35px] tracking-[-0.0175em] text-pulse-surface md:text-[40px] md:leading-[1.1] lg:text-[56px] lg:leading-[60.48px] lg:tracking-[-0.01em]">
+            <h1 className="w-full text-center font-heading text-[32px] font-bold leading-[35px] tracking-[-0.0175em] text-pulse-surface md:text-[40px] md:leading-[1.1] lg:max-w-[920px] lg:text-[48px] lg:leading-[52px] lg:tracking-[-0.01em]">
               <Trans
                 i18nKey="landing.hero.title"
                 components={{
@@ -60,7 +60,7 @@ export function HeroSection() {
               />
             </h1>
 
-            <p className="max-w-[291px] text-center font-sans text-[14px] leading-5 text-pulse-surface md:max-w-[480px] md:text-[15px] md:leading-relaxed lg:max-w-[657px] lg:text-lg lg:leading-[30px]">
+            <p className="max-w-[300px] text-center font-sans text-[14px] leading-5 text-pulse-surface/90 md:max-w-[560px] md:text-[15px] md:leading-relaxed lg:max-w-[820px] lg:text-[15px] lg:leading-6">
               {t('landing.hero.subtitle')}
             </p>
           </div>

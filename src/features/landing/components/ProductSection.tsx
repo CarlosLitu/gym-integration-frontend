@@ -2,20 +2,15 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   BookmarkSimple,
+  Buildings,
   ChartBar,
-  CurrencyCircleDollar,
-  ShieldCheck,
+  Funnel,
 } from '@phosphor-icons/react'
 import patternsImage from '@/assets/images/Patterns.svg'
 import productCardBg from '@/assets/images/product-card-bg.jpg'
 import { LandingContainer } from './LandingContainer'
 
-const FEATURE_ICONS = [
-  CurrencyCircleDollar,
-  ShieldCheck,
-  BookmarkSimple,
-  ChartBar,
-] as const
+const FEATURE_ICONS = [Buildings, Funnel, BookmarkSimple, ChartBar] as const
 
 const FEATURE_KEYS = ['billing', 'collection', 'retention', 'payments'] as const
 
@@ -28,11 +23,11 @@ const PATTERN_CLASS =
   'pointer-events-none absolute z-[2] h-auto w-[69%] opacity-30 lg:w-[283.5px]'
 
 export function ProductSection() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [imageLoaded, setImageLoaded] = useState(false)
 
   return (
-    <section className="overflow-x-clip bg-[#F7F9FC]">
+    <section id="product" className="overflow-x-clip bg-[#F7F9FC]">
       <LandingContainer className="flex flex-col gap-14 py-12 lg:gap-14 lg:py-[100px]">
         <div className="flex w-full max-w-[737px] flex-col gap-3">
           <p className="font-sans text-[12px] font-bold uppercase tracking-[0.0867em] text-[#2D6CDF]">
@@ -82,26 +77,36 @@ export function ProductSection() {
             />
 
             <div className="absolute left-6 top-10 z-10 flex w-[183px] flex-col gap-6 lg:left-10 lg:top-14">
-              {STAT_KEYS.map((key, index) => (
-                <div key={key} className="contents">
-                  <div className="flex flex-col gap-0.5">
-                    <span
-                      className={`font-heading text-[40px] font-bold leading-[31.2px] ${
-                        index === 0 ? 'text-[#00C2A8]' : 'text-white'
-                      }`}
-                    >
-                      {t(`landing.product.stats.${key}.value`)}
-                    </span>
-                    <span className="font-sans text-[16px] leading-normal text-[#F7F9FC]">
-                      {t(`landing.product.stats.${key}.label`)}
-                    </span>
-                  </div>
+              {STAT_KEYS.map((key, index) => {
+                const value = t(`landing.product.stats.${key}.value`)
+                const valueSuffix = i18n.exists(`landing.product.stats.${key}.valueSuffix`)
+                  ? t(`landing.product.stats.${key}.valueSuffix`)
+                  : null
 
-                  {index < STAT_KEYS.length - 1 && (
-                    <hr className="w-[182px] border-0 border-t border-[rgba(247,249,252,0.5)]" />
-                  )}
-                </div>
-              ))}
+                return (
+                  <div key={key} className="contents">
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-heading text-[40px] font-bold leading-[31.2px] text-white">
+                        {valueSuffix ? (
+                          <>
+                            <span className="text-[#00C2A8]">{value}</span>{' '}
+                            <span>{valueSuffix}</span>
+                          </>
+                        ) : (
+                          value
+                        )}
+                      </span>
+                      <span className="font-sans text-[16px] leading-normal text-[#F7F9FC]">
+                        {t(`landing.product.stats.${key}.label`)}
+                      </span>
+                    </div>
+
+                    {index < STAT_KEYS.length - 1 && (
+                      <hr className="w-[182px] border-0 border-t border-[rgba(247,249,252,0.5)]" />
+                    )}
+                  </div>
+                )
+              })}
             </div>
           </div>
 

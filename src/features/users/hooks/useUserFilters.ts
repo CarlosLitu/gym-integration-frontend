@@ -5,7 +5,7 @@ const PAGE_SIZE = 10
 
 export function useUserFilters(users: UserListItem[], selectedTenantId: string | null) {
   const [search, setSearch] = useState('')
-  const [sortAsc, setSortAsc] = useState(true)
+  const [newestFirst, setNewestFirst] = useState(true)
   const [page, setPage] = useState(1)
 
   useEffect(() => {
@@ -28,10 +28,11 @@ export function useUserFilters(users: UserListItem[], selectedTenantId: string |
         )
       : tenantUsers
 
-    return [...matched].sort((a, b) =>
-      sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
-    )
-  }, [tenantUsers, search, sortAsc])
+    return [...matched].sort((a, b) => {
+      const diff = new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      return newestFirst ? diff : -diff
+    })
+  }, [tenantUsers, search, newestFirst])
 
   const total = filtered.length
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
@@ -48,14 +49,14 @@ export function useUserFilters(users: UserListItem[], selectedTenantId: string |
   }
 
   function toggleSort() {
-    setSortAsc((current) => !current)
+    setNewestFirst((current) => !current)
     setPage(1)
   }
 
   return {
     search,
     setSearch: handleSearch,
-    sortAsc,
+    newestFirst,
     toggleSort,
     page: currentPage,
     setPage,
@@ -65,3 +66,4 @@ export function useUserFilters(users: UserListItem[], selectedTenantId: string |
     pageSize: PAGE_SIZE,
   }
 }
+

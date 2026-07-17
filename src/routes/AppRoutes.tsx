@@ -35,6 +35,14 @@ const UsersPage = lazy(() =>
   import('@/features/users').then((module) => ({ default: module.UsersPage })),
 )
 
+const CreateUserPage = lazy(() =>
+  import('@/features/users').then((module) => ({ default: module.CreateUserPage })),
+)
+
+const EditUserPage = lazy(() =>
+  import('@/features/users').then((module) => ({ default: module.EditUserPage })),
+)
+
 const LandingPage = lazy(() =>
   import('@/features/landing').then((module) => ({ default: module.LandingPage })),
 )
@@ -58,6 +66,8 @@ export function AppRoutes() {
                   <Route path="/chat" element={<ChatPage />} />
                   <Route element={<AdminRoute />}>
                     <Route path="/users" element={<UsersPage />} />
+                    <Route path="/users/new" element={<CreateUserPage />} />
+                    <Route path="/users/:userId/edit" element={<EditUserPage />} />
                   </Route>
                 </Route>
               </Route>
