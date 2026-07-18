@@ -6,6 +6,31 @@ export type TenantStatus =
 
 export type TenantSyncStatus = 'OFF' | 'ON' | 'ERROR'
 
+export interface TenantPaymentCurrentPlan {
+  id: string | null
+  name: string | null
+  type: 'ONE_TIME' | 'SUBSCRIPTION' | null
+  value: number | null
+  currency: string | null
+  durationDays: number | null
+  totalDurationMonths: number | null
+}
+
+export interface TenantPaymentSummary {
+  status: string
+  provider: string | null
+  providerSubscriptionId: string | null
+  cancelAtPeriodEnd: boolean
+  cancelledAt: string | null
+  currentPlan: TenantPaymentCurrentPlan | null
+  currentTransactionId: string | null
+  startsAt: string | null
+  expiresAt: string | null
+  lastPaymentAt: string | null
+  permissionsSnapshot: string[]
+  updatedAt: string | null
+}
+
 export interface ApiTenant {
   _id: string
   name: string
@@ -14,6 +39,7 @@ export interface ApiTenant {
   sync?: TenantSyncStatus
   lastEventReceived?: string
   updatedAt?: string
+  payment?: TenantPaymentSummary | null
 }
 
 export interface TenantListItem {

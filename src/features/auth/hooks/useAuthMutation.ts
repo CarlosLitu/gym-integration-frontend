@@ -18,6 +18,7 @@ function toUserSession(user: ApiUser): UserSession {
       status: user.tenantId.status ?? 'INTEGRATION_PENDING',
       lastEventReceived: user.tenantId.lastEventReceived ?? null,
       updatedAt: user.tenantId.updatedAt ?? null,
+      payment: user.tenantId.payment ?? null,
     },
   }
 }

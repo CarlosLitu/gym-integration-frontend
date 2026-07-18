@@ -88,7 +88,9 @@
     "PAYMENT_PLAN_INACTIVE": "Este plano está inativo e não pode ser comprado",
     "PAYMENT_PLAN_ALREADY_PURCHASED": "Você já possui uma transação para este plano",
     "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Não foi possível provisionar o plano no PayPal",
-    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Valor e duração não podem ser alterados após o provisioning no PayPal"
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Valor e duração não podem ser alterados após o provisioning no PayPal",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "As próximas cobranças da assinatura foram canceladas com sucesso",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "Não existe uma assinatura ativa para cancelar"
   },
   "common": {
     "yes": "Sim",
@@ -282,6 +284,8 @@
       "eyebrow": "Escolha seu plano",
       "title": "Ver planos",
       "subtitle": "Escolha o plano ideal para o seu momento e siga para o checkout para concluir a contratação.",
+      "currentPlanEyebrow": "Plano atual da academia",
+      "currentPlanValidity": "Vigente até {{date}}",
       "loading": "Carregando planos disponíveis...",
       "emptyTitle": "Nenhum plano disponível no momento",
       "emptySubtitle": "Assim que novos planos forem publicados, eles aparecerão aqui para contratação.",
@@ -290,10 +294,15 @@
       "permissionsTitle": "Benefícios incluídos",
       "noPermissions": "Este plano não possui permissões adicionais configuradas.",
       "multipleAllowed": "Permite comprar mais de uma vez",
-      "multipleBlocked": "Compra única por usuário",
+      "multipleBlocked": "Compra única por academia",
       "selectAction": "Escolher plano",
       "selecting": "Redirecionando...",
       "redirectError": "Não foi possível iniciar o checkout deste plano.",
+      "cancelSubscriptionTitle": "Cancelar renovação automática",
+      "cancelSubscriptionConfirm": "Deseja cancelar as próximas cobranças desta assinatura? O acesso atual será mantido até a data de vigência.",
+      "cancelSubscriptionAction": "Cancelar futuras cobranças",
+      "cancellingSubscription": "Cancelando...",
+      "cancellationScheduled": "Renovação automática cancelada. O plano segue ativo até a data de vigência atual.",
       "types": {
         "subscription": "Assinatura",
         "oneTime": "Pagamento único"
@@ -493,7 +502,8 @@
   "tenant": {
     "lastEvent": "Último evento {{time}}",
     "noEvent": "Nenhum evento recebido",
-    "changeTenant": "Mudar $t(terms.tenantCapitalized)"
+    "changeTenant": "Mudar $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Plano atual: {{plan}} • {{value}} • {{duration}}"
   },
   "tenants": {
     "title": "Academias",

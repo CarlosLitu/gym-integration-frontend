@@ -1,4 +1,5 @@
 import { apiClient } from '@/services/api-client'
+import type { TenantPaymentSummary } from '@/features/tenants/types/tenant.types'
 import type {
   PaymentOrderPayload,
   PaymentOrderResult,
@@ -21,6 +22,11 @@ export interface ListPaymentTransactionsParams {
 
 export async function createPaymentOrderRequest(payload: PaymentOrderPayload): Promise<PaymentOrderResult> {
   const { data } = await apiClient.post<{ data: PaymentOrderResult }>('/api/payments/order', payload)
+  return data.data
+}
+
+export async function cancelCurrentPaymentSubscriptionRequest(): Promise<TenantPaymentSummary | null> {
+  const { data } = await apiClient.post<{ data: TenantPaymentSummary | null }>('/api/payments/subscription/cancel')
   return data.data
 }
 

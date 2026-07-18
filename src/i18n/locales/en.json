@@ -88,7 +88,9 @@
     "PAYMENT_PLAN_INACTIVE": "This plan is inactive and cannot be purchased",
     "PAYMENT_PLAN_ALREADY_PURCHASED": "You already have a transaction for this plan",
     "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Could not provision the plan in PayPal",
-    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Value and duration cannot be changed after PayPal provisioning"
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Value and duration cannot be changed after PayPal provisioning",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "Future subscription charges were cancelled successfully",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "There is no active subscription to cancel"
   },
   "common": {
     "yes": "Yes",
@@ -282,6 +284,8 @@
       "eyebrow": "Choose your plan",
       "title": "View plans",
       "subtitle": "Pick the best plan for your current needs and continue to checkout to complete your purchase.",
+      "currentPlanEyebrow": "Current gym plan",
+      "currentPlanValidity": "Valid until {{date}}",
       "loading": "Loading available plans...",
       "emptyTitle": "No plans available right now",
       "emptySubtitle": "As soon as new plans are published, they will appear here for purchase.",
@@ -290,10 +294,15 @@
       "permissionsTitle": "Included benefits",
       "noPermissions": "This plan does not have any additional permissions configured.",
       "multipleAllowed": "Can be purchased more than once",
-      "multipleBlocked": "One purchase per user",
+      "multipleBlocked": "One purchase per gym",
       "selectAction": "Choose plan",
       "selecting": "Redirecting...",
       "redirectError": "Could not start checkout for this plan.",
+      "cancelSubscriptionTitle": "Cancel auto-renewal",
+      "cancelSubscriptionConfirm": "Do you want to cancel future charges for this subscription? Current access remains active until the current validity date.",
+      "cancelSubscriptionAction": "Cancel future charges",
+      "cancellingSubscription": "Cancelling...",
+      "cancellationScheduled": "Auto-renewal cancelled. The plan stays active until the current validity date.",
       "types": {
         "subscription": "Subscription",
         "oneTime": "One-time"
@@ -493,7 +502,8 @@
   "tenant": {
     "lastEvent": "Last event {{time}}",
     "noEvent": "No events received yet",
-    "changeTenant": "Change $t(terms.tenantCapitalized)"
+    "changeTenant": "Change $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Current plan: {{plan}} • {{value}} • {{duration}}"
   },
   "tenants": {
     "title": "Gyms",
