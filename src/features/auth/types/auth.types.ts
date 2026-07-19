@@ -1,4 +1,4 @@
-import type { TenantStatus } from '../../tenants/types/tenant.types'
+import type { TenantPaymentSummary, TenantStatus } from '../../tenants/types/tenant.types'
 
 export interface LoginCredentials {
   email: string
@@ -32,6 +32,7 @@ export interface ApiTenant {
   status?: TenantStatus
   lastEventReceived?: string
   updatedAt?: string
+  payment?: TenantPaymentSummary | null
 }
 
 export interface ApiUser {
@@ -57,6 +58,7 @@ export interface UserSession {
     status: TenantStatus
     lastEventReceived: string | null
     updatedAt: string | null
+    payment: TenantPaymentSummary | null
   }
 }
 

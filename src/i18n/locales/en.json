@@ -74,7 +74,36 @@
     "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Could not configure the WhatsApp webhook",
     "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Could not fetch the WhatsApp connection status",
     "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "WhatsApp conversations loaded successfully",
-    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "WhatsApp messages loaded successfully"
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "WhatsApp messages loaded successfully",
+
+    "PAYMENT_REQUIRED_FIELDS": "Please fill in the required payment fields",
+    "PAYMENT_TRANSACTION_INVALID_FILTERS": "Invalid transaction filters",
+    "PAYMENT_ALREADY_PROCESSING": "A payment is already being processed",
+    "PAYMENT_PROVIDER_NOT_SUPPORTED": "Payment provider not supported",
+    "PAYMENT_INVALID_WEBHOOK_PAYLOAD": "Invalid payment webhook payload",
+    "PAYMENT_PROVIDER_NOT_CONFIGURED": "Payment provider not configured",
+    "PAYMENT_PLAN_NOT_CONFIGURED": "No payment plan configured",
+    "PAYMENT_PLAN_NOT_FOUND": "Payment plan not found",
+    "PAYMENT_PLAN_NAME_ALREADY_EXISTS": "A payment plan with this name already exists",
+    "PAYMENT_PLAN_INACTIVE": "This plan is inactive and cannot be purchased",
+    "PAYMENT_PLAN_ALREADY_PURCHASED": "You already have a transaction for this plan",
+    "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Could not provision the plan in PayPal",
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Value and duration cannot be changed after PayPal provisioning",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "Future subscription charges were cancelled successfully",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "There is no active subscription to cancel"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "notApplicable": "N/A",
+    "apply": "Apply",
+    "clearAll": "Clear all",
+    "cancel": "Cancel",
+    "create": "Create",
+    "save": "Save",
+    "saving": "Saving...",
+    "actions": "Actions"
   },
   "auth": {
     "backToHome": "Back to site",
@@ -119,10 +148,13 @@
   "nav": {
     "chat": "Chat",
     "dashboard": "Dashboard",
+    "userPlans": "View plans",
     "settings": "Settings",
     "reports": "Reports",
     "support": "Support",
     "users": "Users",
+    "paymentPlans": "Plans",
+    "paymentTransactions": "Transactions",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -247,6 +279,165 @@
       "copyright": "© {{year}} Pulse. All rights reserved."
     }
   },
+  "payments": {
+    "userPlans": {
+      "eyebrow": "Choose your plan",
+      "title": "View plans",
+      "subtitle": "Pick the best plan for your current needs and continue to checkout to complete your purchase.",
+      "currentPlanEyebrow": "Current gym plan",
+      "currentPlanValidity": "Valid until {{date}}",
+      "loading": "Loading available plans...",
+      "emptyTitle": "No plans available right now",
+      "emptySubtitle": "As soon as new plans are published, they will appear here for purchase.",
+      "fallbackName": "Unnamed plan",
+      "priceSubtitle": "Billing follows the rules of the selected plan",
+      "permissionsTitle": "Included benefits",
+      "noPermissions": "This plan does not have any additional permissions configured.",
+      "multipleAllowed": "Can be purchased more than once",
+      "multipleBlocked": "One purchase per gym",
+      "selectAction": "Choose plan",
+      "selecting": "Redirecting...",
+      "redirectError": "Could not start checkout for this plan.",
+      "cancelSubscriptionTitle": "Cancel auto-renewal",
+      "cancelSubscriptionConfirm": "Do you want to cancel future charges for this subscription? Current access remains active until the current validity date.",
+      "cancelSubscriptionAction": "Cancel future charges",
+      "cancellingSubscription": "Cancelling...",
+      "cancellationScheduled": "Auto-renewal cancelled. The plan stays active until the current validity date.",
+      "types": {
+        "subscription": "Subscription",
+        "oneTime": "One-time"
+      }
+    },
+    "plans": {
+      "title": "Payment plans",
+      "subtitle": "Manage active and inactive plans available for purchase",
+      "newPlan": "New plan",
+      "create": {
+        "back": "Back to plans",
+        "title": "Create payment plan",
+        "subtitle": "Register a new plan following the same visual pattern as the admin panel"
+      },
+      "searchPlaceholder": "Search by name, ID, currency or type...",
+      "filterPlaceholder": "Filter by status",
+      "filters": {
+        "all": "All",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "loading": "Loading plans...",
+      "empty": "No plans found",
+      "active": "Active",
+      "inactive": "Inactive",
+      "createdAt": "Created at {{date}}",
+      "durationDays": "{{days}} days",
+      "durationMonthsSingular": "{{months}} month",
+      "durationMonthsPlural": "{{months}} months",
+      "flags": "Type: {{type}} • Multiple: {{multiple}}",
+      "columns": {
+        "name": "Name",
+        "value": "Value",
+        "duration": "Duration",
+        "type": "Type",
+        "multiple": "Multiple",
+        "status": "Status"
+      },
+      "technical": {
+        "title": "Technical data",
+        "subtitle": "Identifiers synced automatically with PayPal",
+        "paypalProductId": "PayPal product id",
+        "paypalPlanId": "PayPal plan id"
+      },
+      "status": {
+        "activateTitle": "Activate plan",
+        "activateConfirm": "Do you want to activate plan {{name}}?",
+        "activateAction": "Activate",
+        "activating": "Activating...",
+        "deactivateTitle": "Deactivate plan",
+        "deactivateConfirm": "Do you want to deactivate plan {{name}}?",
+        "deactivateAction": "Deactivate",
+        "deactivating": "Deactivating..."
+      },
+      "edit": {
+        "back": "Back to plans",
+        "title": "Edit plan",
+        "subtitle": "Update allowed fields and inspect provider technical identifiers",
+        "action": "Edit",
+        "loading": "Loading plan...",
+        "notFound": "Plan not found",
+        "lockedFieldsHint": "Value, duration, and month count are locked after the plan is provisioned in PayPal."
+      },
+      "form": {
+        "createTitle": "New plan",
+        "editTitle": "Edit plan",
+        "name": "Plan name",
+        "namePlaceholder": "Ex: Premium Monthly Plan",
+        "value": "Value",
+        "currency": "Currency",
+        "durationDays": "Duration (days)",
+        "maxBillingCycles": "Number of months",
+        "type": "Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+          "ONE_TIME": "One-time purchase",
+          "SUBSCRIPTION": "Subscription"
+        },
+        "permissions": "Permissions",
+        "permissionsPlaceholder": "Ex: payments.read,sales.read",
+        "allowMultiplePurchases": "Allow multiple purchases",
+        "subscriptionBillingHint": "Subscriptions are billed every 30 days. Enter how many months the billing should last.",
+        "errors": {
+          "name": "Enter the plan name",
+          "value": "Enter a valid value",
+          "currency": "Enter a currency",
+          "durationDays": "Enter a valid duration",
+          "maxBillingCycles": "Enter a valid number of months",
+          "type": "Select a type"
+        }
+      }
+    },
+    "transactions": {
+      "title": "Transactions",
+      "subtitle": "Track payment transactions with filters and pagination",
+      "details": "Details",
+      "detailsTitle": "Transaction details",
+      "detailsAccessStart": "Access start",
+      "detailsAccessEnd": "Access end",
+      "openFilters": "Filters",
+      "openFiltersWithCount": "Filters ({{count}})",
+      "applyFilters": "Apply filters",
+      "loading": "Loading transactions...",
+      "empty": "No transactions found",
+      "columns": {
+        "purchasedAt": "Date",
+        "status": "Status",
+        "provider": "Provider",
+        "amount": "Amount",
+        "userId": "User",
+        "plan": "Plan",
+        "access": "Access"
+      },
+      "filters": {
+        "modalTitle": "Filters",
+        "provider": "Provider",
+        "providerPlaceholder": "All",
+        "status": "Status",
+        "statusPlaceholder": "All",
+        "limit": "Items",
+        "userQuery": "User",
+        "userQueryPlaceholder": "Name, email or phone",
+        "paymentPlanId": "Plan",
+        "paymentPlanIdPlaceholder": "All",
+        "startDate": "Start",
+        "endDate": "End"
+      },
+      "mobile": {
+        "order": "Order",
+        "user": "User",
+        "plan": "Plan",
+        "access": "Access"
+      }
+    }
+  },
   "users": {
     "title": "Users",
     "subtitle": "Manage users for {{tenant}}",
@@ -311,7 +502,8 @@
   "tenant": {
     "lastEvent": "Last event {{time}}",
     "noEvent": "No events received yet",
-    "changeTenant": "Change $t(terms.tenantCapitalized)"
+    "changeTenant": "Change $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Current plan: {{plan}} • {{value}} • {{duration}}"
   },
   "tenants": {
     "title": "Gyms",

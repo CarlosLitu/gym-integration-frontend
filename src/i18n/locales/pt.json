@@ -74,7 +74,36 @@
     "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Não foi possível configurar o webhook do WhatsApp",
     "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Não foi possível consultar o status do WhatsApp",
     "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "Conversas do WhatsApp carregadas com sucesso",
-    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "Mensagens do WhatsApp carregadas com sucesso"
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "Mensagens do WhatsApp carregadas com sucesso",
+
+    "PAYMENT_REQUIRED_FIELDS": "Preencha os campos obrigatórios do pagamento",
+    "PAYMENT_TRANSACTION_INVALID_FILTERS": "Filtros de transação inválidos",
+    "PAYMENT_ALREADY_PROCESSING": "Já existe um pagamento em processamento",
+    "PAYMENT_PROVIDER_NOT_SUPPORTED": "Provedor de pagamento não suportado",
+    "PAYMENT_INVALID_WEBHOOK_PAYLOAD": "Webhook de pagamento inválido",
+    "PAYMENT_PROVIDER_NOT_CONFIGURED": "Provedor de pagamento não configurado",
+    "PAYMENT_PLAN_NOT_CONFIGURED": "Nenhum plano de pagamento configurado",
+    "PAYMENT_PLAN_NOT_FOUND": "Plano de pagamento não encontrado",
+    "PAYMENT_PLAN_NAME_ALREADY_EXISTS": "Ja existe um plano com este nome",
+    "PAYMENT_PLAN_INACTIVE": "Este plano está inativo e não pode ser comprado",
+    "PAYMENT_PLAN_ALREADY_PURCHASED": "Você já possui uma transação para este plano",
+    "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Não foi possível provisionar o plano no PayPal",
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Valor e duração não podem ser alterados após o provisioning no PayPal",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "As próximas cobranças da assinatura foram canceladas com sucesso",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "Não existe uma assinatura ativa para cancelar"
+  },
+  "common": {
+    "yes": "Sim",
+    "no": "Não",
+    "all": "Todos",
+    "notApplicable": "N/A",
+    "apply": "Aplicar",
+    "clearAll": "Limpar tudo",
+    "cancel": "Cancelar",
+    "create": "Criar",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "actions": "Ações"
   },
   "auth": {
     "backToHome": "Voltar ao site",
@@ -119,10 +148,13 @@
   "nav": {
     "chat": "Chat",
     "dashboard": "Dashboard",
+    "userPlans": "Ver planos",
     "settings": "Configurações",
     "reports": "Relatórios",
     "support": "Suporte",
     "users": "Usuários",
+    "paymentPlans": "Planos",
+    "paymentTransactions": "Transações",
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu"
   },
@@ -247,6 +279,165 @@
       "copyright": "© {{year}} Pulse. Todos os direitos reservados."
     }
   },
+  "payments": {
+    "userPlans": {
+      "eyebrow": "Escolha seu plano",
+      "title": "Ver planos",
+      "subtitle": "Escolha o plano ideal para o seu momento e siga para o checkout para concluir a contratação.",
+      "currentPlanEyebrow": "Plano atual da academia",
+      "currentPlanValidity": "Vigente até {{date}}",
+      "loading": "Carregando planos disponíveis...",
+      "emptyTitle": "Nenhum plano disponível no momento",
+      "emptySubtitle": "Assim que novos planos forem publicados, eles aparecerão aqui para contratação.",
+      "fallbackName": "Plano sem nome",
+      "priceSubtitle": "Cobrança conforme as regras do plano selecionado",
+      "permissionsTitle": "Benefícios incluídos",
+      "noPermissions": "Este plano não possui permissões adicionais configuradas.",
+      "multipleAllowed": "Permite comprar mais de uma vez",
+      "multipleBlocked": "Compra única por academia",
+      "selectAction": "Escolher plano",
+      "selecting": "Redirecionando...",
+      "redirectError": "Não foi possível iniciar o checkout deste plano.",
+      "cancelSubscriptionTitle": "Cancelar renovação automática",
+      "cancelSubscriptionConfirm": "Deseja cancelar as próximas cobranças desta assinatura? O acesso atual será mantido até a data de vigência.",
+      "cancelSubscriptionAction": "Cancelar futuras cobranças",
+      "cancellingSubscription": "Cancelando...",
+      "cancellationScheduled": "Renovação automática cancelada. O plano segue ativo até a data de vigência atual.",
+      "types": {
+        "subscription": "Assinatura",
+        "oneTime": "Pagamento único"
+      }
+    },
+    "plans": {
+      "title": "Planos de pagamento",
+      "subtitle": "Gerencie planos ativos e inativos disponíveis para compra",
+      "newPlan": "Novo plano",
+      "create": {
+        "back": "Voltar para planos",
+        "title": "Criar plano de pagamento",
+        "subtitle": "Cadastre um novo plano seguindo o mesmo padrão visual do painel administrativo"
+      },
+      "searchPlaceholder": "Buscar por nome, ID, moeda ou tipo...",
+      "filterPlaceholder": "Filtrar por status",
+      "filters": {
+        "all": "Todos",
+        "active": "Ativos",
+        "inactive": "Inativos"
+      },
+      "loading": "Carregando planos...",
+      "empty": "Nenhum plano encontrado",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "createdAt": "Criado em {{date}}",
+      "durationDays": "{{days}} dias",
+      "durationMonthsSingular": "{{months}} mês",
+      "durationMonthsPlural": "{{months}} meses",
+      "flags": "Tipo: {{type}} • Múltiplo: {{multiple}}",
+      "columns": {
+        "name": "Nome",
+        "value": "Valor",
+        "duration": "Duração",
+        "type": "Tipo",
+        "multiple": "Múltiplo",
+        "status": "Status"
+      },
+      "technical": {
+        "title": "Dados técnicos",
+        "subtitle": "Identificadores sincronizados automaticamente com o PayPal",
+        "paypalProductId": "PayPal product id",
+        "paypalPlanId": "PayPal plan id"
+      },
+      "status": {
+        "activateTitle": "Ativar plano",
+        "activateConfirm": "Deseja ativar o plano {{name}}?",
+        "activateAction": "Ativar",
+        "activating": "Ativando...",
+        "deactivateTitle": "Desativar plano",
+        "deactivateConfirm": "Deseja desativar o plano {{name}}?",
+        "deactivateAction": "Desativar",
+        "deactivating": "Desativando..."
+      },
+      "edit": {
+        "back": "Voltar para planos",
+        "title": "Editar plano",
+        "subtitle": "Atualize os campos permitidos e consulte os identificadores técnicos do provedor",
+        "action": "Editar",
+        "loading": "Carregando plano...",
+        "notFound": "Plano não encontrado",
+        "lockedFieldsHint": "Valor, duração e quantidade de meses ficam bloqueados após o provisioning do plano no PayPal."
+      },
+      "form": {
+        "createTitle": "Novo plano",
+        "editTitle": "Editar plano",
+        "name": "Nome do plano",
+        "namePlaceholder": "Ex: Plano Mensal Premium",
+        "value": "Valor",
+        "currency": "Moeda",
+        "durationDays": "Duração (dias)",
+        "maxBillingCycles": "Quantidade de meses",
+        "type": "Tipo",
+        "typePlaceholder": "Selecione o tipo",
+        "types": {
+          "ONE_TIME": "Compra unica",
+          "SUBSCRIPTION": "Assinatura"
+        },
+        "permissions": "Permissões",
+        "permissionsPlaceholder": "Ex: payments.read,sales.read",
+        "allowMultiplePurchases": "Permite múltiplas compras",
+        "subscriptionBillingHint": "Assinaturas são cobradas a cada 30 dias. Informe por quantos meses a cobrança deve durar.",
+        "errors": {
+          "name": "Informe o nome do plano",
+          "value": "Informe um valor válido",
+          "currency": "Informe a moeda",
+          "durationDays": "Informe uma duração válida",
+          "maxBillingCycles": "Informe uma quantidade de meses válida",
+          "type": "Selecione um tipo"
+        }
+      }
+    },
+    "transactions": {
+      "title": "Transações",
+      "subtitle": "Acompanhe as transações de pagamento com filtros e paginação",
+      "details": "Detalhes",
+      "detailsTitle": "Detalhes da transação",
+      "detailsAccessStart": "Início do acesso",
+      "detailsAccessEnd": "Fim do acesso",
+      "openFilters": "Filtros",
+      "openFiltersWithCount": "Filtros ({{count}})",
+      "applyFilters": "Aplicar filtros",
+      "loading": "Carregando transações...",
+      "empty": "Nenhuma transação encontrada",
+      "columns": {
+        "purchasedAt": "Data",
+        "status": "Status",
+        "provider": "Provedor",
+        "amount": "Valor",
+        "userId": "Usuário",
+        "plan": "Plano",
+        "access": "Acesso"
+      },
+      "filters": {
+        "modalTitle": "Filtros",
+        "provider": "Provedor",
+        "providerPlaceholder": "Todos",
+        "status": "Status",
+        "statusPlaceholder": "Todos",
+        "limit": "Itens",
+        "userQuery": "Usuário",
+        "userQueryPlaceholder": "Nome, e-mail ou telefone",
+        "paymentPlanId": "Plano",
+        "paymentPlanIdPlaceholder": "Todos",
+        "startDate": "Início",
+        "endDate": "Fim"
+      },
+      "mobile": {
+        "order": "Order",
+        "user": "Usuário",
+        "plan": "Plano",
+        "access": "Acesso"
+      }
+    }
+  },
   "users": {
     "title": "Usuários",
     "subtitle": "Gerencie os usuários da academia {{tenant}}",
@@ -311,7 +502,8 @@
   "tenant": {
     "lastEvent": "Último evento {{time}}",
     "noEvent": "Nenhum evento recebido",
-    "changeTenant": "Mudar $t(terms.tenantCapitalized)"
+    "changeTenant": "Mudar $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Plano atual: {{plan}} • {{value}} • {{duration}}"
   },
   "tenants": {
     "title": "Academias",
