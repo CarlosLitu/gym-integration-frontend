@@ -56,7 +56,11 @@ function PaidVsPendingTooltip({ active, payload }: SeriesTooltipProps) {
 export function PaidVsPendingChart({ data }: PaidVsPendingChartProps) {
   return (
     <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 8 }}>
+      <BarChart
+        data={data}
+        margin={{ top: 8, right: 8, bottom: 0, left: 8 }}
+        accessibilityLayer={false}
+      >
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_COLORS.grid} />
         <XAxis
           dataKey="label"

@@ -19,6 +19,11 @@
     "AUTH_SESSION_NOT_FOUND": "Session not found. Please log in again.",
     "AUTH_USER_NOT_AUTHORIZED": "User not authorized",
     "AUTH_ADMIN_REQUIRED": "Administrator access required",
+    "AUTH_FORGOT_PASSWORD_REQUIRED_FIELDS": "Email is required",
+    "AUTH_FORGOT_PASSWORD_SUCCESS": "If the email is registered, you will receive instructions to reset your password.",
+    "AUTH_RESET_PASSWORD_REQUIRED_FIELDS": "Token and new password are required",
+    "AUTH_RESET_PASSWORD_INVALID_OR_EXPIRED": "Invalid or expired link. Request a new password reset.",
+    "AUTH_RESET_PASSWORD_SUCCESS": "Password reset successfully. Sign in with your new password.",
 
     "TENANT_LIST_SUCCESS": "Tenants listed successfully",
     "TENANT_FETCH_SUCCESS": "Tenant loaded successfully",
@@ -52,6 +57,13 @@
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registered on gateway successfully",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Failed to delete webhook from gateway",
     "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook deleted from gateway successfully",
+    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sync is only allowed between 00:00 and 03:00.",
+    "LEAD_REQUIRED_FIELDS": "Please fill in all required fields.",
+    "LEAD_INVALID_EMAIL": "Invalid email. Check the format and try again.",
+    "LEAD_INVALID_WHATSAPP": "Invalid WhatsApp number. Include the area code.",
+    "LEAD_TERMS_NOT_ACCEPTED": "You must accept the terms to continue.",
+    "LEAD_CREATE_SUCCESS": "Demo request sent successfully.",
+    "LEAD_RATE_LIMIT_EXCEEDED": "Too many attempts. Please wait a few minutes and try again.",
     "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "X-Webhook-Secret header is required",
     "WEBHOOK_WHATSAPP_SECRET_INVALID": "Invalid X-Webhook-Secret header",
     "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "WhatsApp webhook received successfully",
@@ -65,17 +77,63 @@
     "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Could not fetch the WhatsApp connection status",
     "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "WhatsApp conversations loaded successfully",
     "WHATSAPP_MESSAGES_FETCH_SUCCESS": "WhatsApp messages loaded successfully",
-    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sync is only allowed between 00:00 and 03:00."
+
+    "PAYMENT_REQUIRED_FIELDS": "Please fill in the required payment fields",
+    "PAYMENT_TRANSACTION_INVALID_FILTERS": "Invalid transaction filters",
+    "PAYMENT_ALREADY_PROCESSING": "A payment is already being processed",
+    "PAYMENT_PROVIDER_NOT_SUPPORTED": "Payment provider not supported",
+    "PAYMENT_INVALID_WEBHOOK_PAYLOAD": "Invalid payment webhook payload",
+    "PAYMENT_PROVIDER_NOT_CONFIGURED": "Payment provider not configured",
+    "PAYMENT_PLAN_NOT_CONFIGURED": "No payment plan configured",
+    "PAYMENT_PLAN_NOT_FOUND": "Payment plan not found",
+    "PAYMENT_PLAN_NAME_ALREADY_EXISTS": "A payment plan with this name already exists",
+    "PAYMENT_PLAN_INACTIVE": "This plan is inactive and cannot be purchased",
+    "PAYMENT_PLAN_ALREADY_PURCHASED": "You already have a transaction for this plan",
+    "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Could not provision the plan in PayPal",
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Value and duration cannot be changed after PayPal provisioning",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "Future subscription charges were cancelled successfully",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "There is no active subscription to cancel"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "notApplicable": "N/A",
+    "apply": "Apply",
+    "clearAll": "Clear all",
+    "cancel": "Cancel",
+    "create": "Create",
+    "save": "Save",
+    "saving": "Saving...",
+    "actions": "Actions"
   },
   "auth": {
+    "backToHome": "Back to site",
+    "backToLogin": "Back to login",
     "loginSubtitle": "Sign in with your consultant or administrator account.",
     "emailLabel": "Email",
     "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm password",
     "emailPlaceholder": "you@company.com",
     "passwordPlaceholder": "••••••••",
+    "confirmPasswordPlaceholder": "Re-enter password",
     "submitLabel": "Sign in",
     "submittingLabel": "Signing in...",
     "forgotPassword": "Forgot your password?",
+    "forgotSubtitle": "Enter your email and we will send a link to reset your password.",
+    "forgotSubmitLabel": "Send link",
+    "forgotSubmittingLabel": "Sending...",
+    "forgotSuccess": "If the email is registered, you will receive instructions to reset your password.",
+    "resetSubtitle": "Choose a new password to access your account.",
+    "resetSubmitLabel": "Reset password",
+    "resetSubmittingLabel": "Resetting...",
+    "resetSuccess": "Password reset successfully. Sign in with your new password.",
+    "resetMissingToken": "Invalid or incomplete link. Request a new password reset.",
+    "requestNewLink": "Request a new link",
+    "goToLogin": "Go to login",
+    "passwordMismatch": "Passwords do not match",
+    "revealPassword": "Show password",
+    "hidePassword": "Hide password",
     "loginFailed": "Could not sign in. Please try again.",
     "requiredField": "Required field",
     "invalidEmail": "Invalid email. Check the format and try again.",
@@ -92,15 +150,295 @@
   "nav": {
     "chat": "Chat",
     "dashboard": "Dashboard",
+    "userPlans": "View plans",
     "settings": "Settings",
     "reports": "Reports",
     "support": "Support",
     "users": "Users",
+    "paymentPlans": "Plans",
+    "paymentTransactions": "Transactions",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
   "footer": {
     "copyright": "© {{year}} Pulse. All rights reserved."
+  },
+  "landing": {
+    "nav": {
+      "enter": "Sign in",
+      "requestDemo": "Request Demo",
+      "goToDashboard": "Go to dashboard"
+    },
+    "hero": {
+      "pill": "CT Invictus just joined +1,000 gyms.",
+      "pillMessages": {
+        "impacto": "Impacto Fitness <bold>just signed up!</bold>",
+        "ironWorks": "IronWorks <bold>management</bold> just got <bold>easier.</bold>",
+        "vibeGym": "Vibe Gym <bold>just modernized its management!</bold>",
+        "arenaBase": "Arena Base <bold>started using it just now.</bold>",
+        "ctInvictus": "CT Invictus <bold>just joined +1,000 gyms.</bold>"
+      },
+      "title": "The CRM that keeps your gym's<br/><highlight>pulse</highlight> beating.",
+      "subtitle": "Say goodbye to month-end guesswork. Revenue, collection health, and retention metrics centralized in dashboards that guide your decisions.",
+      "ctaDemo": "Request Demo",
+      "ctaLogin": "Access My Account",
+      "dashboardAlt": "Pulse dashboard preview"
+    },
+    "carousel": {
+      "label": "Used by gym chains and independent studios across Brazil",
+      "ariaLabel": "Partner gym logos"
+    },
+    "product": {
+      "overline": "THE PRODUCT",
+      "title": "Your gym's financial control, in one place.",
+      "description": "Stop switching between spreadsheets and guessing your results. Pulse brings all your revenue data into a single panel. Easy to read, essential for growth.",
+      "imageAlt": "Pulse product statistics",
+      "stats": {
+        "spreadsheets": {
+          "value": "0",
+          "label": "manual spreadsheets"
+        },
+        "cashFlow": {
+          "value": "100%",
+          "label": "cash flow predictability"
+        },
+        "billing": {
+          "value": "360°",
+          "label": "view of your billing"
+        }
+      },
+      "features": {
+        "billing": {
+          "title": "Revenue & Sales",
+          "description": "Track revenue trends, average ticket, and sales volume. Get absolute clarity on daily, weekly, or monthly billing."
+        },
+        "collection": {
+          "title": "Collection Health",
+          "description": "Monitor received amounts, pending balances, and collection rate. Spot cash flow bottlenecks before month-end."
+        },
+        "retention": {
+          "title": "Acquisition vs. Retention",
+          "description": "Know exactly where your money comes from. Analyze the ratio between new members and renewals throughout the year."
+        },
+        "payments": {
+          "title": "Payment Analysis",
+          "description": "Map your customers' purchase behavior. See sales distribution by payment method and optimize your fees."
+        }
+      }
+    },
+    "potencialize": {
+      "overline": "SUPERCHARGE YOUR VIEW",
+      "title": "Connect your current system with one click.",
+      "description": "Sync your account with EVO, Next Fit, Tecnofit, and even WhatsApp. Our platform automatically extracts your member and payment history to generate smart financial dashboards — no spreadsheet exports or manual data entry.",
+      "dashboardAlt": "Pulse dashboard integrated with gym system"
+    },
+    "demo": {
+      "badge": "Free demo",
+      "title": "Discover Pulse's impact on your management.",
+      "description": "Book 30 minutes and see our platform in action with your own data. No canned demos — just your real problems being solved.",
+      "benefits": {
+        "noCard": "No credit card and no commitment.",
+        "dashboards": "Visual dashboards focused on revenue and retention.",
+        "integrations": "Live integration with EVO, Next Fit, Tecnofit, and WhatsApp.",
+        "cashFlow": "Uncover hidden opportunities in your cash flow."
+      },
+      "formTitle": "Request a demo",
+      "formSubtitle": "Fill in your details and we'll contact you to schedule.",
+      "fields": {
+        "name": "Name",
+        "gymName": "Gym",
+        "email": "Email",
+        "whatsapp": "WhatsApp",
+        "studentsRange": "Number of members"
+      },
+      "placeholders": {
+        "name": "Enter your name",
+        "gymName": "e.g. Forma Física Gym",
+        "email": "you@gym.com",
+        "whatsapp": "(00) 00000-0000",
+        "studentsRange": "Select an option..."
+      },
+      "studentRanges": {
+        "upTo100": "Up to 100 members",
+        "100to300": "100 to 300 members",
+        "300to1000": "300 to 1,000 members",
+        "1000plus": "More than 1,000 members"
+      },
+      "submit": "Request Demo",
+      "submitting": "Sending...",
+      "termsLabel": "I agree to the processing of my data so you can contact me about the demo.",
+      "footerNote": "No credit card · Response within 1 business day",
+      "success": "We received your request and our team already has it. We'll get back to you as soon as possible.",
+      "errors": {
+        "required": "Required field",
+        "invalidEmail": "Invalid email",
+        "invalidWhatsapp": "Invalid WhatsApp number. Include the area code.",
+        "termsRequired": "Please accept the terms to continue.",
+        "submitFailed": "Could not send your request. Please try again."
+      }
+    },
+    "footer": {
+      "copyright": "© {{year}} Pulse. All rights reserved."
+    }
+  },
+  "payments": {
+    "userPlans": {
+      "eyebrow": "Choose your plan",
+      "title": "View plans",
+      "subtitle": "Pick the best plan for your current needs and continue to checkout to complete your purchase.",
+      "currentPlanEyebrow": "Current gym plan",
+      "currentPlanValidity": "Valid until {{date}}",
+      "loading": "Loading available plans...",
+      "emptyTitle": "No plans available right now",
+      "emptySubtitle": "As soon as new plans are published, they will appear here for purchase.",
+      "fallbackName": "Unnamed plan",
+      "priceSubtitle": "Billing follows the rules of the selected plan",
+      "permissionsTitle": "Included benefits",
+      "noPermissions": "This plan does not have any additional permissions configured.",
+      "multipleAllowed": "Can be purchased more than once",
+      "multipleBlocked": "One purchase per gym",
+      "selectAction": "Choose plan",
+      "selecting": "Redirecting...",
+      "redirectError": "Could not start checkout for this plan.",
+      "cancelSubscriptionTitle": "Cancel auto-renewal",
+      "cancelSubscriptionConfirm": "Do you want to cancel future charges for this subscription? Current access remains active until the current validity date.",
+      "cancelSubscriptionAction": "Cancel future charges",
+      "cancellingSubscription": "Cancelling...",
+      "cancellationScheduled": "Auto-renewal cancelled. The plan stays active until the current validity date.",
+      "types": {
+        "subscription": "Subscription",
+        "oneTime": "One-time"
+      }
+    },
+    "plans": {
+      "title": "Payment plans",
+      "subtitle": "Manage active and inactive plans available for purchase",
+      "newPlan": "New plan",
+      "create": {
+        "back": "Back to plans",
+        "title": "Create payment plan",
+        "subtitle": "Register a new plan following the same visual pattern as the admin panel"
+      },
+      "searchPlaceholder": "Search by name, ID, currency or type...",
+      "filterPlaceholder": "Filter by status",
+      "filters": {
+        "all": "All",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "loading": "Loading plans...",
+      "empty": "No plans found",
+      "active": "Active",
+      "inactive": "Inactive",
+      "createdAt": "Created at {{date}}",
+      "durationDays": "{{days}} days",
+      "durationMonthsSingular": "{{months}} month",
+      "durationMonthsPlural": "{{months}} months",
+      "flags": "Type: {{type}} • Multiple: {{multiple}}",
+      "columns": {
+        "name": "Name",
+        "value": "Value",
+        "duration": "Duration",
+        "type": "Type",
+        "multiple": "Multiple",
+        "status": "Status"
+      },
+      "technical": {
+        "title": "Technical data",
+        "subtitle": "Identifiers synced automatically with PayPal",
+        "paypalProductId": "PayPal product id",
+        "paypalPlanId": "PayPal plan id"
+      },
+      "status": {
+        "activateTitle": "Activate plan",
+        "activateConfirm": "Do you want to activate plan {{name}}?",
+        "activateAction": "Activate",
+        "activating": "Activating...",
+        "deactivateTitle": "Deactivate plan",
+        "deactivateConfirm": "Do you want to deactivate plan {{name}}?",
+        "deactivateAction": "Deactivate",
+        "deactivating": "Deactivating..."
+      },
+      "edit": {
+        "back": "Back to plans",
+        "title": "Edit plan",
+        "subtitle": "Update allowed fields and inspect provider technical identifiers",
+        "action": "Edit",
+        "loading": "Loading plan...",
+        "notFound": "Plan not found",
+        "lockedFieldsHint": "Value, duration, and month count are locked after the plan is provisioned in PayPal."
+      },
+      "form": {
+        "createTitle": "New plan",
+        "editTitle": "Edit plan",
+        "name": "Plan name",
+        "namePlaceholder": "Ex: Premium Monthly Plan",
+        "value": "Value",
+        "currency": "Currency",
+        "durationDays": "Duration (days)",
+        "maxBillingCycles": "Number of months",
+        "type": "Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+          "ONE_TIME": "One-time purchase",
+          "SUBSCRIPTION": "Subscription"
+        },
+        "permissions": "Permissions",
+        "permissionsPlaceholder": "Ex: payments.read,sales.read",
+        "allowMultiplePurchases": "Allow multiple purchases",
+        "subscriptionBillingHint": "Subscriptions are billed every 30 days. Enter how many months the billing should last.",
+        "errors": {
+          "name": "Enter the plan name",
+          "value": "Enter a valid value",
+          "currency": "Enter a currency",
+          "durationDays": "Enter a valid duration",
+          "maxBillingCycles": "Enter a valid number of months",
+          "type": "Select a type"
+        }
+      }
+    },
+    "transactions": {
+      "title": "Transactions",
+      "subtitle": "Track payment transactions with filters and pagination",
+      "details": "Details",
+      "detailsTitle": "Transaction details",
+      "detailsAccessStart": "Access start",
+      "detailsAccessEnd": "Access end",
+      "openFilters": "Filters",
+      "openFiltersWithCount": "Filters ({{count}})",
+      "applyFilters": "Apply filters",
+      "loading": "Loading transactions...",
+      "empty": "No transactions found",
+      "columns": {
+        "purchasedAt": "Date",
+        "status": "Status",
+        "provider": "Provider",
+        "amount": "Amount",
+        "userId": "User",
+        "plan": "Plan",
+        "access": "Access"
+      },
+      "filters": {
+        "modalTitle": "Filters",
+        "provider": "Provider",
+        "providerPlaceholder": "All",
+        "status": "Status",
+        "statusPlaceholder": "All",
+        "limit": "Items",
+        "userQuery": "User",
+        "userQueryPlaceholder": "Name, email or phone",
+        "paymentPlanId": "Plan",
+        "paymentPlanIdPlaceholder": "All",
+        "startDate": "Start",
+        "endDate": "End"
+      },
+      "mobile": {
+        "order": "Order",
+        "user": "User",
+        "plan": "Plan",
+        "access": "Access"
+      }
+    }
   },
   "users": {
     "title": "Users",
@@ -166,7 +504,8 @@
   "tenant": {
     "lastEvent": "Last event {{time}}",
     "noEvent": "No events received yet",
-    "changeTenant": "Change $t(terms.tenantCapitalized)"
+    "changeTenant": "Change $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Current plan: {{plan}} • {{value}} • {{duration}}"
   },
   "tenants": {
     "title": "Gyms",
@@ -270,7 +609,7 @@
       "revenue": "Revenue",
       "paid": "Received",
       "pending": "Pending",
-      "pendingInfo": "Overdue: {{rate}} of this month's revenue",
+      "pendingInfo": "Overdue: {{rate}} of the selected period revenue",
       "salesCount": "Sales",
       "averageTicket": "Average ticket",
       "averageTicketInfo": "Calculated as revenue divided by number of sales",

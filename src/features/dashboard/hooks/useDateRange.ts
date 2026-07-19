@@ -69,6 +69,39 @@ function buildPresetRange(preset: DateRangePreset): DateRange {
   }
 }
 
+/** Comparable window immediately before the selected preset (same length / calendar shape). */
+export function buildPreviousRange(preset: DateRangePreset): DateRange {
+  const now = new Date()
+  const year = now.getUTCFullYear()
+  const month = now.getUTCMonth()
+  const day = now.getUTCDate()
+
+  switch (preset) {
+    case 'currentMonth':
+      return buildPresetRange('lastMonth')
+    case 'lastMonth':
+      return {
+        startDate: toIsoDate(new Date(Date.UTC(year, month - 2, 1))),
+        endDate: toIsoDate(new Date(Date.UTC(year, month - 1, 0))),
+      }
+    case 'last7Days':
+      return {
+        startDate: toIsoDate(new Date(Date.UTC(year, month, day - 13))),
+        endDate: toIsoDate(new Date(Date.UTC(year, month, day - 7))),
+      }
+    case 'last30Days':
+      return {
+        startDate: toIsoDate(new Date(Date.UTC(year, month, day - 59))),
+        endDate: toIsoDate(new Date(Date.UTC(year, month, day - 30))),
+      }
+    case 'last12Months':
+      return {
+        startDate: toIsoDate(new Date(Date.UTC(year, month - 23, 1))),
+        endDate: toIsoDate(new Date(Date.UTC(year, month - 11, 0))),
+      }
+  }
+}
+
 export function useDateRange(initialPreset: DateRangePreset = 'currentMonth') {
   const [preset, setPresetState] = useState<DateRangePreset>(initialPreset)
   const [granularity, setGranularity] = useState<SalesGranularity>(

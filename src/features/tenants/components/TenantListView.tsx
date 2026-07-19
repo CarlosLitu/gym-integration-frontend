@@ -1,11 +1,10 @@
 import { PlusCircle } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components'
+import { Button, SearchInput } from '@/components'
 import { useTenants } from '../hooks/useTenants'
 import { useTenantFilters } from '../hooks/useTenantFilters'
 import { useSelectedTenant } from '../hooks/useSelectedTenant'
 import type { TenantListItem as TenantListItemType } from '../types/tenant.types'
-import { TenantSearch } from './TenantSearch'
 import { TenantFilters } from './TenantFilters'
 import { TenantListItem } from './TenantListItem'
 import { Pagination } from './Pagination'
@@ -48,7 +47,12 @@ export function TenantListView({
 
       <div className="flex items-center gap-3">
         <div className="flex-1">
-          <TenantSearch value={search} onChange={setSearch} />
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            name="tenant-search"
+            placeholder={t('tenants.searchPlaceholder')}
+          />
         </div>
         <Button
           variant="brand"

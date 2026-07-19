@@ -15,6 +15,14 @@ const LoginPage = lazy(() =>
   import('@/features/auth').then((module) => ({ default: module.LoginPage })),
 )
 
+const ForgotPasswordPage = lazy(() =>
+  import('@/features/auth').then((module) => ({ default: module.ForgotPasswordPage })),
+)
+
+const ResetPasswordPage = lazy(() =>
+  import('@/features/auth').then((module) => ({ default: module.ResetPasswordPage })),
+)
+
 const DashboardPage = lazy(() =>
   import('@/features/dashboard').then((module) => ({ default: module.DashboardPage })),
 )
@@ -27,6 +35,30 @@ const UsersPage = lazy(() =>
   import('@/features/users').then((module) => ({ default: module.UsersPage })),
 )
 
+const PaymentPlansPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentPlansPage })),
+)
+
+const PaymentPlanCreatePage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentPlanCreatePage })),
+)
+
+const PaymentPlanEditPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentPlanEditPage })),
+)
+
+const PaymentTransactionsPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.PaymentTransactionsPage })),
+)
+
+const UserPaymentPlansPage = lazy(() =>
+  import('@/features/payments').then((module) => ({ default: module.UserPaymentPlansPage })),
+)
+
+const LandingPage = lazy(() =>
+  import('@/features/landing').then((module) => ({ default: module.LandingPage })),
+)
+
 export function AppRoutes() {
   return (
     <BrowserRouter>
@@ -35,20 +67,27 @@ export function AppRoutes() {
           <RouteLoadingListener />
           <Suspense fallback={<RouteLoadingFallback />}>
             <Routes>
+              <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route element={<MainLayout />}>
-                  <Route index element={<Navigate to="/dashboard" replace />} />
                   <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/chat" element={<ChatPage />} />
+                  <Route path="/plans" element={<UserPaymentPlansPage />} />
                   <Route element={<AdminRoute />}>
                     <Route path="/users" element={<UsersPage />} />
+                    <Route path="/payments/plans" element={<PaymentPlansPage />} />
+                    <Route path="/payments/plans/new" element={<PaymentPlanCreatePage />} />
+                    <Route path="/payments/plans/:id" element={<PaymentPlanEditPage />} />
+                    <Route path="/payments/transactions" element={<PaymentTransactionsPage />} />
                   </Route>
                 </Route>
               </Route>
 
-              <Route path="*" element={<Navigate to="/login" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
           <SessionTransitionOverlay />

@@ -50,7 +50,7 @@ export function PaymentMethodsChart({ data }: PaymentMethodsChartProps) {
 
   return (
     <ResponsiveContainer width="100%" height={280}>
-      <PieChart>
+      <PieChart accessibilityLayer={false}>
         <Tooltip content={<TooltipContent />} />
         <Legend wrapperStyle={{ fontSize: 12 }} />
         <Pie

@@ -19,19 +19,19 @@ function toPercent(value: number, base: number) {
 
 export function LoginDecorations() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
       <img
         src={patternNodes}
         alt=""
         width={504}
         height={441}
-        className="absolute left-0 top-0 max-w-none select-none"
+        className="absolute left-0 top-0 z-0 max-w-none select-none"
       />
 
       <img
         src={illustration}
         alt=""
-        className="fixed bottom-0 max-w-none select-none"
+        className="absolute bottom-0 z-0 max-w-none select-none"
         style={{
           left: toPercent(ILLUSTRATION.x, FIGMA_FRAME.width),
           width: toPercent(ILLUSTRATION.width, FIGMA_FRAME.width),

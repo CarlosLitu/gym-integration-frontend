@@ -51,12 +51,27 @@ export default {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
         },
+        'logo-scroll': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'orbit-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'orbit-spin-reverse': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(-360deg)' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 200ms ease-out',
         'fade-out': 'fade-out 250ms ease-in forwards',
         'scale-in': 'scale-in 280ms cubic-bezier(0.16, 1, 0.3, 1)',
         'slide-in-left': 'slide-in-left 280ms cubic-bezier(0.16, 1, 0.3, 1)',
+        'logo-scroll': 'logo-scroll 30s linear infinite',
+        'orbit-spin': 'orbit-spin 12s linear infinite',
+        'orbit-spin-reverse': 'orbit-spin-reverse 12s linear infinite',
       },
     },
   },

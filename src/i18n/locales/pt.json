@@ -19,6 +19,11 @@
     "AUTH_SESSION_NOT_FOUND": "Sessão não encontrada. Faça login novamente.",
     "AUTH_USER_NOT_AUTHORIZED": "Usuário não autorizado",
     "AUTH_ADMIN_REQUIRED": "Acesso restrito a administradores",
+    "AUTH_FORGOT_PASSWORD_REQUIRED_FIELDS": "Informe o e-mail",
+    "AUTH_FORGOT_PASSWORD_SUCCESS": "Se o e-mail estiver cadastrado, você receberá as instruções para redefinir a senha.",
+    "AUTH_RESET_PASSWORD_REQUIRED_FIELDS": "Informe o token e a nova senha",
+    "AUTH_RESET_PASSWORD_INVALID_OR_EXPIRED": "Link inválido ou expirado. Solicite uma nova redefinição de senha.",
+    "AUTH_RESET_PASSWORD_SUCCESS": "Senha redefinida com sucesso. Faça login com a nova senha.",
 
     "TENANT_LIST_SUCCESS": "Tenants listados com sucesso",
     "TENANT_FETCH_SUCCESS": "Tenant carregado com sucesso",
@@ -52,6 +57,13 @@
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registrado no gateway com sucesso",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Falha ao remover webhook do gateway",
     "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook removido do gateway com sucesso",
+    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00.",
+    "LEAD_REQUIRED_FIELDS": "Preencha todos os campos obrigatórios da solicitação.",
+    "LEAD_INVALID_EMAIL": "E-mail inválido. Revise o formato e tente de novo.",
+    "LEAD_INVALID_WHATSAPP": "WhatsApp inválido. Informe um número com DDD.",
+    "LEAD_TERMS_NOT_ACCEPTED": "É necessário aceitar os termos para continuar.",
+    "LEAD_CREATE_SUCCESS": "Solicitação de demo enviada com sucesso.",
+    "LEAD_RATE_LIMIT_EXCEEDED": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
     "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "Header X-Webhook-Secret obrigatório",
     "WEBHOOK_WHATSAPP_SECRET_INVALID": "Header X-Webhook-Secret inválido",
     "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "Webhook do WhatsApp recebido com sucesso",
@@ -65,17 +77,63 @@
     "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Não foi possível consultar o status do WhatsApp",
     "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "Conversas do WhatsApp carregadas com sucesso",
     "WHATSAPP_MESSAGES_FETCH_SUCCESS": "Mensagens do WhatsApp carregadas com sucesso",
-    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00."
+
+    "PAYMENT_REQUIRED_FIELDS": "Preencha os campos obrigatórios do pagamento",
+    "PAYMENT_TRANSACTION_INVALID_FILTERS": "Filtros de transação inválidos",
+    "PAYMENT_ALREADY_PROCESSING": "Já existe um pagamento em processamento",
+    "PAYMENT_PROVIDER_NOT_SUPPORTED": "Provedor de pagamento não suportado",
+    "PAYMENT_INVALID_WEBHOOK_PAYLOAD": "Webhook de pagamento inválido",
+    "PAYMENT_PROVIDER_NOT_CONFIGURED": "Provedor de pagamento não configurado",
+    "PAYMENT_PLAN_NOT_CONFIGURED": "Nenhum plano de pagamento configurado",
+    "PAYMENT_PLAN_NOT_FOUND": "Plano de pagamento não encontrado",
+    "PAYMENT_PLAN_NAME_ALREADY_EXISTS": "Ja existe um plano com este nome",
+    "PAYMENT_PLAN_INACTIVE": "Este plano está inativo e não pode ser comprado",
+    "PAYMENT_PLAN_ALREADY_PURCHASED": "Você já possui uma transação para este plano",
+    "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Não foi possível provisionar o plano no PayPal",
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Valor e duração não podem ser alterados após o provisioning no PayPal",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "As próximas cobranças da assinatura foram canceladas com sucesso",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "Não existe uma assinatura ativa para cancelar"
+  },
+  "common": {
+    "yes": "Sim",
+    "no": "Não",
+    "all": "Todos",
+    "notApplicable": "N/A",
+    "apply": "Aplicar",
+    "clearAll": "Limpar tudo",
+    "cancel": "Cancelar",
+    "create": "Criar",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "actions": "Ações"
   },
   "auth": {
+    "backToHome": "Voltar ao site",
+    "backToLogin": "Voltar ao login",
     "loginSubtitle": "Acesse com sua conta de consultor ou administrador.",
     "emailLabel": "E-mail",
     "passwordLabel": "Senha",
+    "confirmPasswordLabel": "Confirmar senha",
     "emailPlaceholder": "voce@empresa.com",
     "passwordPlaceholder": "••••••••",
+    "confirmPasswordPlaceholder": "Digite a senha novamente",
     "submitLabel": "Entrar",
     "submittingLabel": "Entrando...",
     "forgotPassword": "Esqueceu sua senha?",
+    "forgotSubtitle": "Informe seu e-mail e enviaremos um link para redefinir a senha.",
+    "forgotSubmitLabel": "Enviar link",
+    "forgotSubmittingLabel": "Enviando...",
+    "forgotSuccess": "Se o e-mail estiver cadastrado, você receberá as instruções para redefinir a senha.",
+    "resetSubtitle": "Escolha uma nova senha para acessar sua conta.",
+    "resetSubmitLabel": "Redefinir senha",
+    "resetSubmittingLabel": "Redefinindo...",
+    "resetSuccess": "Senha redefinida com sucesso. Faça login com a nova senha.",
+    "resetMissingToken": "Link inválido ou incompleto. Solicite uma nova redefinição de senha.",
+    "requestNewLink": "Solicitar novo link",
+    "goToLogin": "Ir para o login",
+    "passwordMismatch": "As senhas não coincidem",
+    "revealPassword": "Mostrar senha",
+    "hidePassword": "Ocultar senha",
     "loginFailed": "Não foi possível realizar o login. Tente novamente.",
     "requiredField": "Campo obrigatório",
     "invalidEmail": "E-mail inválido. Revise o formato e tente de novo.",
@@ -92,15 +150,295 @@
   "nav": {
     "chat": "Chat",
     "dashboard": "Dashboard",
+    "userPlans": "Ver planos",
     "settings": "Configurações",
     "reports": "Relatórios",
     "support": "Suporte",
     "users": "Usuários",
+    "paymentPlans": "Planos",
+    "paymentTransactions": "Transações",
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu"
   },
   "footer": {
     "copyright": "© {{year}} Pulse. Todos os direitos reservados."
+  },
+  "landing": {
+    "nav": {
+      "enter": "Entrar",
+      "requestDemo": "Solicitar Demo",
+      "goToDashboard": "Ir para o painel"
+    },
+    "hero": {
+      "pill": "CT Invictus acabou de se juntar a +1.000 academias.",
+      "pillMessages": {
+        "impacto": "Impacto Fitness <bold>acabou de assinar!</bold>",
+        "ironWorks": "A <bold>gestão</bold> da IronWorks ficou <bold>mais fácil agora.</bold>",
+        "vibeGym": "Vibe Gym <bold>acaba de modernizar sua gestão!</bold>",
+        "arenaBase": "Arena Base <bold>começou a usar agora mesmo.</bold>",
+        "ctInvictus": "CT Invictus <bold>acabou de se juntar a +1.000 academias.</bold>"
+      },
+      "title": "O CRM que mantém<br/>o <highlight>batimento</highlight> da sua academia.",
+      "subtitle": "Diga adeus ao fechamento de mês no escuro. Faturamento, saúde das cobranças e métricas de retenção centralizados em dashboards que guiam suas decisões.",
+      "ctaDemo": "Solicitar Demo",
+      "ctaLogin": "Acessar Minha Conta",
+      "dashboardAlt": "Prévia do dashboard Pulse"
+    },
+    "carousel": {
+      "label": "Usado por redes e academias independentes em todo o Brasil",
+      "ariaLabel": "Logos de academias parceiras"
+    },
+    "product": {
+      "overline": "O PRODUTO",
+      "title": "O controle financeiro da sua academia, em um único lugar.",
+      "description": "Pare de alternar entre planilhas e tentar adivinhar os seus resultados. O Pulse junta todos os dados de receita da sua operação em um painel só. Simples de visualizar, essencial para o seu crescimento.",
+      "imageAlt": "Estatísticas do produto Pulse",
+      "stats": {
+        "spreadsheets": {
+          "value": "0",
+          "label": "planilhas manuais"
+        },
+        "cashFlow": {
+          "value": "100%",
+          "label": "previsibilidade de caixa"
+        },
+        "billing": {
+          "value": "360º",
+          "label": "visão do seu faturamento"
+        }
+      },
+      "features": {
+        "billing": {
+          "title": "Faturamento e Vendas",
+          "description": "Acompanhe a evolução da sua receita, ticket médio e volume de vendas. Tenha clareza absoluta sobre o faturamento do dia, semana ou mês."
+        },
+        "collection": {
+          "title": "Saúde da Cobrança",
+          "description": "Monitore os valores recebidos, tudo que está pendente e a taxa de recebimento. Descubra gargalos no fluxo de caixa antes do fechamento."
+        },
+        "retention": {
+          "title": "Aquisição vs. Retenção",
+          "description": "Saiba com clareza de onde vem o seu dinheiro. Analise a proporção entre a entrada de novos alunos e renovações ao longo de todo o ano."
+        },
+        "payments": {
+          "title": "Análise de Pagamentos",
+          "description": "Mapeie o comportamento de compra de seus clientes. Visualize a distribuição das vendas por método de pagamento e otimize as suas taxas."
+        }
+      }
+    },
+    "potencialize": {
+      "overline": "POTENCIALIZE A SUA VISÃO",
+      "title": "Conecte o seu sistema atual com um clique.",
+      "description": "Sincronize sua conta com o EVO, Next Fit, Tecnofit e até com o seu WhatsApp. Nossa plataforma extrai seu histórico de alunos e pagamentos automaticamente para gerar painéis financeiros inteligentes, sem que você precise exportar planilhas ou digitar uma única linha.",
+      "dashboardAlt": "Dashboard Pulse integrado ao sistema da academia"
+    },
+    "demo": {
+      "badge": "Demonstração gratuita",
+      "title": "Descubra o impacto do Pulse na sua gestão.",
+      "description": "Reserve 30 minutos e veja nossa plataforma em ação com os seus próprios dados. Sem simulações prontas, apenas os seus problemas sendo resolvidos.",
+      "benefits": {
+        "noCard": "Sem cartão de crédito e sem compromisso.",
+        "dashboards": "Dashboards visuais focados em receita e retenção.",
+        "integrations": "Integração ao vivo com EVO, Next Fit, Tecnofit e WhatsApp.",
+        "cashFlow": "Descubra oportunidades ocultas no seu fluxo de caixa."
+      },
+      "formTitle": "Solicitar demonstração",
+      "formSubtitle": "Preencha os dados e entraremos em contato para agendar.",
+      "fields": {
+        "name": "Nome",
+        "gymName": "Academia",
+        "email": "E-mail",
+        "whatsapp": "WhatsApp",
+        "studentsRange": "Número de alunos"
+      },
+      "placeholders": {
+        "name": "Insira seu nome",
+        "gymName": "Ex: Academia Forma Física",
+        "email": "voce@academia.com",
+        "whatsapp": "(00) 00000-0000",
+        "studentsRange": "Selecione uma opção..."
+      },
+      "studentRanges": {
+        "upTo100": "Até 100 alunos",
+        "100to300": "100 a 300 alunos",
+        "300to1000": "300 a 1.000 alunos",
+        "1000plus": "Mais de 1.000 alunos"
+      },
+      "submit": "Solicitar Demo",
+      "submitting": "Enviando...",
+      "termsLabel": "Li e aceito o tratamento dos meus dados para contato sobre a demonstração.",
+      "footerNote": "Sem cartão de crédito · Resposta em até 1 dia útil",
+      "success": "Recebemos sua solicitação e ela já está com nossa equipe. Retornaremos o contato o mais breve possível.",
+      "errors": {
+        "required": "Campo obrigatório",
+        "invalidEmail": "E-mail inválido",
+        "invalidWhatsapp": "WhatsApp inválido. Informe um número com DDD.",
+        "termsRequired": "Aceite os termos para continuar.",
+        "submitFailed": "Não foi possível enviar sua solicitação. Tente novamente."
+      }
+    },
+    "footer": {
+      "copyright": "© {{year}} Pulse. Todos os direitos reservados."
+    }
+  },
+  "payments": {
+    "userPlans": {
+      "eyebrow": "Escolha seu plano",
+      "title": "Ver planos",
+      "subtitle": "Escolha o plano ideal para o seu momento e siga para o checkout para concluir a contratação.",
+      "currentPlanEyebrow": "Plano atual da academia",
+      "currentPlanValidity": "Vigente até {{date}}",
+      "loading": "Carregando planos disponíveis...",
+      "emptyTitle": "Nenhum plano disponível no momento",
+      "emptySubtitle": "Assim que novos planos forem publicados, eles aparecerão aqui para contratação.",
+      "fallbackName": "Plano sem nome",
+      "priceSubtitle": "Cobrança conforme as regras do plano selecionado",
+      "permissionsTitle": "Benefícios incluídos",
+      "noPermissions": "Este plano não possui permissões adicionais configuradas.",
+      "multipleAllowed": "Permite comprar mais de uma vez",
+      "multipleBlocked": "Compra única por academia",
+      "selectAction": "Escolher plano",
+      "selecting": "Redirecionando...",
+      "redirectError": "Não foi possível iniciar o checkout deste plano.",
+      "cancelSubscriptionTitle": "Cancelar renovação automática",
+      "cancelSubscriptionConfirm": "Deseja cancelar as próximas cobranças desta assinatura? O acesso atual será mantido até a data de vigência.",
+      "cancelSubscriptionAction": "Cancelar futuras cobranças",
+      "cancellingSubscription": "Cancelando...",
+      "cancellationScheduled": "Renovação automática cancelada. O plano segue ativo até a data de vigência atual.",
+      "types": {
+        "subscription": "Assinatura",
+        "oneTime": "Pagamento único"
+      }
+    },
+    "plans": {
+      "title": "Planos de pagamento",
+      "subtitle": "Gerencie planos ativos e inativos disponíveis para compra",
+      "newPlan": "Novo plano",
+      "create": {
+        "back": "Voltar para planos",
+        "title": "Criar plano de pagamento",
+        "subtitle": "Cadastre um novo plano seguindo o mesmo padrão visual do painel administrativo"
+      },
+      "searchPlaceholder": "Buscar por nome, ID, moeda ou tipo...",
+      "filterPlaceholder": "Filtrar por status",
+      "filters": {
+        "all": "Todos",
+        "active": "Ativos",
+        "inactive": "Inativos"
+      },
+      "loading": "Carregando planos...",
+      "empty": "Nenhum plano encontrado",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "createdAt": "Criado em {{date}}",
+      "durationDays": "{{days}} dias",
+      "durationMonthsSingular": "{{months}} mês",
+      "durationMonthsPlural": "{{months}} meses",
+      "flags": "Tipo: {{type}} • Múltiplo: {{multiple}}",
+      "columns": {
+        "name": "Nome",
+        "value": "Valor",
+        "duration": "Duração",
+        "type": "Tipo",
+        "multiple": "Múltiplo",
+        "status": "Status"
+      },
+      "technical": {
+        "title": "Dados técnicos",
+        "subtitle": "Identificadores sincronizados automaticamente com o PayPal",
+        "paypalProductId": "PayPal product id",
+        "paypalPlanId": "PayPal plan id"
+      },
+      "status": {
+        "activateTitle": "Ativar plano",
+        "activateConfirm": "Deseja ativar o plano {{name}}?",
+        "activateAction": "Ativar",
+        "activating": "Ativando...",
+        "deactivateTitle": "Desativar plano",
+        "deactivateConfirm": "Deseja desativar o plano {{name}}?",
+        "deactivateAction": "Desativar",
+        "deactivating": "Desativando..."
+      },
+      "edit": {
+        "back": "Voltar para planos",
+        "title": "Editar plano",
+        "subtitle": "Atualize os campos permitidos e consulte os identificadores técnicos do provedor",
+        "action": "Editar",
+        "loading": "Carregando plano...",
+        "notFound": "Plano não encontrado",
+        "lockedFieldsHint": "Valor, duração e quantidade de meses ficam bloqueados após o provisioning do plano no PayPal."
+      },
+      "form": {
+        "createTitle": "Novo plano",
+        "editTitle": "Editar plano",
+        "name": "Nome do plano",
+        "namePlaceholder": "Ex: Plano Mensal Premium",
+        "value": "Valor",
+        "currency": "Moeda",
+        "durationDays": "Duração (dias)",
+        "maxBillingCycles": "Quantidade de meses",
+        "type": "Tipo",
+        "typePlaceholder": "Selecione o tipo",
+        "types": {
+          "ONE_TIME": "Compra unica",
+          "SUBSCRIPTION": "Assinatura"
+        },
+        "permissions": "Permissões",
+        "permissionsPlaceholder": "Ex: payments.read,sales.read",
+        "allowMultiplePurchases": "Permite múltiplas compras",
+        "subscriptionBillingHint": "Assinaturas são cobradas a cada 30 dias. Informe por quantos meses a cobrança deve durar.",
+        "errors": {
+          "name": "Informe o nome do plano",
+          "value": "Informe um valor válido",
+          "currency": "Informe a moeda",
+          "durationDays": "Informe uma duração válida",
+          "maxBillingCycles": "Informe uma quantidade de meses válida",
+          "type": "Selecione um tipo"
+        }
+      }
+    },
+    "transactions": {
+      "title": "Transações",
+      "subtitle": "Acompanhe as transações de pagamento com filtros e paginação",
+      "details": "Detalhes",
+      "detailsTitle": "Detalhes da transação",
+      "detailsAccessStart": "Início do acesso",
+      "detailsAccessEnd": "Fim do acesso",
+      "openFilters": "Filtros",
+      "openFiltersWithCount": "Filtros ({{count}})",
+      "applyFilters": "Aplicar filtros",
+      "loading": "Carregando transações...",
+      "empty": "Nenhuma transação encontrada",
+      "columns": {
+        "purchasedAt": "Data",
+        "status": "Status",
+        "provider": "Provedor",
+        "amount": "Valor",
+        "userId": "Usuário",
+        "plan": "Plano",
+        "access": "Acesso"
+      },
+      "filters": {
+        "modalTitle": "Filtros",
+        "provider": "Provedor",
+        "providerPlaceholder": "Todos",
+        "status": "Status",
+        "statusPlaceholder": "Todos",
+        "limit": "Itens",
+        "userQuery": "Usuário",
+        "userQueryPlaceholder": "Nome, e-mail ou telefone",
+        "paymentPlanId": "Plano",
+        "paymentPlanIdPlaceholder": "Todos",
+        "startDate": "Início",
+        "endDate": "Fim"
+      },
+      "mobile": {
+        "order": "Order",
+        "user": "Usuário",
+        "plan": "Plano",
+        "access": "Acesso"
+      }
+    }
   },
   "users": {
     "title": "Usuários",
@@ -166,7 +504,8 @@
   "tenant": {
     "lastEvent": "Último evento {{time}}",
     "noEvent": "Nenhum evento recebido",
-    "changeTenant": "Mudar $t(terms.tenantCapitalized)"
+    "changeTenant": "Mudar $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Plano atual: {{plan}} • {{value}} • {{duration}}"
   },
   "tenants": {
     "title": "Academias",
@@ -270,7 +609,7 @@
       "revenue": "Receita",
       "paid": "Recebido",
       "pending": "Pendente",
-      "pendingInfo": "Inadimplência: {{rate}} da receita do mês",
+      "pendingInfo": "Inadimplência: {{rate}} da receita do período",
       "salesCount": "Nº de vendas",
       "averageTicket": "Ticket médio",
       "averageTicketInfo": "Calculado como receita dividida pelo número de vendas",
