@@ -10,3 +10,11 @@ export async function getWhatsappQrCodeRequest(tenantId: string): Promise<Whatsa
 
   return data.data
 }
+
+export async function resetWhatsappSessionRequest(tenantId: string): Promise<WhatsappQrCodeData> {
+  const { data } = await apiClient.post<{ data: WhatsappQrCodeData }>('/api/whatsapp/reset-session', {
+    tenantId,
+  })
+
+  return data.data
+}
