@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { getWhatsappQrCodeRequest } from '../api/get-whatsapp-qr-code'
+import { getWhatsappQrCodeRequest, resetWhatsappSessionRequest } from '../api/get-whatsapp-qr-code'
 import type { WhatsappQrCodeData } from '../types/whatsapp.types'
 import { useApiMessage } from '@/hooks/useApiMessage'
 
@@ -7,8 +7,10 @@ interface UseWhatsappQrCodeResult {
   data: WhatsappQrCodeData | null
   isLoading: boolean
   isRefreshing: boolean
+  isResetting: boolean
   error: string | null
   refresh: () => Promise<void>
+  resetSession: () => Promise<void>
 }
 
 export function useWhatsappQrCode(tenantId: string | null): UseWhatsappQrCodeResult {
@@ -17,6 +19,7 @@ export function useWhatsappQrCode(tenantId: string | null): UseWhatsappQrCodeRes
   const [data, setData] = useState<WhatsappQrCodeData | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
+  const [isResetting, setIsResetting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -30,6 +33,7 @@ export function useWhatsappQrCode(tenantId: string | null): UseWhatsappQrCodeRes
         setError(null)
         setIsLoading(false)
         setIsRefreshing(false)
+        setIsResetting(false)
         return
       }
 
@@ -62,11 +66,33 @@ export function useWhatsappQrCode(tenantId: string | null): UseWhatsappQrCodeRes
     await load(true)
   }, [load])
 
+  const resetSession = useCallback(async () => {
+    if (!tenantId) {
+      return
+    }
+
+    setIsResetting(true)
+    setError(null)
+
+    try {
+      const response = await resetWhatsappSessionRequest(tenantId)
+      setData(response)
+    } catch (requestError) {
+      setError(getErrorMessageRef.current(requestError))
+    } finally {
+      setIsResetting(false)
+      setIsLoading(false)
+      setIsRefreshing(false)
+    }
+  }, [tenantId])
+
   return {
     data,
     isLoading,
     isRefreshing,
+    isResetting,
     error,
     refresh,
+    resetSession,
   }
 }

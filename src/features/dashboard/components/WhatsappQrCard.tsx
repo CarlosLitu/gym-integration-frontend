@@ -42,7 +42,10 @@ function getStatusLabel(status: WhatsappConnectionStatus | undefined, t: (key: s
 
 export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
   const { t } = useTranslation()
-  const { data, isLoading, isRefreshing, error, refresh } = useWhatsappQrCode(tenantId)
+  const { data, isLoading, isRefreshing, isResetting, error, refresh, resetSession } =
+    useWhatsappQrCode(tenantId)
+  const shouldResetSession = data?.isSynced || data?.status === 'CONNECTED'
+  const isWorking = isRefreshing || isResetting
 
   return (
     <ChartCard
@@ -92,14 +95,21 @@ export function WhatsappQrCard({ tenantId }: WhatsappQrCardProps) {
             <p className="text-sm text-pulse-muted">{t('dashboard.charts.whatsapp.qrHelp')}</p>
           )}
 
-          {!data?.isSynced ? (
+          {tenantId ? (
             <div className="flex flex-wrap gap-3">
-              <Button onClick={() => void refresh()} disabled={!tenantId || isRefreshing}>
+              <Button
+                onClick={() => void (shouldResetSession ? resetSession() : refresh())}
+                disabled={!tenantId || isWorking}
+              >
                 <span className="inline-flex items-center gap-2">
-                  <ArrowsClockwise className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-                  {isRefreshing
-                    ? t('dashboard.charts.whatsapp.refreshing')
-                    : t('dashboard.charts.whatsapp.refreshButton')}
+                  <ArrowsClockwise className={`h-4 w-4 ${isWorking ? 'animate-spin' : ''}`} />
+                  {isWorking
+                    ? shouldResetSession
+                      ? t('dashboard.charts.whatsapp.resetting')
+                      : t('dashboard.charts.whatsapp.refreshing')
+                    : shouldResetSession
+                      ? t('dashboard.charts.whatsapp.refreshStatusButton')
+                      : t('dashboard.charts.whatsapp.refreshButton')}
                 </span>
               </Button>
             </div>

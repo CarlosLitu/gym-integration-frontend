@@ -20,6 +20,10 @@ export const storage = {
     return raw ? (JSON.parse(raw) as T) : null
   },
 
+  getUserRaw(): string | null {
+    return localStorage.getItem(USER_KEY)
+  },
+
   setUser<T>(user: T): void {
     localStorage.setItem(USER_KEY, JSON.stringify(user))
   },
