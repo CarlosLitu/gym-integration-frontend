@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { CheckCircle, Clock, MagnifyingGlass, XCircle } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
-import { Button, FiltersPopover, Modal, SearchInput, StatusBadge, type FiltersPopoverField } from '@/components'
+import { FiltersPopover, Modal, SearchInput, StatusBadge, type FiltersPopoverField } from '@/components'
 import { Pagination } from '@/features/tenants/components/Pagination'
 import { formatCurrency, formatDate } from '@/utils/formatters'
 import type { PaymentTransaction, PaymentTransactionListData } from '../types/payment.types'
