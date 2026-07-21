@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
-import { Funnel, MagnifyingGlass } from '@phosphor-icons/react'
+import { CheckCircle, Clock, MagnifyingGlass, XCircle } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
-import { Button, Modal, StatusBadge } from '@/components'
+import { Button, FiltersPopover, Modal, SearchInput, StatusBadge, type FiltersPopoverField } from '@/components'
 import { Pagination } from '@/features/tenants/components/Pagination'
 import { formatCurrency, formatDate } from '@/utils/formatters'
 import type { PaymentTransaction, PaymentTransactionListData } from '../types/payment.types'
-import { PaymentTransactionsFiltersModal } from './PaymentTransactionsFiltersModal'
+import { usePaymentPlans } from '../hooks/usePaymentPlans'
 import { PAYMENT_TRANSACTIONS_TABLE_GRID } from './payment-transactions-table-grid'
 import { formatPaymentPlanDuration } from '../utils/format-plan-duration'
 
@@ -16,7 +16,6 @@ export interface PaymentTransactionFiltersForm {
   paymentPlanId: string
   startDate: string
   endDate: string
-  limit: string
 }
 
 interface PaymentTransactionsListViewProps {
@@ -28,6 +27,7 @@ interface PaymentTransactionsListViewProps {
     field: K,
     value: PaymentTransactionFiltersForm[K],
   ) => void
+  onSearchChange: (value: string) => void
   onApply: () => void
   onClear: () => void
   onPageChange: (page: number) => void
@@ -36,10 +36,16 @@ interface PaymentTransactionsListViewProps {
 function mapTransactionStatus(status: string) {
   const normalized = status.toUpperCase()
 
-  if (normalized === 'COMPLETED') return 'connected'
-  if (normalized === 'PENDING') return 'pending'
-  if (normalized === 'CANCELLED' || normalized === 'REFUNDED') return 'invalid'
-  return 'unknown'
+  if (normalized === 'COMPLETED') {
+    return { variant: 'connected' as const, icon: CheckCircle }
+  }
+  if (normalized === 'PENDING') {
+    return { variant: 'pending' as const, icon: Clock }
+  }
+  if (normalized === 'CANCELLED' || normalized === 'REFUNDED') {
+    return { variant: 'invalid' as const, icon: XCircle }
+  }
+  return { variant: 'unknown' as const, icon: Clock }
 }
 
 function getTransactionUserDetails(transaction: PaymentTransaction) {
@@ -64,56 +70,117 @@ export function PaymentTransactionsListView({
   error,
   filters,
   onChange,
+  onSearchChange,
   onApply,
   onClear,
   onPageChange,
 }: PaymentTransactionsListViewProps) {
   const { t, i18n } = useTranslation()
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false)
   const [selectedTransaction, setSelectedTransaction] = useState<PaymentTransaction | null>(null)
+  const { plans, isLoading: isPlansLoading, error: plansError } = usePaymentPlans(true)
 
   const items = data?.items ?? []
-  const pagination = data?.pagination ?? { page: 1, totalPages: 0, total: 0, limit: 20 }
-  const activeFiltersCount = useMemo(() => {
-    return [
-      filters.provider,
-      filters.status,
-      filters.userQuery.trim(),
-      filters.paymentPlanId.trim(),
-      filters.startDate,
-      filters.endDate,
-      filters.limit !== '20' ? filters.limit : '',
-    ].filter(Boolean).length
-  }, [filters])
+  const pagination = data?.pagination ?? { page: 1, totalPages: 0, total: 0, limit: 10 }
+
+  const filterFields = useMemo<FiltersPopoverField[]>(
+    () => [
+      {
+        type: 'select',
+        id: 'provider',
+        label: t('payments.transactions.filters.provider'),
+        value: filters.provider,
+        placeholder: t('payments.transactions.filters.providerPlaceholder'),
+        options: [
+          { value: '', label: t('common.all') },
+          { value: 'mock', label: 'mock' },
+          { value: 'paypal', label: 'paypal' },
+        ],
+      },
+      {
+        type: 'select',
+        id: 'status',
+        label: t('payments.transactions.filters.status'),
+        value: filters.status,
+        placeholder: t('payments.transactions.filters.statusPlaceholder'),
+        options: [
+          { value: '', label: t('common.all') },
+          { value: 'PENDING', label: 'Pending' },
+          { value: 'COMPLETED', label: 'Completed' },
+          { value: 'CANCELLED', label: 'Cancelled' },
+          { value: 'REFUNDED', label: 'Refunded' },
+        ],
+      },
+      {
+        type: 'select',
+        id: 'paymentPlanId',
+        label: t('payments.transactions.filters.paymentPlanId'),
+        value: filters.paymentPlanId,
+        placeholder: t('payments.transactions.filters.paymentPlanIdPlaceholder'),
+        options: [
+          { value: '', label: t('common.all') },
+          ...plans.map((plan) => ({
+            value: plan.id,
+            label: plan.name ?? plan.id,
+          })),
+        ],
+        disabled: isPlansLoading,
+        error: plansError ?? undefined,
+      },
+      {
+        type: 'date-range',
+        id: 'dateRange',
+        start: {
+          id: 'startDate',
+          label: t('payments.transactions.filters.startDate'),
+          value: filters.startDate,
+        },
+        end: {
+          id: 'endDate',
+          label: t('payments.transactions.filters.endDate'),
+          value: filters.endDate,
+        },
+      },
+    ],
+    [filters, isPlansLoading, plans, plansError, t],
+  )
+
+  function handleFilterChange(id: string, value: string) {
+    onChange(id as keyof PaymentTransactionFiltersForm, value)
+  }
 
   function renderStatusBadge(status: string) {
+    const { variant, icon: Icon } = mapTransactionStatus(status)
+    const label = status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()
+
     return (
       <StatusBadge
-        status={mapTransactionStatus(status)}
-        className="w-fit gap-1 px-2 py-1 text-[11px] leading-none"
-        icon={<span className="h-1 w-1 rounded-full bg-current" />}
+        status={variant}
+        className="w-fit rounded-[999px]"
+        icon={<Icon size={14} weight="fill" />}
       >
-        {status}
+        {label}
       </StatusBadge>
     )
   }
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-end">
-        <Button
-          type="button"
-          variant="outline"
-          size="md"
-          className="gap-2 rounded-[12px] border-slate-200 bg-white hover:bg-pulse-surface"
-          onClick={() => setIsFiltersOpen(true)}
-          disabled={isLoading}
-        >
-          <Funnel size={18} weight="bold" aria-hidden="true" />
-          {activeFiltersCount > 0
-            ? t('payments.transactions.openFiltersWithCount', { count: activeFiltersCount })
-            : t('payments.transactions.openFilters')}
-        </Button>
+      <div className="flex items-center gap-3">
+        <div className="flex-1">
+          <SearchInput
+            value={filters.userQuery}
+            onChange={onSearchChange}
+            name="payment-transaction-search"
+            placeholder={t('payments.transactions.searchPlaceholder')}
+          />
+        </div>
+        <FiltersPopover
+          fields={filterFields}
+          onChange={handleFilterChange}
+          onApply={onApply}
+          onClear={onClear}
+          isLoading={isLoading}
+        />
       </div>
 
       <div className="flex flex-col overflow-hidden rounded-[12px] border border-slate-200 bg-white">
@@ -121,22 +188,16 @@ export function PaymentTransactionsListView({
           className={`${PAYMENT_TRANSACTIONS_TABLE_GRID} hidden border-b border-slate-200 bg-pulse-surface/40 py-3 md:grid`}
         >
           <span className="font-sans text-xs font-medium text-pulse-muted">
-            {t('payments.transactions.columns.purchasedAt')}
-          </span>
-          <span className="font-sans text-xs font-medium text-pulse-muted">
-            {t('payments.transactions.columns.provider')}
+            {t('payments.transactions.columns.userId')}
           </span>
           <span className="font-sans text-xs font-medium text-pulse-muted">
             {t('payments.transactions.columns.amount')}
           </span>
           <span className="font-sans text-xs font-medium text-pulse-muted">
-            {t('payments.transactions.columns.userId')}
+            {t('payments.transactions.columns.provider')}
           </span>
           <span className="font-sans text-xs font-medium text-pulse-muted">
-            {t('payments.transactions.columns.plan')}
-          </span>
-          <span className="font-sans text-xs font-medium text-pulse-muted">
-            {t('payments.transactions.columns.access')}
+            {t('payments.transactions.columns.purchasedAt')}
           </span>
           <span className="font-sans text-xs font-medium text-pulse-muted">
             {t('payments.transactions.columns.status')}
@@ -159,49 +220,21 @@ export function PaymentTransactionsListView({
                 return (
                   <div key={transaction.id} className="px-4 py-4 md:px-0 md:py-0">
                     <div className={`${PAYMENT_TRANSACTIONS_TABLE_GRID} hidden items-center py-4 md:grid`}>
-                      <div className="flex flex-col">
-                        <span className="font-sans text-sm font-semibold text-pulse-navy">
-                          {formatDate(transaction.purchasedAt, i18n.language)}
-                        </span>
-                        <span className="mt-1 font-sans text-xs text-pulse-muted">{transaction.providerOrderId}</span>
-                      </div>
-                      <span className="font-sans text-sm text-pulse-navy">{transaction.provider}</span>
-                      <span className="font-sans text-sm text-pulse-navy">
-                        {formatCurrency(transaction.amount, i18n.language, transaction.currency)}
-                      </span>
                       <div className="flex min-w-0 flex-col">
-                        <span className="truncate font-sans text-xs font-medium text-pulse-navy">
+                        <span className="truncate font-sans text-sm font-medium text-pulse-navy">
                           {userDetails.primary}
                         </span>
                         <span className="truncate font-sans text-xs text-pulse-muted">
                           {userDetails.secondary}
                         </span>
-                        <span className="truncate font-sans text-xs text-pulse-muted">
-                          {userDetails.tertiary}
-                        </span>
                       </div>
-                      <div className="flex flex-col">
-                        <span className="font-sans text-xs text-pulse-navy">
-                          {transaction.paymentPlan?.name ?? '—'}
-                        </span>
-                        <span className="break-all font-sans text-xs text-pulse-navy">
-                          {transaction.paymentPlanId ?? '—'}
-                        </span>
-                        {transaction.paymentPlan ? (
-                          <span className="mt-1 font-sans text-xs text-pulse-muted">
-                            {transaction.paymentPlan.type} •{' '}
-                            {formatPaymentPlanDuration(transaction.paymentPlan, t)}
-                          </span>
-                        ) : null}
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="font-sans text-xs text-pulse-navy">
-                          {transaction.accessStartsAt ? formatDate(transaction.accessStartsAt, i18n.language) : '—'}
-                        </span>
-                        <span className="mt-1 font-sans text-xs text-pulse-muted">
-                          {transaction.accessExpiresAt ? formatDate(transaction.accessExpiresAt, i18n.language) : '—'}
-                        </span>
-                      </div>
+                      <span className="font-sans text-sm text-pulse-muted">
+                        {formatCurrency(transaction.amount, i18n.language, transaction.currency)}
+                      </span>
+                      <span className="font-sans text-sm text-pulse-muted">{transaction.provider}</span>
+                      <span className="font-sans text-sm text-pulse-muted">
+                        {formatDate(transaction.purchasedAt, i18n.language)}
+                      </span>
                       {renderStatusBadge(String(transaction.status))}
                       <div className="flex items-center justify-start gap-2">
                         <button
@@ -227,25 +260,10 @@ export function PaymentTransactionsListView({
                         </div>
                         {renderStatusBadge(String(transaction.status))}
                       </div>
-                      <span className="break-all font-sans text-xs text-pulse-muted">
-                        {t('payments.transactions.mobile.order')}: {transaction.providerOrderId}
-                      </span>
                       <div className="flex flex-col gap-1 font-sans text-xs text-pulse-muted">
                         <span>{t('payments.transactions.mobile.user')}: {userDetails.primary}</span>
                         <span className="break-all">{userDetails.secondary}</span>
-                        <span className="break-all">{userDetails.tertiary}</span>
                       </div>
-                      <span className="break-all font-sans text-xs text-pulse-muted">
-                        {t('payments.transactions.mobile.plan')}:{' '}
-                        {transaction.paymentPlan?.name
-                          ? `${transaction.paymentPlan.name} (${transaction.paymentPlanId ?? '—'})`
-                          : transaction.paymentPlanId ?? '—'}
-                      </span>
-                      <span className="font-sans text-xs text-pulse-muted">
-                        {t('payments.transactions.mobile.access')}:{' '}
-                        {transaction.accessStartsAt ? formatDate(transaction.accessStartsAt, i18n.language) : '—'} →{' '}
-                        {transaction.accessExpiresAt ? formatDate(transaction.accessExpiresAt, i18n.language) : '—'}
-                      </span>
                       <div>
                         <button
                           type="button"
@@ -273,16 +291,6 @@ export function PaymentTransactionsListView({
           </>
         )}
       </div>
-
-      <PaymentTransactionsFiltersModal
-        isOpen={isFiltersOpen}
-        isLoading={isLoading}
-        filters={filters}
-        onClose={() => setIsFiltersOpen(false)}
-        onChange={onChange}
-        onApply={onApply}
-        onClear={onClear}
-      />
 
       <Modal
         isOpen={selectedTransaction !== null}
@@ -332,6 +340,12 @@ export function PaymentTransactionsListView({
                 <span className="text-xs font-medium text-pulse-muted">{t('payments.transactions.columns.plan')}</span>
                 <p className="text-sm text-pulse-navy">{selectedTransaction.paymentPlan?.name ?? '—'}</p>
                 <p className="text-xs text-pulse-muted break-all">{selectedTransaction.paymentPlanId ?? '—'}</p>
+                {selectedTransaction.paymentPlan ? (
+                  <p className="text-xs text-pulse-muted">
+                    {selectedTransaction.paymentPlan.type} •{' '}
+                    {formatPaymentPlanDuration(selectedTransaction.paymentPlan, t)}
+                  </p>
+                ) : null}
               </div>
               <div className="space-y-1">
                 <span className="text-xs font-medium text-pulse-muted">{t('payments.transactions.detailsAccessStart')}</span>

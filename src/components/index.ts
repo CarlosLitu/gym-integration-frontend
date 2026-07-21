@@ -6,6 +6,12 @@ export { SearchInput } from './SearchInput'
 export type { SearchInputProps } from './SearchInput'
 export { Select } from './Select'
 export type { SelectProps, SelectOption } from './Select'
+export { FiltersPopover } from './FiltersPopover'
+export type {
+  FiltersPopoverProps,
+  FiltersPopoverField,
+  FiltersPopoverSelectOption,
+} from './FiltersPopover'
 export { Alert } from './Alert'
 export { StatusBadge } from './StatusBadge'
 export type { StatusBadgeProps } from './StatusBadge'

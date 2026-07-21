@@ -101,6 +101,9 @@
     "notApplicable": "N/A",
     "apply": "Apply",
     "clearAll": "Clear all",
+    "filters": "Filters",
+    "filtersWithCount": "Filters ({{count}})",
+    "filtersTitle": "Filters",
     "cancel": "Cancel",
     "create": "Create",
     "save": "Save",
@@ -334,7 +337,7 @@
         "title": "Create payment plan",
         "subtitle": "Register a new plan following the same visual pattern as the admin panel"
       },
-      "searchPlaceholder": "Search by name, ID, currency or type...",
+      "searchPlaceholder": "Search by name...",
       "filterPlaceholder": "Filter by status",
       "filters": {
         "all": "All",
@@ -421,6 +424,7 @@
       "detailsAccessEnd": "Access end",
       "openFilters": "Filters",
       "openFiltersWithCount": "Filters ({{count}})",
+      "searchPlaceholder": "Search by user name...",
       "applyFilters": "Apply filters",
       "loading": "Loading transactions...",
       "empty": "No transactions found",

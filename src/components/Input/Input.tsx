@@ -28,6 +28,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   revealToggle?: boolean
   revealLabel?: string
   hideLabel?: string
+  /** Visually marks the field as non-editable (bg/label/text locked colors). */
+  locked?: boolean
 }
 
 export function Input({
@@ -39,6 +41,9 @@ export function Input({
   revealToggle,
   revealLabel,
   hideLabel,
+  disabled,
+  readOnly,
+  locked = false,
   ...props
 }: InputProps) {
   const inputId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
@@ -46,11 +51,18 @@ export function Input({
 
   const showToggle = Boolean(revealToggle) && type === 'password'
   const resolvedType = showToggle && isRevealed ? 'text' : type
+  const isLocked = locked || Boolean(readOnly)
 
   return (
     <div className="flex w-full flex-col gap-2">
       {label ? (
-        <label htmlFor={inputId} className="font-sans text-sm font-semibold text-pulse-navy">
+        <label
+          htmlFor={inputId}
+          className={clsx(
+            'font-sans text-sm font-semibold',
+            isLocked ? 'text-[#9B9F9C]' : 'text-pulse-navy',
+          )}
+        >
           {label}
         </label>
       ) : null}
@@ -58,11 +70,15 @@ export function Input({
         <input
           id={inputId}
           type={resolvedType}
+          disabled={disabled || locked}
+          readOnly={readOnly}
           aria-invalid={Boolean(error)}
           className={twMerge(
             clsx(
               inputVariants({ state: error ? 'error' : 'default' }),
               showToggle && 'pr-11',
+              isLocked &&
+                'cursor-not-allowed border-slate-200 bg-[#F6F6F6] text-[#9B9F9C] focus:border-slate-200 focus:ring-0',
               className,
             ),
           )}

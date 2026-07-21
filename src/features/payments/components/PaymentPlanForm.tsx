@@ -119,7 +119,8 @@ export function PaymentPlanForm({
           placeholder={t('payments.plans.form.typePlaceholder')}
           onChange={(value) => onChange('type', value)}
           error={fieldErrors.type}
-          disabled={isLoading || disableTypeField}
+          disabled={isLoading}
+          locked={disableTypeField}
         />
         <Input
           label={t('payments.plans.form.value')}
@@ -129,7 +130,8 @@ export function PaymentPlanForm({
           value={values.value}
           onChange={(event) => onChange('value', event.target.value)}
           error={fieldErrors.value}
-          disabled={isLoading || lockValueField}
+          disabled={isLoading}
+          locked={lockValueField}
           required
         />
         <Input
@@ -147,7 +149,8 @@ export function PaymentPlanForm({
             value={values.maxBillingCycles}
             onChange={(event) => onChange('maxBillingCycles', event.target.value)}
             error={fieldErrors.maxBillingCycles}
-            disabled={isLoading || lockMaxBillingCyclesField}
+            disabled={isLoading}
+            locked={lockMaxBillingCyclesField}
             required
           />
         ) : (
@@ -158,7 +161,8 @@ export function PaymentPlanForm({
             value={values.durationDays}
             onChange={(event) => onChange('durationDays', event.target.value)}
             error={fieldErrors.durationDays}
-            disabled={isLoading || lockDurationField}
+            disabled={isLoading}
+            locked={lockDurationField}
             required
           />
         )}
@@ -198,11 +202,13 @@ export function PaymentPlanForm({
               label={t('payments.plans.technical.paypalProductId')}
               value={technicalDetails.paypalProductId ?? ''}
               readOnly
+              locked
             />
             <Input
               label={t('payments.plans.technical.paypalPlanId')}
               value={technicalDetails.paypalPlanId ?? ''}
               readOnly
+              locked
             />
           </div>
         </div>

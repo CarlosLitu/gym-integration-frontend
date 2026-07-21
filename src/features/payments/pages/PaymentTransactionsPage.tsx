@@ -10,8 +10,9 @@ const DEFAULT_FILTERS: PaymentTransactionFiltersForm = {
   paymentPlanId: '',
   startDate: '',
   endDate: '',
-  limit: '20',
 }
+
+const PAGE_SIZE = 10
 
 export function PaymentTransactionsPage() {
   const { t } = useTranslation()
@@ -28,7 +29,7 @@ export function PaymentTransactionsPage() {
       startDate: appliedFilters.startDate || undefined,
       endDate: appliedFilters.endDate || undefined,
       page,
-      limit: Number(appliedFilters.limit) || 20,
+      limit: PAGE_SIZE,
     }
   }, [appliedFilters, page])
 
@@ -46,8 +47,17 @@ export function PaymentTransactionsPage() {
     setPage(1)
   }, [filters])
 
+  const handleSearchChange = useCallback((value: string) => {
+    setFilters((current) => ({ ...current, userQuery: value }))
+    setAppliedFilters((current) => ({ ...current, userQuery: value }))
+    setPage(1)
+  }, [])
+
   const handleClear = useCallback(() => {
-    setFilters(DEFAULT_FILTERS)
+    setFilters((current) => ({
+      ...DEFAULT_FILTERS,
+      userQuery: current.userQuery,
+    }))
   }, [])
 
   return (
@@ -63,6 +73,7 @@ export function PaymentTransactionsPage() {
         error={error}
         filters={filters}
         onChange={handleChange}
+        onSearchChange={handleSearchChange}
         onApply={handleApply}
         onClear={handleClear}
         onPageChange={setPage}

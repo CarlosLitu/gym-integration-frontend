@@ -101,6 +101,9 @@
     "notApplicable": "N/A",
     "apply": "Aplicar",
     "clearAll": "Limpar tudo",
+    "filters": "Filtros",
+    "filtersWithCount": "Filtros ({{count}})",
+    "filtersTitle": "Filtros",
     "cancel": "Cancelar",
     "create": "Criar",
     "save": "Salvar",
@@ -334,7 +337,7 @@
         "title": "Criar plano de pagamento",
         "subtitle": "Cadastre um novo plano seguindo o mesmo padrão visual do painel administrativo"
       },
-      "searchPlaceholder": "Buscar por nome, ID, moeda ou tipo...",
+      "searchPlaceholder": "Buscar por nome...",
       "filterPlaceholder": "Filtrar por status",
       "filters": {
         "all": "Todos",
@@ -421,6 +424,7 @@
       "detailsAccessEnd": "Fim do acesso",
       "openFilters": "Filtros",
       "openFiltersWithCount": "Filtros ({{count}})",
+      "searchPlaceholder": "Buscar por nome de usuário...",
       "applyFilters": "Aplicar filtros",
       "loading": "Carregando transações...",
       "empty": "Nenhuma transação encontrada",

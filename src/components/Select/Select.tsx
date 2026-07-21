@@ -16,6 +16,8 @@ export interface SelectProps<T extends string = string> {
   placeholder?: string
   error?: string
   disabled?: boolean
+  /** Visually marks the field as non-editable (bg/label/text locked colors). */
+  locked?: boolean
   className?: string
 }
 
@@ -28,12 +30,14 @@ export function Select<T extends string = string>({
   placeholder,
   error,
   disabled = false,
+  locked = false,
   className,
 }: SelectProps<T>) {
   const generatedId = useId()
   const selectId = id ?? generatedId
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const isDisabled = disabled || locked
 
   const selectedOption = options.find((option) => option.value === value)
 
@@ -61,7 +65,13 @@ export function Select<T extends string = string>({
   return (
     <div className={clsx('flex w-full flex-col gap-2', className)}>
       {label ? (
-        <label htmlFor={selectId} className="font-sans text-sm font-semibold text-pulse-navy">
+        <label
+          htmlFor={selectId}
+          className={clsx(
+            'font-sans text-sm font-semibold',
+            locked ? 'text-[#9B9F9C]' : 'text-pulse-navy',
+          )}
+        >
           {label}
         </label>
       ) : null}
@@ -70,19 +80,24 @@ export function Select<T extends string = string>({
         <button
           id={selectId}
           type="button"
-          disabled={disabled}
+          disabled={isDisabled}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           aria-invalid={Boolean(error)}
           onClick={() => setIsOpen((open) => !open)}
           className={clsx(
-            'flex h-10 w-full items-center justify-between rounded-[12px] border bg-white px-3 font-sans text-sm outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-60',
-            isOpen
-              ? 'border-pulse-blue ring-2 ring-pulse-blue/30'
-              : error
-                ? 'border-pulse-error-border'
-                : 'border-slate-200 hover:border-pulse-blue/60',
-            selectedOption ? 'text-pulse-navy' : 'text-[#AFB8C0]',
+            'flex h-10 w-full items-center justify-between rounded-[12px] border px-3 font-sans text-sm outline-none transition-colors',
+            locked
+              ? 'cursor-not-allowed border-slate-200 bg-[#F6F6F6] text-[#9B9F9C]'
+              : isDisabled
+                ? 'cursor-not-allowed border-slate-200 bg-white opacity-60'
+                : isOpen
+                  ? 'border-pulse-blue bg-white ring-2 ring-pulse-blue/30'
+                  : error
+                    ? 'border-pulse-error-border bg-white'
+                    : 'border-slate-200 bg-white hover:border-pulse-blue/60',
+            !locked && !isDisabled && (selectedOption ? 'text-pulse-navy' : 'text-[#AFB8C0]'),
+            !locked && isDisabled && (selectedOption ? 'text-pulse-navy' : 'text-[#AFB8C0]'),
           )}
         >
           <span className="truncate">{selectedOption?.label ?? placeholder}</span>
@@ -91,7 +106,8 @@ export function Select<T extends string = string>({
             weight="bold"
             aria-hidden="true"
             className={clsx(
-              'shrink-0 text-stone-400 transition-transform duration-200',
+              'shrink-0 transition-transform duration-200',
+              locked ? 'text-[#9B9F9C]' : 'text-stone-400',
               isOpen && 'rotate-180',
             )}
           />
