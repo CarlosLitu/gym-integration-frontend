@@ -154,6 +154,7 @@
     "chat": "Chat",
     "dashboard": "Dashboard",
     "userPlans": "Ver planos",
+    "userPlan": "Meu plano",
     "settings": "Configurações",
     "reports": "Relatórios",
     "support": "Suporte",
@@ -311,6 +312,7 @@
       "emptySubtitle": "Assim que novos planos forem publicados, eles aparecerão aqui para contratação.",
       "fallbackName": "Plano sem nome",
       "priceSubtitle": "Cobrança conforme as regras do plano selecionado",
+      "offerEndsAt": "Oferta válida até {{date}}",
       "permissionsTitle": "Benefícios incluídos",
       "noPermissions": "Este plano não possui permissões adicionais configuradas.",
       "multipleAllowed": "Permite comprar mais de uma vez",
@@ -321,8 +323,10 @@
       "cancelSubscriptionTitle": "Cancelar renovação automática",
       "cancelSubscriptionConfirm": "Deseja cancelar as próximas cobranças desta assinatura? O acesso atual será mantido até a data de vigência.",
       "cancelSubscriptionAction": "Cancelar futuras cobranças",
+      "upgradeSubscriptionAction": "Mudar plano",
       "cancellingSubscription": "Cancelando...",
       "cancellationScheduled": "Renovação automática cancelada. O plano segue ativo até a data de vigência atual.",
+      "fixedSubscriptionInfo": "Este plano possui vigência fechada. Ele permanece ativo até o fim do período contratado e não pode ser cancelado antes disso.",
       "types": {
         "subscription": "Assinatura",
         "oneTime": "Pagamento único"
@@ -352,6 +356,7 @@
       "durationDays": "{{days}} dias",
       "durationMonthsSingular": "{{months}} mês",
       "durationMonthsPlural": "{{months}} meses",
+      "monthlyRecurring": "Cobrança mensal até cancelamento",
       "flags": "Tipo: {{type}} • Múltiplo: {{multiple}}",
       "columns": {
         "name": "Nome",
@@ -386,6 +391,19 @@
         "notFound": "Plano não encontrado",
         "lockedFieldsHint": "Valor, duração e quantidade de meses ficam bloqueados após o provisioning do plano no PayPal."
       },
+      "offer": {
+        "title": "Oferta promocional",
+        "subtitle": "Configure um preço promocional separado do produto base. Para assinatura, o valor promocional também cria um billing plan dedicado no PayPal.",
+        "value": "Preço promocional",
+        "compareAtValue": "Preço de referência",
+        "startsAt": "Início da oferta",
+        "endsAt": "Fim da oferta",
+        "activeLabel": "Oferta ativa",
+        "create": "Criar oferta",
+        "save": "Salvar oferta",
+        "delete": "Remover oferta",
+        "lockedValueHint": "Após o provisioning da oferta no PayPal, o preço promocional fica bloqueado. Ajuste apenas datas e preço de referência."
+      },
       "form": {
         "createTitle": "Novo plano",
         "editTitle": "Editar plano",
@@ -395,6 +413,7 @@
         "currency": "Moeda",
         "durationDays": "Duração (dias)",
         "maxBillingCycles": "Quantidade de meses",
+        "maxBillingCyclesPlaceholder": "Deixe vazio para assinatura mensal cancelável",
         "type": "Tipo",
         "typePlaceholder": "Selecione o tipo",
         "types": {
@@ -404,7 +423,7 @@
         "permissions": "Permissões",
         "permissionsPlaceholder": "Ex: payments.read,sales.read",
         "allowMultiplePurchases": "Permite múltiplas compras",
-        "subscriptionBillingHint": "Assinaturas são cobradas a cada 30 dias. Informe por quantos meses a cobrança deve durar.",
+        "subscriptionBillingHint": "Assinaturas são cobradas a cada 30 dias. Informe a quantidade de meses para fidelidade fixa ou deixe em branco para permitir cancelamento a qualquer momento.",
         "errors": {
           "name": "Informe o nome do plano",
           "value": "Informe um valor válido",

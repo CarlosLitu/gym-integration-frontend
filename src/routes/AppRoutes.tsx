@@ -10,6 +10,7 @@ import { SelectedTenantProvider } from '@/features/tenants'
 import { MainLayout } from '@/layouts'
 import { AdminRoute } from './AdminRoute'
 import { ProtectedRoute } from './ProtectedRoute'
+import { UserUpgradePaymentPlansPage } from '@/features/payments/pages/UserUpgradePaymentPlansPage'
 
 const LoginPage = lazy(() =>
   import('@/features/auth').then((module) => ({ default: module.LoginPage })),
@@ -85,6 +86,7 @@ export function AppRoutes() {
                   <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/chat" element={<ChatPage />} />
                   <Route path="/plans" element={<UserPaymentPlansPage />} />
+                  <Route path="/plans/upgrade" element={<UserUpgradePaymentPlansPage />} />
                   <Route element={<AdminRoute />}>
                     <Route path="/users" element={<UsersPage />} />
                     <Route path="/users/new" element={<CreateUserPage />} />

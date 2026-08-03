@@ -154,6 +154,7 @@
     "chat": "Chat",
     "dashboard": "Dashboard",
     "userPlans": "View plans",
+    "userPlan": "My plan",
     "settings": "Settings",
     "reports": "Reports",
     "support": "Support",
@@ -311,6 +312,7 @@
       "emptySubtitle": "As soon as new plans are published, they will appear here for purchase.",
       "fallbackName": "Unnamed plan",
       "priceSubtitle": "Billing follows the rules of the selected plan",
+      "offerEndsAt": "Offer valid until {{date}}",
       "permissionsTitle": "Included benefits",
       "noPermissions": "This plan does not have any additional permissions configured.",
       "multipleAllowed": "Can be purchased more than once",
@@ -321,8 +323,10 @@
       "cancelSubscriptionTitle": "Cancel auto-renewal",
       "cancelSubscriptionConfirm": "Do you want to cancel future charges for this subscription? Current access remains active until the current validity date.",
       "cancelSubscriptionAction": "Cancel future charges",
+      "upgradeSubscriptionAction": "Upgrade plano",
       "cancellingSubscription": "Cancelling...",
       "cancellationScheduled": "Auto-renewal cancelled. The plan stays active until the current validity date.",
+      "fixedSubscriptionInfo": "This plan has a fixed commitment period. It remains active until the contracted term ends and cannot be cancelled before that.",
       "types": {
         "subscription": "Subscription",
         "oneTime": "One-time"
@@ -352,6 +356,7 @@
       "durationDays": "{{days}} days",
       "durationMonthsSingular": "{{months}} month",
       "durationMonthsPlural": "{{months}} months",
+      "monthlyRecurring": "Monthly billing until cancelled",
       "flags": "Type: {{type}} • Multiple: {{multiple}}",
       "columns": {
         "name": "Name",
@@ -386,6 +391,19 @@
         "notFound": "Plan not found",
         "lockedFieldsHint": "Value, duration, and month count are locked after the plan is provisioned in PayPal."
       },
+      "offer": {
+        "title": "Promotional offer",
+        "subtitle": "Configure a promotional price separately from the base product. For subscriptions, the promotional price also provisions a dedicated PayPal billing plan.",
+        "value": "Promotional price",
+        "compareAtValue": "Reference price",
+        "startsAt": "Offer starts at",
+        "endsAt": "Offer ends at",
+        "activeLabel": "Offer active",
+        "create": "Create offer",
+        "save": "Save offer",
+        "delete": "Remove offer",
+        "lockedValueHint": "After the offer is provisioned in PayPal, the promotional price is locked. Only adjust dates and reference price."
+      },
       "form": {
         "createTitle": "New plan",
         "editTitle": "Edit plan",
@@ -395,6 +413,7 @@
         "currency": "Currency",
         "durationDays": "Duration (days)",
         "maxBillingCycles": "Number of months",
+        "maxBillingCyclesPlaceholder": "Leave blank for monthly subscription cancellable anytime",
         "type": "Type",
         "typePlaceholder": "Select a type",
         "types": {
@@ -404,7 +423,7 @@
         "permissions": "Permissions",
         "permissionsPlaceholder": "Ex: payments.read,sales.read",
         "allowMultiplePurchases": "Allow multiple purchases",
-        "subscriptionBillingHint": "Subscriptions are billed every 30 days. Enter how many months the billing should last.",
+        "subscriptionBillingHint": "Subscriptions are billed every 30 days. Enter the number of months for a fixed commitment or leave it blank to allow cancellation at any time.",
         "errors": {
           "name": "Enter the plan name",
           "value": "Enter a valid value",

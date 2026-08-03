@@ -18,6 +18,10 @@ export function UserPaymentPlanCard({
 }: UserPaymentPlanCardProps) {
   const { t, i18n } = useTranslation()
   const displayName = plan.name?.trim() || t('payments.userPlans.fallbackName')
+  const activeOffer = plan.offer?.isCurrentlyActive ? plan.offer : null
+  const effectiveValue = plan.effectiveValue ?? activeOffer?.value ?? plan.value
+  const shouldShowCompareAt =
+    typeof activeOffer?.compareAtValue === 'number' && activeOffer.compareAtValue > effectiveValue
 
   return (
     <article className="flex h-full flex-col rounded-[24px] border border-slate-200 bg-white p-6 shadow-card transition-transform duration-200 hover:-translate-y-0.5">
@@ -36,10 +40,24 @@ export function UserPaymentPlanCard({
       </div>
 
       <div className="mt-6">
-        <p className="font-heading text-4xl font-bold text-pulse-navy">
-          {formatCurrency(plan.value, i18n.language, plan.currency)}
-        </p>
+        <div className="flex flex-wrap items-end gap-3">
+          <p className="font-heading text-4xl font-bold text-pulse-navy">
+            {formatCurrency(effectiveValue, i18n.language, plan.currency)}
+          </p>
+          {shouldShowCompareAt ? (
+            <p className="pb-1 font-heading text-2xl font-semibold text-pulse-muted line-through">
+              {formatCurrency(activeOffer.compareAtValue ?? 0, i18n.language, plan.currency)}
+            </p>
+          ) : null}
+        </div>
         <p className="mt-1 text-sm text-pulse-muted">{t('payments.userPlans.priceSubtitle')}</p>
+        {activeOffer?.endsAt ? (
+          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#00B894]">
+            {t('payments.userPlans.offerEndsAt', {
+              date: new Date(activeOffer.endsAt).toLocaleDateString(i18n.language),
+            })}
+          </p>
+        ) : null}
       </div>
 
       <div className="mt-6 space-y-3 rounded-[20px] bg-slate-50 p-4">

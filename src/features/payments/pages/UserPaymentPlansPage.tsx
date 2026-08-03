@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CircleNotch, Sparkle, WarningCircle } from '@phosphor-icons/react'
+import { CircleNotch, Sparkle } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
 import { Alert, Button, Modal } from '@/components'
 import type { UserSession } from '@/features/auth/types/auth.types'
@@ -7,28 +7,30 @@ import { useCurrentTenant } from '@/features/auth/hooks/useCurrentTenant'
 import { useApiMessage } from '@/hooks/useApiMessage'
 import { storage } from '@/services/storage'
 import { formatCurrency } from '@/utils/formatters'
-import { UserPaymentPlanCard } from '../components/UserPaymentPlanCard'
-import { useUserPaymentPlans } from '../hooks/useUserPaymentPlans'
 import {
   cancelCurrentPaymentSubscriptionRequest,
-  createPaymentOrderRequest,
 } from '../services/payment-service'
-import type { PaymentPlan } from '../types/payment.types'
 import { formatPaymentPlanDuration } from '../utils/format-plan-duration'
+import { useNavigate } from 'react-router-dom';
 
 export function UserPaymentPlansPage() {
   const { t, i18n } = useTranslation()
   const { getErrorMessage } = useApiMessage()
   const { payment: currentPayment } = useCurrentTenant()
-  const { plans, isLoading, error } = useUserPaymentPlans(true)
-  const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false)
   const [isCancellingSubscription, setIsCancellingSubscription] = useState(false)
+  const navigate = useNavigate()
   const canCancelCurrentSubscription = Boolean(
     currentPayment?.currentPlan?.type === 'SUBSCRIPTION' &&
       currentPayment?.providerSubscriptionId &&
+      currentPayment?.currentPlan?.totalDurationMonths == null &&
       !currentPayment?.cancelAtPeriodEnd,
+  )
+  const hasFixedSubscriptionTerm = Boolean(
+    currentPayment?.currentPlan?.type === 'SUBSCRIPTION' &&
+      typeof currentPayment?.currentPlan?.totalDurationMonths === 'number' &&
+      currentPayment.currentPlan.totalDurationMonths > 0,
   )
 
   function syncCurrentTenantPaymentInSession(payment: UserSession['tenant']['payment']) {
@@ -44,29 +46,6 @@ export function UserPaymentPlansPage() {
       },
     })
     window.dispatchEvent(new Event('auth-changed'))
-  }
-
-  async function handleSelectPlan(plan: PaymentPlan) {
-    setSelectedPlanId(plan.id)
-    setSubmitError(null)
-
-    try {
-      const order = await createPaymentOrderRequest({ planId: plan.id })
-
-      if (!order.approveUrl) {
-        throw new Error('missing_approve_url')
-      }
-
-      window.location.assign(order.approveUrl)
-    } catch (requestError) {
-      if (requestError instanceof Error && requestError.message === 'missing_approve_url') {
-        setSubmitError(t('payments.userPlans.redirectError'))
-      } else {
-        setSubmitError(getErrorMessage(requestError))
-      }
-    } finally {
-      setSelectedPlanId(null)
-    }
   }
 
   async function handleCancelSubscription() {
@@ -143,6 +122,11 @@ export function UserPaymentPlansPage() {
               <Alert>{t('payments.userPlans.cancellationScheduled')}</Alert>
             </div>
           ) : null}
+          {hasFixedSubscriptionTerm ? (
+            <div className="mt-4">
+              <Alert>{t('payments.userPlans.fixedSubscriptionInfo')}</Alert>
+            </div>
+          ) : null}
           {canCancelCurrentSubscription ? (
             <div className="mt-4 flex justify-end">
               <Button type="button" variant="outline" size="md" onClick={() => setIsCancelModalOpen(true)}>
@@ -150,42 +134,15 @@ export function UserPaymentPlansPage() {
               </Button>
             </div>
           ) : null}
+          <div className="mt-4 flex justify-end">
+            <Button type="button" variant="outline" size="md" onClick={() => navigate('/plans/upgrade')}>
+              {t('payments.userPlans.upgradeSubscriptionAction')}
+            </Button>
+          </div>
         </section>
       ) : null}
 
       {submitError ? <Alert>{submitError}</Alert> : null}
-      {error ? <Alert>{error}</Alert> : null}
-
-      {isLoading ? (
-        <section className="rounded-[24px] border border-slate-200 bg-white p-8 text-center shadow-card">
-          <p className="text-sm text-pulse-muted">{t('payments.userPlans.loading')}</p>
-        </section>
-      ) : null}
-
-      {!isLoading && !error && plans.length === 0 ? (
-        <section className="rounded-[24px] border border-dashed border-slate-300 bg-white p-8 text-center shadow-card">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-pulse-muted">
-            <WarningCircle size={22} aria-hidden="true" />
-          </div>
-          <h2 className="mt-4 font-heading text-xl font-semibold text-pulse-navy">
-            {t('payments.userPlans.emptyTitle')}
-          </h2>
-          <p className="mt-2 text-sm text-pulse-muted">{t('payments.userPlans.emptySubtitle')}</p>
-        </section>
-      ) : null}
-
-      {!isLoading && !error && plans.length > 0 ? (
-        <section className="grid gap-6 xl:grid-cols-3 md:grid-cols-2">
-          {plans.map((plan) => (
-            <UserPaymentPlanCard
-              key={plan.id}
-              plan={plan}
-              isSubmitting={selectedPlanId === plan.id}
-              onSelect={handleSelectPlan}
-            />
-          ))}
-        </section>
-      ) : null}
 
       <Modal
         isOpen={isCancelModalOpen}

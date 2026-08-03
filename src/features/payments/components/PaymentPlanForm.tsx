@@ -146,6 +146,7 @@ export function PaymentPlanForm({
             label={t('payments.plans.form.maxBillingCycles')}
             type="number"
             inputMode="numeric"
+            placeholder={t('payments.plans.form.maxBillingCyclesPlaceholder')}
             value={values.maxBillingCycles}
             onChange={(event) => onChange('maxBillingCycles', event.target.value)}
             error={fieldErrors.maxBillingCycles}

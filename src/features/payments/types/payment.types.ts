@@ -1,9 +1,25 @@
 export type PaymentPlanType = 'ONE_TIME' | 'SUBSCRIPTION'
 
+export interface PaymentPlanOffer {
+  id: string
+  paymentPlanId: string | null
+  value: number
+  compareAtValue: number | null
+  startsAt: string | null
+  endsAt: string | null
+  isActive: boolean
+  isCurrentlyActive: boolean
+  paymentPlanIds: Record<string, string> | null
+  paymentProductIds: Record<string, string> | null
+  createdAt: string
+  updatedAt: string
+}
+
 export interface PaymentPlan {
   id: string
   name?: string | null
   value: number
+  effectiveValue: number
   currency: string
   durationDays: number
   maxBillingCycles: number | null
@@ -14,6 +30,7 @@ export interface PaymentPlan {
   isActive: boolean
   paymentPlanIds: Record<string, string> | null
   paymentProductIds: Record<string, string> | null
+  offer: PaymentPlanOffer | null
   createdAt: string
   updatedAt: string
 }
@@ -35,6 +52,7 @@ export interface PaymentPlanUpdatePayload extends PaymentPlanCreatePayload {
 
 export interface PaymentOrderPayload {
   planId: string
+  offerId?: string
 }
 
 export interface PaymentOrderResult {

@@ -60,15 +60,6 @@ export function usePaymentPlanForm(options: UsePaymentPlanFormOptions = {}) {
     () => Boolean(initialPlan?.paymentPlanIds?.paypal || initialPlan?.paymentProductIds?.paypal),
     [initialPlan],
   )
-  const allowLegacyMissingMaxBillingCycles = useMemo(
-    () =>
-      mode === 'edit' &&
-      hasPayPalProvisioning &&
-      initialPlan?.type === 'SUBSCRIPTION' &&
-      (initialPlan.maxBillingCycles === null || initialPlan.maxBillingCycles === undefined),
-    [hasPayPalProvisioning, initialPlan, mode],
-  )
-
   useEffect(() => {
     if (!initialPlan) {
       setValues(EMPTY_VALUES)
@@ -137,7 +128,7 @@ export function usePaymentPlanForm(options: UsePaymentPlanFormOptions = {}) {
     const maxBillingCyclesNumber = Number(values.maxBillingCycles)
     if (
       values.type === 'SUBSCRIPTION' &&
-      !allowLegacyMissingMaxBillingCycles &&
+      values.maxBillingCycles.trim() !== '' &&
       (!Number.isInteger(maxBillingCyclesNumber) || maxBillingCyclesNumber < 1)
     ) {
       nextErrors.maxBillingCycles = t('payments.plans.form.errors.maxBillingCycles')
@@ -150,7 +141,6 @@ export function usePaymentPlanForm(options: UsePaymentPlanFormOptions = {}) {
     setFieldErrors(nextErrors)
     return Object.keys(nextErrors).length === 0
   }, [
-    allowLegacyMissingMaxBillingCycles,
     t,
     values.currency,
     values.durationDays,
@@ -172,12 +162,11 @@ export function usePaymentPlanForm(options: UsePaymentPlanFormOptions = {}) {
       values.currency.trim().length > 0 &&
       (values.type !== 'ONE_TIME' || (Number.isInteger(durationNumber) && durationNumber >= 1)) &&
       (values.type !== 'SUBSCRIPTION' ||
-        allowLegacyMissingMaxBillingCycles ||
+        values.maxBillingCycles.trim() === '' ||
         (Number.isInteger(maxBillingCyclesNumber) && maxBillingCyclesNumber >= 1)) &&
       Boolean(values.type)
     )
   }, [
-    allowLegacyMissingMaxBillingCycles,
     values.currency,
     values.durationDays,
     values.maxBillingCycles,

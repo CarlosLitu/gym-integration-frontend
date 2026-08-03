@@ -10,6 +10,8 @@ export function formatPaymentPlanDuration(plan: Pick<PaymentPlan, 'type' | 'dura
         ? t('payments.plans.durationMonthsSingular', { months: totalDurationMonths })
         : t('payments.plans.durationMonthsPlural', { months: totalDurationMonths })
     }
+
+    return t('payments.plans.monthlyRecurring')
   }
 
   return t('payments.plans.durationDays', { days: plan.durationDays })

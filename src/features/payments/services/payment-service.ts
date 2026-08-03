@@ -3,6 +3,7 @@ import type { TenantPaymentSummary } from '@/features/tenants/types/tenant.types
 import type {
   PaymentOrderPayload,
   PaymentOrderResult,
+  PaymentPlanOffer,
   PaymentPlan,
   PaymentPlanCreatePayload,
   PaymentPlanUpdatePayload,
@@ -40,6 +41,25 @@ export async function updatePaymentPlanRequest(
   payload: PaymentPlanUpdatePayload,
 ): Promise<PaymentPlan> {
   const { data } = await apiClient.put<{ data: PaymentPlan }>(`/api/payments/plans/${id}`, payload)
+  return data.data
+}
+
+export async function upsertPaymentPlanOfferRequest(
+  id: string,
+  payload: {
+    value: number
+    compareAtValue?: number | null
+    startsAt?: string | null
+    endsAt?: string | null
+    isActive?: boolean
+  },
+): Promise<PaymentPlanOffer> {
+  const { data } = await apiClient.put<{ data: PaymentPlanOffer }>(`/api/payments/plans/${id}/offer`, payload)
+  return data.data
+}
+
+export async function deletePaymentPlanOfferRequest(id: string): Promise<PaymentPlanOffer> {
+  const { data } = await apiClient.delete<{ data: PaymentPlanOffer }>(`/api/payments/plans/${id}/offer`)
   return data.data
 }
 
