@@ -2,3 +2,12 @@ environment: production
 
 imagePullSecrets:
   - name: dockerhub
+
+ingress:
+  host: noev.io
+  extraHosts:
+    - www.noev.io
+  issuer: letsencrypt-prod
+  tls:
+    enabled: true
+    secretName: gym-integration-frontend-tls
