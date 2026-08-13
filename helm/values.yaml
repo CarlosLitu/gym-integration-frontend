@@ -16,6 +16,8 @@ ingress:
   enabled: true
   className: nginx
   host: gym-integration-frontend.72.62.96.230.nip.io
+  # Hosts adicionais servidos pelo mesmo ingress e incluidos no certificado
+  extraHosts: []
   path: /
   pathType: Prefix
   issuer: ""

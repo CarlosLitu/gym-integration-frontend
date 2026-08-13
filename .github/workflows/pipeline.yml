@@ -74,6 +74,17 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
             type=raw,value=development,enable=${{ github.ref == 'refs/heads/development' }}
 
+      - name: Resolve VITE_API_URL
+        if: github.event_name != 'pull_request'
+        id: vite
+        run: |
+          set -euo pipefail
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "url=https://api.noev.io" >> "$GITHUB_OUTPUT"
+          else
+            echo "url=https://gym-integration-api-test.duckdns.org" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build and push
         if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v6
@@ -83,6 +94,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VITE_API_URL=${{ steps.vite.outputs.url }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -121,18 +134,27 @@ jobs:
           KCFG="${KUBECONFIG_REMOTE:-/etc/rancher/rke2/rke2.yaml}"
           REMOTE_DIR='~/gym-integration-frontend-helm-ci'
           # Mantém a sessão viva durante helm --wait (vários min); evita "Broken pipe" por NAT/firewall.
-          SSH_COMMON="-p ${PORT} -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30 -o ServerAliveCountMax=24"
+          SSH_COMMON="-p ${PORT} -o ConnectTimeout=60 -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30 -o ServerAliveCountMax=24"
           RSYNC_SSH="ssh ${SSH_COMMON}"
+          retry() {
+            local attempt=1 max=3 delay=20
+            until "$@"; do
+              if [ "$attempt" -ge "$max" ]; then
+                echo "::error::Comando falhou após ${max} tentativas: $*"
+                return 1
+              fi
+              echo "Tentativa ${attempt}/${max} falhou; aguardando ${delay}s..."
+              sleep "$delay"
+              attempt=$((attempt + 1))
+            done
+          }
           BRANCH="${{ github.ref_name }}"
           if [ "$BRANCH" = "main" ]; then
             TAG="latest"
             NS="prod-environment"
             RELEASE="gym-integration-frontend"
             HOST="${{ vars.PRODUCTION_GYM_FRONTEND_INGRESS_HOST }}"
-            if [ -z "$HOST" ]; then
-              echo "PRODUCTION_GYM_FRONTEND_INGRESS_HOST não definida."
-              exit 1
-            fi
+            HOST="${HOST:-noev.io}"
           elif [ "$BRANCH" = "development" ]; then
             TAG="development"
             NS="test-environment"
@@ -141,9 +163,9 @@ jobs:
             echo "Branch não suportada: $BRANCH"
             exit 1
           fi
-          rsync -az --delete -e "$RSYNC_SSH" ./helm/ "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/"
+          retry rsync -az --delete -e "$RSYNC_SSH" ./helm/ "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/"
           if [ "$BRANCH" = "main" ]; then
-            ssh ${SSH_COMMON} "${SSH_USER}@${SSH_HOST}" "set -euo pipefail; export KUBECONFIG='${KCFG}'; cd ~/gym-integration-frontend-helm-ci && helm upgrade --install '${RELEASE}' . --namespace '${NS}' --create-namespace -f values.yaml -f values-production.yaml --set ingress.host='${HOST}' --set image.repository='${DOCKER_IMAGE}' --set image.tag='${TAG}' --wait --timeout 5m"
+            retry ssh ${SSH_COMMON} "${SSH_USER}@${SSH_HOST}" "set -euo pipefail; export KUBECONFIG='${KCFG}'; cd ~/gym-integration-frontend-helm-ci && helm upgrade --install '${RELEASE}' . --namespace '${NS}' --create-namespace -f values.yaml -f values-production.yaml --set ingress.host='${HOST}' --set image.repository='${DOCKER_IMAGE}' --set image.tag='${TAG}' --wait --timeout 5m"
           else
-            ssh ${SSH_COMMON} "${SSH_USER}@${SSH_HOST}" "set -euo pipefail; export KUBECONFIG='${KCFG}'; cd ~/gym-integration-frontend-helm-ci && helm upgrade --install '${RELEASE}' . --namespace '${NS}' --create-namespace -f values.yaml -f values-test-environment.yaml --set image.repository='${DOCKER_IMAGE}' --set image.tag='${TAG}' --wait --timeout 5m"
+            retry ssh ${SSH_COMMON} "${SSH_USER}@${SSH_HOST}" "set -euo pipefail; export KUBECONFIG='${KCFG}'; cd ~/gym-integration-frontend-helm-ci && helm upgrade --install '${RELEASE}' . --namespace '${NS}' --create-namespace -f values.yaml -f values-test-environment.yaml --set image.repository='${DOCKER_IMAGE}' --set image.tag='${TAG}' --wait --timeout 5m"
           fi
