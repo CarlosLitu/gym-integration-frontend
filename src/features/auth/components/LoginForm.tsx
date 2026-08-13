@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Alert, Button, Input } from '@/components'
 import { useLoginForm } from '../hooks/useLoginForm'
@@ -40,23 +41,28 @@ export function LoginForm() {
 
       {formError ? <Alert>{formError}</Alert> : null}
 
-      <a
-        href="#"
+      <Link
+        to="/forgot-password"
         className="w-fit font-sans text-[13px] font-medium text-pulse-blue hover:underline"
-        onClick={(event) => event.preventDefault()}
       >
         {t('auth.forgotPassword')}
-      </a>
+      </Link>
 
-      <Button
-        type="submit"
-        variant={canSubmit ? 'active' : 'idle'}
-        size="lg"
-        className="w-full"
-        disabled={isLoading || !canSubmit}
-      >
-        {isLoading ? t('auth.submittingLabel') : t('auth.submitLabel')}
-      </Button>
+      <div className="relative z-20">
+        <span
+          className="pointer-events-none absolute inset-0 rounded-pill bg-pulse-surface"
+          aria-hidden="true"
+        />
+        <Button
+          type="submit"
+          variant={canSubmit ? 'active' : 'idle'}
+          size="lg"
+          className="relative w-full"
+          disabled={isLoading || !canSubmit}
+        >
+          {isLoading ? t('auth.submittingLabel') : t('auth.submitLabel')}
+        </Button>
+      </div>
     </form>
   )
 }

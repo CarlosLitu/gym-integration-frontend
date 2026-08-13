@@ -1,8 +1,27 @@
 import { useCallback, useState } from 'react'
 import { loginRequest } from '../api/login'
+import { logoutRequest } from '../api/logout'
 import { useApiMessage } from '@/hooks/useApiMessage'
 import { storage } from '@/services/storage'
-import type { LoginCredentials } from '../types/auth.types'
+import { resetSelectedTenantFromSession } from '@/features/tenants/hooks/useSelectedTenant'
+import type { ApiUser, LoginCredentials, UserSession } from '../types/auth.types'
+
+function toUserSession(user: ApiUser): UserSession {
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    tenant: {
+      id: user.tenantId._id,
+      name: user.tenantId.name,
+      status: user.tenantId.status ?? 'INTEGRATION_PENDING',
+      lastEventReceived: user.tenantId.lastEventReceived ?? null,
+      updatedAt: user.tenantId.updatedAt ?? null,
+      payment: user.tenantId.payment ?? null,
+    },
+  }
+}
 
 export function useAuthMutation() {
   const { getErrorMessage } = useApiMessage()
@@ -15,8 +34,10 @@ export function useAuthMutation() {
 
     try {
       const response = await loginRequest(credentials)
+      const session = toUserSession(response.user)
       storage.setToken(response.token)
-      storage.setUser(response.user)
+      storage.setUser(session)
+      resetSelectedTenantFromSession(session)
       window.dispatchEvent(new Event('auth-changed'))
       return response
     } catch (loginError) {
@@ -27,9 +48,15 @@ export function useAuthMutation() {
     }
   }, [getErrorMessage])
 
-  const logout = useCallback(() => {
-    storage.clearSession()
-    window.dispatchEvent(new Event('auth-changed'))
+  const logout = useCallback(async () => {
+    try {
+      await logoutRequest()
+    } catch {
+      // Best-effort: ignora falha de rede ou 401 (sessao ja expirada).
+    } finally {
+      storage.clearSession()
+      window.dispatchEvent(new Event('auth-changed'))
+    }
   }, [])
 
   return { login, logout, isLoading, error }

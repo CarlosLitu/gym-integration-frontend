@@ -1,4 +1,9 @@
 {
+  "terms": {
+    "tenant": "academia",
+    "tenantCapitalized": "Academia",
+    "newPrefix": "Nova"
+  },
   "responses": {
     "HEALTH_OK": "Serviço disponível",
     "ROUTE_NOT_FOUND": "Rota não encontrada",
@@ -14,6 +19,11 @@
     "AUTH_SESSION_NOT_FOUND": "Sessão não encontrada. Faça login novamente.",
     "AUTH_USER_NOT_AUTHORIZED": "Usuário não autorizado",
     "AUTH_ADMIN_REQUIRED": "Acesso restrito a administradores",
+    "AUTH_FORGOT_PASSWORD_REQUIRED_FIELDS": "Informe o e-mail",
+    "AUTH_FORGOT_PASSWORD_SUCCESS": "Se o e-mail estiver cadastrado, você receberá as instruções para redefinir a senha.",
+    "AUTH_RESET_PASSWORD_REQUIRED_FIELDS": "Informe o token e a nova senha",
+    "AUTH_RESET_PASSWORD_INVALID_OR_EXPIRED": "Link inválido ou expirado. Solicite uma nova redefinição de senha.",
+    "AUTH_RESET_PASSWORD_SUCCESS": "Senha redefinida com sucesso. Faça login com a nova senha.",
 
     "TENANT_LIST_SUCCESS": "Tenants listados com sucesso",
     "TENANT_FETCH_SUCCESS": "Tenant carregado com sucesso",
@@ -27,6 +37,7 @@
     "TENANT_NO_VALID_FIELDS_FOR_UPDATE": "Nenhum campo válido para atualização",
     "TENANT_REFERENCE_NOT_FOUND": "Referência de tenant não encontrada",
     "TENANT_CHILD_REFERENCE_NOT_FOUND": "Referência de tenant filho não encontrada",
+    "TENANT_WHATSAPP_NOT_CONFIGURED": "WhatsApp do tenant ainda não está configurado",
 
     "USER_LIST_SUCCESS": "Usuários listados com sucesso",
     "USER_FETCH_SUCCESS": "Usuário carregado com sucesso",
@@ -36,6 +47,7 @@
     "USER_NOT_FOUND": "Usuário não encontrado",
     "USER_REQUIRED_FIELDS": "Preencha os campos obrigatórios do usuário",
     "USER_INVALID_TYPE": "Tipo de usuário inválido",
+    "USER_EMAIL_ALREADY_EXISTS": "Este e-mail já está cadastrado",
 
     "WEBHOOK_RECEIVED_SUCCESS": "Webhook recebido com sucesso",
     "WEBHOOK_EVO_RECEIVED_SUCCESS": "Webhook EVO recebido com sucesso",
@@ -44,20 +56,693 @@
     "WEBHOOK_GATEWAY_REGISTER_FAILED": "Falha ao registrar webhook no gateway",
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registrado no gateway com sucesso",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Falha ao remover webhook do gateway",
-    "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook removido do gateway com sucesso"
+    "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook removido do gateway com sucesso",
+    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sincronização permitida apenas entre 00:00 e 03:00.",
+    "LEAD_REQUIRED_FIELDS": "Preencha todos os campos obrigatórios da solicitação.",
+    "LEAD_INVALID_EMAIL": "E-mail inválido. Revise o formato e tente de novo.",
+    "LEAD_INVALID_WHATSAPP": "WhatsApp inválido. Informe um número com DDD.",
+    "LEAD_TERMS_NOT_ACCEPTED": "É necessário aceitar os termos para continuar.",
+    "LEAD_CREATE_SUCCESS": "Solicitação de demo enviada com sucesso.",
+    "LEAD_RATE_LIMIT_EXCEEDED": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
+    "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "Header X-Webhook-Secret obrigatório",
+    "WEBHOOK_WHATSAPP_SECRET_INVALID": "Header X-Webhook-Secret inválido",
+    "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "Webhook do WhatsApp recebido com sucesso",
+    "WHATSAPP_QR_CODE_FETCH_SUCCESS": "QR Code do WhatsApp carregado com sucesso",
+    "WHATSAPP_EVOLUTION_NOT_CONFIGURED": "Evolution API não configurada no backend",
+    "WHATSAPP_INSTANCE_CREATE_FAILED": "Não foi possível criar a instância do WhatsApp",
+    "WHATSAPP_INSTANCE_CONNECT_FAILED": "Não foi possível gerar o QR Code do WhatsApp",
+    "WHATSAPP_INSTANCE_RESET_FAILED": "Não foi possível reiniciar a sessão do WhatsApp",
+    "WHATSAPP_SESSION_RESET_SUCCESS": "Sessão do WhatsApp reiniciada com sucesso",
+    "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Não foi possível configurar o webhook do WhatsApp",
+    "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Não foi possível consultar o status do WhatsApp",
+    "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "Conversas do WhatsApp carregadas com sucesso",
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "Mensagens do WhatsApp carregadas com sucesso",
+
+    "PAYMENT_REQUIRED_FIELDS": "Preencha os campos obrigatórios do pagamento",
+    "PAYMENT_TRANSACTION_INVALID_FILTERS": "Filtros de transação inválidos",
+    "PAYMENT_ALREADY_PROCESSING": "Já existe um pagamento em processamento",
+    "PAYMENT_PROVIDER_NOT_SUPPORTED": "Provedor de pagamento não suportado",
+    "PAYMENT_INVALID_WEBHOOK_PAYLOAD": "Webhook de pagamento inválido",
+    "PAYMENT_PROVIDER_NOT_CONFIGURED": "Provedor de pagamento não configurado",
+    "PAYMENT_PLAN_NOT_CONFIGURED": "Nenhum plano de pagamento configurado",
+    "PAYMENT_PLAN_NOT_FOUND": "Plano de pagamento não encontrado",
+    "PAYMENT_PLAN_NAME_ALREADY_EXISTS": "Ja existe um plano com este nome",
+    "PAYMENT_PLAN_INACTIVE": "Este plano está inativo e não pode ser comprado",
+    "PAYMENT_PLAN_ALREADY_PURCHASED": "Você já possui uma transação para este plano",
+    "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Não foi possível provisionar o plano no PayPal",
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Valor e duração não podem ser alterados após o provisioning no PayPal",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "As próximas cobranças da assinatura foram canceladas com sucesso",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "Não existe uma assinatura ativa para cancelar"
+  },
+  "common": {
+    "yes": "Sim",
+    "no": "Não",
+    "all": "Todos",
+    "notApplicable": "N/A",
+    "apply": "Aplicar",
+    "clearAll": "Limpar tudo",
+    "filters": "Filtros",
+    "filtersWithCount": "Filtros ({{count}})",
+    "filtersTitle": "Filtros",
+    "cancel": "Cancelar",
+    "create": "Criar",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "actions": "Ações"
   },
   "auth": {
+    "backToHome": "Voltar ao site",
+    "backToLogin": "Voltar ao login",
     "loginSubtitle": "Acesse com sua conta de consultor ou administrador.",
     "emailLabel": "E-mail",
     "passwordLabel": "Senha",
+    "confirmPasswordLabel": "Confirmar senha",
     "emailPlaceholder": "voce@empresa.com",
     "passwordPlaceholder": "••••••••",
+    "confirmPasswordPlaceholder": "Digite a senha novamente",
     "submitLabel": "Entrar",
     "submittingLabel": "Entrando...",
     "forgotPassword": "Esqueceu sua senha?",
+    "forgotSubtitle": "Informe seu e-mail e enviaremos um link para redefinir a senha.",
+    "forgotSubmitLabel": "Enviar link",
+    "forgotSubmittingLabel": "Enviando...",
+    "forgotSuccess": "Se o e-mail estiver cadastrado, você receberá as instruções para redefinir a senha.",
+    "resetSubtitle": "Escolha uma nova senha para acessar sua conta.",
+    "resetSubmitLabel": "Redefinir senha",
+    "resetSubmittingLabel": "Redefinindo...",
+    "resetSuccess": "Senha redefinida com sucesso. Faça login com a nova senha.",
+    "resetMissingToken": "Link inválido ou incompleto. Solicite uma nova redefinição de senha.",
+    "requestNewLink": "Solicitar novo link",
+    "goToLogin": "Ir para o login",
+    "passwordMismatch": "As senhas não coincidem",
+    "revealPassword": "Mostrar senha",
+    "hidePassword": "Ocultar senha",
     "loginFailed": "Não foi possível realizar o login. Tente novamente.",
     "requiredField": "Campo obrigatório",
     "invalidEmail": "E-mail inválido. Revise o formato e tente de novo.",
-    "registerSoon": "Cadastro em breve"
+    "registerSoon": "Cadastro em breve",
+    "logout": "Sair",
+    "loggingOut": "Saindo...",
+    "loggingIn": "Conectando...",
+    "loading": "Carregando..."
+  },
+  "status": {
+    "unknown": "Desconhecido",
+    "connected": "Conectado"
+  },
+  "nav": {
+    "chat": "Chat",
+    "dashboard": "Dashboard",
+    "userPlans": "Ver planos",
+    "settings": "Configurações",
+    "reports": "Relatórios",
+    "support": "Suporte",
+    "users": "Usuários",
+    "paymentPlans": "Planos",
+    "paymentTransactions": "Transações",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
+  },
+  "footer": {
+    "copyright": "© {{year}} Pulse. Todos os direitos reservados."
+  },
+  "landing": {
+    "nav": {
+      "enter": "Entrar",
+      "requestDemo": "Solicitar Demo",
+      "goToDashboard": "Ir para o painel"
+    },
+    "hero": {
+      "pill": "CT Invictus acabou de se juntar a +1.000 academias.",
+      "pillMessages": {
+        "apexFitness": "Apex Fitness <bold>unificou tudo no Pulse!</bold>",
+        "pulsarGym": "Pulsar Gym <bold>centralizou o WhatsApp.</bold>",
+        "ctInvictus": "CT Invictus <bold>sincronizou seu sistema.</bold>",
+        "vibeFitness": "Vibe Fitness <bold>agora usa uma só tela.</bold>",
+        "impacto": "Impacto Fitness <bold>integrou sua operação.</bold>",
+        "arenaBase": "Arena Base <bold>unificou sistema e redes.</bold>",
+        "studioVigor": "Studio Vigor <bold>centralizou a gestão.</bold>"
+      },
+      "title": "A plataforma que <highlight>unifica</highlight> toda a<br/>gestão e vendas da sua academia.",
+      "subtitle": "Pare de pular de aba em aba para cruzar dados. O Pulse centraliza os dados do seu sistema atual e os contatos de suas redes, entregando controle financeiro, comercial e administrativo em uma única tela.",
+      "ctaDemo": "Solicitar Demo",
+      "ctaLogin": "Acessar Minha Conta",
+      "dashboardAlt": "Prévia do dashboard Pulse"
+    },
+    "carousel": {
+      "label": "Usado por redes e academias independentes em todo o Brasil",
+      "ariaLabel": "Logos de academias parceiras"
+    },
+    "product": {
+      "overline": "O PRODUTO",
+      "title": "A visão total da sua academia, sincronizada em um único lugar.",
+      "description": "Chega de perder tempo cruzando informações entre janelas diferentes. O Pulse conecta o sistema que a sua academia já possui com seus canais de atendimento, centralizando tudo em uma única visão gerencial.",
+      "imageAlt": "Estatísticas do produto Pulse",
+      "stats": {
+        "spreadsheets": {
+          "value": "1",
+          "valueSuffix": "único",
+          "label": "painel para cruzar informações"
+        },
+        "cashFlow": {
+          "value": "Zero",
+          "label": "necessidade de pular de abas"
+        },
+        "billing": {
+          "value": "100%",
+          "label": "sincronizado ao seu CRM e redes"
+        }
+      },
+      "features": {
+        "billing": {
+          "title": "Integração de Sistemas",
+          "description": "Conecte a plataforma que você já usa. Visualize os dados da sua academia integrados em um só lugar, sem precisar trocar de sistema."
+        },
+        "collection": {
+          "title": "Funis de Vendas",
+          "description": "Reúna os contatos do seu WhatsApp, Instagram e Facebook. Tenha um funil de vendas completo e integrado com a sua base atual de alunos."
+        },
+        "retention": {
+          "title": "Gestão de Leads",
+          "description": "Torne seus contatos visíveis e gerenciáveis. Acompanhe os atendimentos e saiba exatamente quantos leads converteram em dashboards claros."
+        },
+        "payments": {
+          "title": "Visão Centralizada",
+          "description": "Mantenha o seu sistema atual funcionando. O Pulse atua sincronizando as informações comerciais e administrativas em um único painel."
+        }
+      }
+    },
+    "potencialize": {
+      "overline": "POTENCIALIZE A SUA VISÃO",
+      "title": "Seu sistema e suas redes sociais,<br/>trabalhando juntos.",
+      "description": "O Pulse puxa as informações do seu sistema de gestão atual (como Next Fit, EVO ou Tecnofit) e une aos contatos que chegam via WhatsApp, Instagram e Facebook. Tudo se transforma em um funil integrado para você gerenciar leads e conversões sem sair da tela.",
+      "dashboardAlt": "Dashboard Pulse integrado ao sistema da academia"
+    },
+    "demo": {
+      "badge": "Demonstração gratuita",
+      "title": "Descubra o impacto do Pulse na sua gestão.",
+      "description": "Reserve 30 minutos e veja nossa plataforma em ação com os seus próprios dados. Sem simulações prontas, apenas os seus problemas sendo resolvidos.",
+      "benefits": {
+        "noCard": "Sem cartão de crédito e sem compromisso.",
+        "dashboards": "Dashboards visuais focados em receita e retenção.",
+        "integrations": "Integração ao vivo com EVO, Next Fit, Tecnofit e WhatsApp.",
+        "cashFlow": "Descubra oportunidades ocultas no seu fluxo de caixa."
+      },
+      "formTitle": "Solicitar demonstração",
+      "formSubtitle": "Preencha os dados e entraremos em contato para agendar.",
+      "fields": {
+        "name": "Nome",
+        "gymName": "Academia",
+        "email": "E-mail",
+        "whatsapp": "WhatsApp",
+        "studentsRange": "Número de alunos"
+      },
+      "placeholders": {
+        "name": "Insira seu nome",
+        "gymName": "Ex: Academia Forma Física",
+        "email": "voce@academia.com",
+        "whatsapp": "(00) 00000-0000",
+        "studentsRange": "Selecione uma opção..."
+      },
+      "studentRanges": {
+        "upTo100": "Até 100 alunos",
+        "100to300": "100 a 300 alunos",
+        "300to1000": "300 a 1.000 alunos",
+        "1000plus": "Mais de 1.000 alunos"
+      },
+      "submit": "Solicitar Demo",
+      "submitting": "Enviando...",
+      "termsLabel": "Li e aceito o tratamento dos meus dados para contato sobre a demonstração.",
+      "footerNote": "Sem cartão de crédito · Resposta em até 1 dia útil",
+      "success": "Recebemos sua solicitação e ela já está com nossa equipe. Retornaremos o contato o mais breve possível.",
+      "errors": {
+        "required": "Campo obrigatório",
+        "invalidEmail": "E-mail inválido",
+        "invalidWhatsapp": "WhatsApp inválido. Informe um número com DDD.",
+        "termsRequired": "Aceite os termos para continuar.",
+        "submitFailed": "Não foi possível enviar sua solicitação. Tente novamente."
+      }
+    },
+    "footer": {
+      "tagline": "O centro de comando sincronizado da sua academia.",
+      "usefulLinks": "Links Úteis",
+      "home": "Home",
+      "product": "O Produto",
+      "navigation": "Navegação",
+      "login": "Entrar",
+      "requestDemo": "Solicitar Demo",
+      "contact": "Contato",
+      "email": "suporte@pulse.com.br",
+      "cnpj": "CNPJ: 00.000.000/0001-00",
+      "copyright": "© NOEV {{year}}. Todos os direitos reservados.",
+      "terms": "Termos de Uso",
+      "privacy": "Políticas de Privacidade"
+    }
+  },
+  "payments": {
+    "userPlans": {
+      "eyebrow": "Escolha seu plano",
+      "title": "Ver planos",
+      "subtitle": "Escolha o plano ideal para o seu momento e siga para o checkout para concluir a contratação.",
+      "currentPlanEyebrow": "Plano atual da academia",
+      "currentPlanValidity": "Vigente até {{date}}",
+      "loading": "Carregando planos disponíveis...",
+      "emptyTitle": "Nenhum plano disponível no momento",
+      "emptySubtitle": "Assim que novos planos forem publicados, eles aparecerão aqui para contratação.",
+      "fallbackName": "Plano sem nome",
+      "priceSubtitle": "Cobrança conforme as regras do plano selecionado",
+      "permissionsTitle": "Benefícios incluídos",
+      "noPermissions": "Este plano não possui permissões adicionais configuradas.",
+      "multipleAllowed": "Permite comprar mais de uma vez",
+      "multipleBlocked": "Compra única por academia",
+      "selectAction": "Escolher plano",
+      "selecting": "Redirecionando...",
+      "redirectError": "Não foi possível iniciar o checkout deste plano.",
+      "cancelSubscriptionTitle": "Cancelar renovação automática",
+      "cancelSubscriptionConfirm": "Deseja cancelar as próximas cobranças desta assinatura? O acesso atual será mantido até a data de vigência.",
+      "cancelSubscriptionAction": "Cancelar futuras cobranças",
+      "cancellingSubscription": "Cancelando...",
+      "cancellationScheduled": "Renovação automática cancelada. O plano segue ativo até a data de vigência atual.",
+      "types": {
+        "subscription": "Assinatura",
+        "oneTime": "Pagamento único"
+      }
+    },
+    "plans": {
+      "title": "Planos de pagamento",
+      "subtitle": "Gerencie planos ativos e inativos disponíveis para compra",
+      "newPlan": "Novo plano",
+      "create": {
+        "back": "Voltar para planos",
+        "title": "Criar plano de pagamento",
+        "subtitle": "Cadastre um novo plano seguindo o mesmo padrão visual do painel administrativo"
+      },
+      "searchPlaceholder": "Buscar por nome...",
+      "filterPlaceholder": "Filtrar por status",
+      "filters": {
+        "all": "Todos",
+        "active": "Ativos",
+        "inactive": "Inativos"
+      },
+      "loading": "Carregando planos...",
+      "empty": "Nenhum plano encontrado",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "createdAt": "Criado em {{date}}",
+      "durationDays": "{{days}} dias",
+      "durationMonthsSingular": "{{months}} mês",
+      "durationMonthsPlural": "{{months}} meses",
+      "flags": "Tipo: {{type}} • Múltiplo: {{multiple}}",
+      "columns": {
+        "name": "Nome",
+        "value": "Valor",
+        "duration": "Duração",
+        "type": "Tipo",
+        "multiple": "Múltiplo",
+        "status": "Status"
+      },
+      "technical": {
+        "title": "Dados técnicos",
+        "subtitle": "Identificadores sincronizados automaticamente com o PayPal",
+        "paypalProductId": "PayPal product id",
+        "paypalPlanId": "PayPal plan id"
+      },
+      "status": {
+        "activateTitle": "Ativar plano",
+        "activateConfirm": "Deseja ativar o plano {{name}}?",
+        "activateAction": "Ativar",
+        "activating": "Ativando...",
+        "deactivateTitle": "Desativar plano",
+        "deactivateConfirm": "Deseja desativar o plano {{name}}?",
+        "deactivateAction": "Desativar",
+        "deactivating": "Desativando..."
+      },
+      "edit": {
+        "back": "Voltar para planos",
+        "title": "Editar plano",
+        "subtitle": "Atualize os campos permitidos e consulte os identificadores técnicos do provedor",
+        "action": "Editar",
+        "loading": "Carregando plano...",
+        "notFound": "Plano não encontrado",
+        "lockedFieldsHint": "Valor, duração e quantidade de meses ficam bloqueados após o provisioning do plano no PayPal."
+      },
+      "form": {
+        "createTitle": "Novo plano",
+        "editTitle": "Editar plano",
+        "name": "Nome do plano",
+        "namePlaceholder": "Ex: Plano Mensal Premium",
+        "value": "Valor",
+        "currency": "Moeda",
+        "durationDays": "Duração (dias)",
+        "maxBillingCycles": "Quantidade de meses",
+        "type": "Tipo",
+        "typePlaceholder": "Selecione o tipo",
+        "types": {
+          "ONE_TIME": "Compra unica",
+          "SUBSCRIPTION": "Assinatura"
+        },
+        "permissions": "Permissões",
+        "permissionsPlaceholder": "Ex: payments.read,sales.read",
+        "allowMultiplePurchases": "Permite múltiplas compras",
+        "subscriptionBillingHint": "Assinaturas são cobradas a cada 30 dias. Informe por quantos meses a cobrança deve durar.",
+        "errors": {
+          "name": "Informe o nome do plano",
+          "value": "Informe um valor válido",
+          "currency": "Informe a moeda",
+          "durationDays": "Informe uma duração válida",
+          "maxBillingCycles": "Informe uma quantidade de meses válida",
+          "type": "Selecione um tipo"
+        }
+      }
+    },
+    "transactions": {
+      "title": "Transações",
+      "subtitle": "Acompanhe as transações de pagamento com filtros e paginação",
+      "details": "Detalhes",
+      "detailsTitle": "Detalhes da transação",
+      "detailsAccessStart": "Início do acesso",
+      "detailsAccessEnd": "Fim do acesso",
+      "openFilters": "Filtros",
+      "openFiltersWithCount": "Filtros ({{count}})",
+      "searchPlaceholder": "Buscar por nome de usuário...",
+      "applyFilters": "Aplicar filtros",
+      "loading": "Carregando transações...",
+      "empty": "Nenhuma transação encontrada",
+      "columns": {
+        "purchasedAt": "Data",
+        "status": "Status",
+        "provider": "Provedor",
+        "amount": "Valor",
+        "userId": "Usuário",
+        "plan": "Plano",
+        "access": "Acesso"
+      },
+      "filters": {
+        "modalTitle": "Filtros",
+        "provider": "Provedor",
+        "providerPlaceholder": "Todos",
+        "status": "Status",
+        "statusPlaceholder": "Todos",
+        "limit": "Itens",
+        "userQuery": "Usuário",
+        "userQueryPlaceholder": "Nome, e-mail ou telefone",
+        "paymentPlanId": "Plano",
+        "paymentPlanIdPlaceholder": "Todos",
+        "startDate": "Início",
+        "endDate": "Fim"
+      },
+      "mobile": {
+        "order": "Order",
+        "user": "Usuário",
+        "plan": "Plano",
+        "access": "Acesso"
+      }
+    }
+  },
+  "users": {
+    "title": "Usuários",
+    "subtitle": "Gerencie os usuários da academia {{tenant}}",
+    "createSubtitle": "Cadastre um novo usuário para a academia {{tenant}}",
+    "editSubtitle": "Edite os dados do usuário da academia {{tenant}}",
+    "backToList": "Voltar para usuários",
+    "notFound": "Usuário não encontrado",
+    "newUser": "Novo usuário",
+    "edit": "Editar",
+    "searchPlaceholder": "Buscar por nome ou e-mail...",
+    "sortAz": "A-Z",
+    "sortNewest": "Mais recentes",
+    "sortOldest": "Mais antigos",
+    "count": "{{total}} usuários",
+    "loading": "Carregando usuários...",
+    "empty": "Nenhum usuário encontrado",
+    "noTenantSelected": "Selecione uma academia para visualizar os usuários",
+    "columns": {
+      "name": "Nome",
+      "email": "E-mail",
+      "role": "Perfil",
+      "createdAt": "Criado em",
+      "actions": "Ações"
+    },
+    "roles": {
+      "ADMIN": "Administrador",
+      "USER": "Usuário"
+    },
+    "form": {
+      "createTitle": "Novo usuário",
+      "editTitle": "Editar usuário",
+      "name": "Nome",
+      "email": "E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar senha",
+      "role": "Perfil",
+      "cancel": "Cancelar",
+      "save": "Salvar",
+      "saving": "Salvando...",
+      "reveal": "Mostrar senha",
+      "hide": "Ocultar senha",
+      "requiredHint": "Todos os campos marcados são obrigatórios",
+      "aside": {
+        "tenant": "Academia",
+        "roleTitle": "Nível de acesso",
+        "adminHint": "Pode gerenciar usuários e configurações da academia.",
+        "userHint": "Acesso às funcionalidades operacionais do dia a dia."
+      },
+      "sections": {
+        "identity": "Identificação",
+        "identityHint": "Nome e e-mail usados para acessar a plataforma",
+        "security": "Senha de acesso",
+        "securityHint": "Defina uma senha forte para o novo usuário",
+        "permission": "Permissão",
+        "permissionHint": "Escolha o nível de acesso deste usuário"
+      },
+      "placeholders": {
+        "name": "Ex: João Silva",
+        "email": "usuario@academia.com",
+        "password": "Digite a senha",
+        "confirmPassword": "Digite a senha novamente"
+      },
+      "errors": {
+        "passwordMismatch": "As senhas não coincidem"
+      },
+      "passwordRequirements": {
+        "title": "Requisitos de senha",
+        "subtitle": "Siga este guia para uma senha forte",
+        "minLength": "Pelo menos 8 caracteres",
+        "uppercase": "Pelo menos uma letra maiúscula (A-Z)",
+        "lowercase": "Pelo menos uma letra minúscula (a-z)",
+        "number": "Pelo menos um número (0-9)",
+        "special": "Pelo menos um caractere especial (!@#$%^&* etc.)"
+      }
+    },
+    "deactivate": {
+      "title": "Desativar usuário",
+      "confirm": "Tem certeza que deseja desativar {{name}}? Esta ação não pode ser desfeita pela interface.",
+      "action": "Desativar",
+      "deactivating": "Desativando..."
+    }
+  },
+  "tenant": {
+    "lastEvent": "Último evento {{time}}",
+    "noEvent": "Nenhum evento recebido",
+    "changeTenant": "Mudar $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Plano atual: {{plan}} • {{value}} • {{duration}}"
+  },
+  "tenants": {
+    "title": "Academias",
+    "newTenant": "$t(terms.newPrefix) $t(terms.tenant)",
+    "searchPlaceholder": "Buscar por nome, cidade ou ID da academia...",
+    "sortAz": "A-Z",
+    "count": "{{total}} academias",
+    "showing": "Mostrando {{shown}} de {{total}}",
+    "loading": "Carregando academias...",
+    "empty": "Nenhuma academia encontrada",
+    "edit": "Editar",
+    "sync": "Sync",
+    "selected": "Academia selecionada: {{name}}",
+    "selectTenant": "Selecionar {{name}}",
+    "syncFeedback": {
+      "loading": "Sincronizando...",
+      "started": "Sincronização iniciada",
+      "running": "Sincronização já em andamento"
+    },
+    "statusLabels": {
+      "INTEGRATION_PENDING": "Integração pendente",
+      "INVALID_CREDENTIALS": "Credenciais inválidas",
+      "WAITING_EVENTS": "Aguardando eventos",
+      "CONNECTED": "Conectado"
+    },
+    "previousPage": "Página anterior",
+    "nextPage": "Próxima página",
+    "filters": {
+      "all": "Todos",
+      "connected": "Conectado",
+      "waiting": "Aguardando",
+      "error": "Erro",
+      "pending": "Pendente"
+    },
+    "create": {
+      "back": "Voltar",
+      "title": "Adicionar Academia",
+      "next": "Próximo",
+      "reveal": "Mostrar",
+      "hide": "Ocultar",
+      "integrationNote": "Essas credenciais vêm do painel do EVO da própria academia. Elas só são usadas para autenticar e registrar o webhook – não são exibidas de novo depois de salvas.",
+      "testConnection": "Testar conexão",
+      "testing": "Testando...",
+      "testSuccess": "Conexão validada com sucesso",
+      "testError": "Falha na conexão. Verifique a API Key e o API Secret.",
+      "createGym": "Criar Academia",
+      "creating": "Criando...",
+      "createHint": "Recomendamos testar a conexão antes de criar.",
+      "confirmNoTest": {
+        "title": "Criar sem testar a conexão?",
+        "message": "Você vai salvar sem testar a conexão, deseja continuar?",
+        "confirm": "Continuar",
+        "cancel": "Cancelar"
+      },
+      "steps": {
+        "data": "Dados da academia",
+        "integration": "Integração"
+      },
+      "fields": {
+        "name": "Nome da academia",
+        "cnpj": "CNPJ",
+        "phone": "Telefone",
+        "email": "E-mail",
+        "address": "Endereço",
+        "city": "Cidade",
+        "state": "Estado",
+        "gateway": "Gateway",
+        "apiKey": "API Key",
+        "apiSecret": "API Secret"
+      },
+      "placeholders": {
+        "name": "Ex: Academia Vitta",
+        "cnpj": "00.000.000/0001-00",
+        "phone": "(00) 00000-0000",
+        "email": "contato@academia.com",
+        "address": "Rua, número, bairro",
+        "city": "Cidade",
+        "state": "Estado",
+        "token": "evo_tk_...",
+        "apiKey": "evo_key_...",
+        "apiSecret": "••••••••••••"
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Visão geral de vendas da academia",
+    "presets": {
+      "currentMonth": "Mês atual",
+      "lastMonth": "Mês passado",
+      "last7Days": "7 dias",
+      "last30Days": "30 dias",
+      "last12Months": "12 meses"
+    },
+    "granularity": {
+      "day": "Dia",
+      "week": "Semana",
+      "month": "Mês"
+    },
+    "kpis": {
+      "revenue": "Receita",
+      "paid": "Recebido",
+      "pending": "Pendente",
+      "pendingInfo": "Inadimplência: {{rate}} da receita do período",
+      "salesCount": "Nº de vendas",
+      "averageTicket": "Ticket médio",
+      "averageTicketInfo": "Calculado como receita dividida pelo número de vendas",
+      "collectionRate": "Taxa de recebimento"
+    },
+    "series": {
+      "revenue": "Receita",
+      "paid": "Recebido",
+      "pending": "Pendente",
+      "sales": "Vendas",
+      "averageTicket": "Ticket médio",
+      "defaultRate": "Inadimplência",
+      "new": "Novos",
+      "renewal": "Renovações",
+      "total": "Total",
+      "value": "Valor",
+      "share": "Participação",
+      "transactions": "Transações",
+      "quantity": "Quantidade"
+    },
+    "charts": {
+      "revenue": {
+        "title": "Faturamento no período",
+        "subtitle": "Receita total e valor recebido",
+        "info": "Receita total (área) e valor efetivamente recebido (linha) por período."
+      },
+      "paidVsPending": {
+        "title": "Recebido x Pendente",
+        "subtitle": "Saúde da cobrança",
+        "info": "Comparativo entre valores recebidos e pendentes por período."
+      },
+      "paymentMethods": {
+        "title": "Formas de pagamento",
+        "subtitle": "Distribuição por método",
+        "info": "Valor por forma de pagamento, agregado a partir das vendas do período."
+      },
+      "newVsRenewal": {
+        "title": "Novos x Renovações",
+        "subtitle": "Aquisição vs retenção",
+        "info": "Quantidade de matrículas novas e renovações por período."
+      },
+      "plans": {
+        "title": "Mix de planos",
+        "subtitle": "Receita por plano/produto",
+        "info": "Principais planos e produtos por receita no período."
+      },
+      "sellers": {
+        "title": "Ranking de vendedores",
+        "subtitle": "Receita por vendedor",
+        "info": "Principais vendedores por receita no período."
+      },
+      "whatsapp": {
+        "title": "WhatsApp do tenant",
+        "subtitle": "Conexão por QR Code da instância atual",
+        "info": "Busca o QR Code da instância do tenant na Evolution API e mantém o webhook por tenant configurado.",
+        "noTenantSelected": "Selecione uma academia para carregar o QR Code do WhatsApp",
+        "instanceName": "Instância",
+        "connectionState": "Estado da conexão",
+        "pairingCode": "Código de pareamento",
+        "refreshButton": "Atualizar QR Code",
+        "refreshStatusButton": "Atualizar conexão",
+        "resetting": "Reiniciando sessão...",
+        "refreshing": "Atualizando...",
+        "qrHelp": "Escaneie este QR Code no WhatsApp para conectar a instância da academia selecionada.",
+        "connectedHelp": "A instância deste tenant já está conectada ao WhatsApp.",
+        "connectedNoQr": "Instância já conectada. Nenhum QR Code é necessário no momento.",
+        "waitingQr": "Aguardando geração do QR Code.",
+        "qrUnavailable": "O backend consultou a instância, mas a Evolution API não retornou uma imagem de QR Code nesta tentativa.",
+        "qrAlt": "QR Code do WhatsApp da academia",
+        "status": {
+          "DISCONNECTED": "Desconectado",
+          "CONNECTING": "Conectando",
+          "QRCODE": "Aguardando leitura do QR",
+          "CONNECTED": "Conectado",
+          "ERROR": "Erro"
+        }
+      }
+    }
+  },
+  "chat": {
+    "title": "Chat",
+    "subtitle": "Conversas recebidas via WhatsApp da academia {{tenant}}",
+    "searchPlaceholder": "Buscar por nome, telefone ou mensagem...",
+    "refresh": "Atualizar",
+    "showMore": "Mostrar mais",
+    "loadingMore": "Carregando mais...",
+    "noTenantSelected": "Selecione uma academia para visualizar as conversas",
+    "activeConversation": "Conversa ativa: {{contact}}",
+    "conversationsCount": "{{shown}} de {{total}} conversas",
+    "messagesCount": "{{shown}} de {{total}} mensagens",
+    "emptyConversations": "Nenhuma conversa encontrada para este tenant.",
+    "emptyConversationSelection": "Selecione uma conversa para visualizar as mensagens.",
+    "emptyMessages": "Nenhuma mensagem encontrada para esta conversa.",
+    "loadingMessages": "Carregando mensagens..."
   }
 }

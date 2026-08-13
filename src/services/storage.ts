@@ -1,5 +1,6 @@
 const TOKEN_KEY = 'gym_auth_token'
 const USER_KEY = 'gym_auth_user'
+const SELECTED_TENANT_KEY = 'gym_selected_tenant'
 
 export const storage = {
   getToken(): string | null {
@@ -19,6 +20,10 @@ export const storage = {
     return raw ? (JSON.parse(raw) as T) : null
   },
 
+  getUserRaw(): string | null {
+    return localStorage.getItem(USER_KEY)
+  },
+
   setUser<T>(user: T): void {
     localStorage.setItem(USER_KEY, JSON.stringify(user))
   },
@@ -27,8 +32,22 @@ export const storage = {
     localStorage.removeItem(USER_KEY)
   },
 
+  getSelectedTenant<T>(): T | null {
+    const raw = localStorage.getItem(SELECTED_TENANT_KEY)
+    return raw ? (JSON.parse(raw) as T) : null
+  },
+
+  setSelectedTenant<T>(tenant: T): void {
+    localStorage.setItem(SELECTED_TENANT_KEY, JSON.stringify(tenant))
+  },
+
+  clearSelectedTenant(): void {
+    localStorage.removeItem(SELECTED_TENANT_KEY)
+  },
+
   clearSession(): void {
     this.removeToken()
     this.removeUser()
+    this.clearSelectedTenant()
   },
 }

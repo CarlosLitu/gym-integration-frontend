@@ -34,6 +34,45 @@ export default {
       boxShadow: {
         card: '0px 12px 32px 0px rgba(20, 33, 61, 0.08)',
       },
+      keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'fade-out': {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        'scale-in': {
+          '0%': { opacity: '0', transform: 'scale(0.4)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        'slide-in-left': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        'logo-scroll': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'orbit-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'orbit-spin-reverse': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(-360deg)' },
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 200ms ease-out',
+        'fade-out': 'fade-out 250ms ease-in forwards',
+        'scale-in': 'scale-in 280ms cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-in-left': 'slide-in-left 280ms cubic-bezier(0.16, 1, 0.3, 1)',
+        'logo-scroll': 'logo-scroll 30s linear infinite',
+        'orbit-spin': 'orbit-spin 12s linear infinite',
+        'orbit-spin-reverse': 'orbit-spin-reverse 12s linear infinite',
+      },
     },
   },
   plugins: [],

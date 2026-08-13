@@ -1,30 +1,28 @@
-import { useEffect, useState } from 'react'
-import { getMetricsRequest } from '../api/get-metrics'
-import type { DashboardMetrics } from '../api/get-metrics'
+import { useSelectedTenant } from '@/features/tenants/hooks/useSelectedTenant'
+import { useDateRange } from './useDateRange'
+import { useSalesKpis } from './useSalesKpis'
+import { useSalesSeries } from './useSalesSeries'
+import { useSalesBreakdown } from './useSalesBreakdown'
 
 export function useDashboardData() {
-  const [metrics, setMetrics] = useState<DashboardMetrics | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const { selectedTenantId } = useSelectedTenant()
+  const tenantId = selectedTenantId
 
-  useEffect(() => {
-    let isMounted = true
+  const dateRange = useDateRange('currentMonth')
+  const kpis = useSalesKpis(
+    tenantId,
+    dateRange.preset,
+    dateRange.granularity,
+    dateRange.range,
+  )
+  const series = useSalesSeries(tenantId, dateRange.granularity, dateRange.range)
+  const breakdown = useSalesBreakdown(tenantId, dateRange.granularity, dateRange.range)
 
-    getMetricsRequest()
-      .then((data) => {
-        if (isMounted) setMetrics(data)
-      })
-      .catch(() => {
-        if (isMounted) setError('Não foi possível carregar os dados do dashboard.')
-      })
-      .finally(() => {
-        if (isMounted) setIsLoading(false)
-      })
-
-    return () => {
-      isMounted = false
-    }
-  }, [])
-
-  return { metrics, isLoading, error }
+  return {
+    tenantId,
+    dateRange,
+    kpis,
+    series,
+    breakdown,
+  }
 }

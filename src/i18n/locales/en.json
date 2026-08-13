@@ -1,4 +1,9 @@
 {
+  "terms": {
+    "tenant": "gym",
+    "tenantCapitalized": "Gym",
+    "newPrefix": "New"
+  },
   "responses": {
     "HEALTH_OK": "Service is available",
     "ROUTE_NOT_FOUND": "Route not found",
@@ -14,6 +19,11 @@
     "AUTH_SESSION_NOT_FOUND": "Session not found. Please log in again.",
     "AUTH_USER_NOT_AUTHORIZED": "User not authorized",
     "AUTH_ADMIN_REQUIRED": "Administrator access required",
+    "AUTH_FORGOT_PASSWORD_REQUIRED_FIELDS": "Email is required",
+    "AUTH_FORGOT_PASSWORD_SUCCESS": "If the email is registered, you will receive instructions to reset your password.",
+    "AUTH_RESET_PASSWORD_REQUIRED_FIELDS": "Token and new password are required",
+    "AUTH_RESET_PASSWORD_INVALID_OR_EXPIRED": "Invalid or expired link. Request a new password reset.",
+    "AUTH_RESET_PASSWORD_SUCCESS": "Password reset successfully. Sign in with your new password.",
 
     "TENANT_LIST_SUCCESS": "Tenants listed successfully",
     "TENANT_FETCH_SUCCESS": "Tenant loaded successfully",
@@ -27,6 +37,7 @@
     "TENANT_NO_VALID_FIELDS_FOR_UPDATE": "No valid fields to update",
     "TENANT_REFERENCE_NOT_FOUND": "Tenant reference not found",
     "TENANT_CHILD_REFERENCE_NOT_FOUND": "Child tenant reference not found",
+    "TENANT_WHATSAPP_NOT_CONFIGURED": "Tenant WhatsApp is not configured yet",
 
     "USER_LIST_SUCCESS": "Users listed successfully",
     "USER_FETCH_SUCCESS": "User loaded successfully",
@@ -36,6 +47,7 @@
     "USER_NOT_FOUND": "User not found",
     "USER_REQUIRED_FIELDS": "Fill in the required user fields",
     "USER_INVALID_TYPE": "Invalid user type",
+    "USER_EMAIL_ALREADY_EXISTS": "This email is already registered",
 
     "WEBHOOK_RECEIVED_SUCCESS": "Webhook received successfully",
     "WEBHOOK_EVO_RECEIVED_SUCCESS": "EVO webhook received successfully",
@@ -44,20 +56,693 @@
     "WEBHOOK_GATEWAY_REGISTER_FAILED": "Failed to register webhook on gateway",
     "WEBHOOK_GATEWAY_REGISTER_SUCCESS": "Webhook registered on gateway successfully",
     "WEBHOOK_GATEWAY_DELETE_FAILED": "Failed to delete webhook from gateway",
-    "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook deleted from gateway successfully"
+    "WEBHOOK_GATEWAY_DELETE_SUCCESS": "Webhook deleted from gateway successfully",
+    "SALES_SYNC_WINDOW_NOT_ALLOWED": "Sync is only allowed between 00:00 and 03:00.",
+    "LEAD_REQUIRED_FIELDS": "Please fill in all required fields.",
+    "LEAD_INVALID_EMAIL": "Invalid email. Check the format and try again.",
+    "LEAD_INVALID_WHATSAPP": "Invalid WhatsApp number. Include the area code.",
+    "LEAD_TERMS_NOT_ACCEPTED": "You must accept the terms to continue.",
+    "LEAD_CREATE_SUCCESS": "Demo request sent successfully.",
+    "LEAD_RATE_LIMIT_EXCEEDED": "Too many attempts. Please wait a few minutes and try again.",
+    "WEBHOOK_WHATSAPP_SECRET_REQUIRED": "X-Webhook-Secret header is required",
+    "WEBHOOK_WHATSAPP_SECRET_INVALID": "Invalid X-Webhook-Secret header",
+    "WEBHOOK_WHATSAPP_RECEIVED_SUCCESS": "WhatsApp webhook received successfully",
+    "WHATSAPP_QR_CODE_FETCH_SUCCESS": "WhatsApp QR code loaded successfully",
+    "WHATSAPP_EVOLUTION_NOT_CONFIGURED": "Evolution API is not configured on the backend",
+    "WHATSAPP_INSTANCE_CREATE_FAILED": "Could not create the WhatsApp instance",
+    "WHATSAPP_INSTANCE_CONNECT_FAILED": "Could not generate the WhatsApp QR code",
+    "WHATSAPP_INSTANCE_RESET_FAILED": "Could not reset the WhatsApp session",
+    "WHATSAPP_SESSION_RESET_SUCCESS": "WhatsApp session reset successfully",
+    "WHATSAPP_WEBHOOK_CONFIG_FAILED": "Could not configure the WhatsApp webhook",
+    "WHATSAPP_CONNECTION_STATE_FETCH_FAILED": "Could not fetch the WhatsApp connection status",
+    "WHATSAPP_CONVERSATIONS_FETCH_SUCCESS": "WhatsApp conversations loaded successfully",
+    "WHATSAPP_MESSAGES_FETCH_SUCCESS": "WhatsApp messages loaded successfully",
+
+    "PAYMENT_REQUIRED_FIELDS": "Please fill in the required payment fields",
+    "PAYMENT_TRANSACTION_INVALID_FILTERS": "Invalid transaction filters",
+    "PAYMENT_ALREADY_PROCESSING": "A payment is already being processed",
+    "PAYMENT_PROVIDER_NOT_SUPPORTED": "Payment provider not supported",
+    "PAYMENT_INVALID_WEBHOOK_PAYLOAD": "Invalid payment webhook payload",
+    "PAYMENT_PROVIDER_NOT_CONFIGURED": "Payment provider not configured",
+    "PAYMENT_PLAN_NOT_CONFIGURED": "No payment plan configured",
+    "PAYMENT_PLAN_NOT_FOUND": "Payment plan not found",
+    "PAYMENT_PLAN_NAME_ALREADY_EXISTS": "A payment plan with this name already exists",
+    "PAYMENT_PLAN_INACTIVE": "This plan is inactive and cannot be purchased",
+    "PAYMENT_PLAN_ALREADY_PURCHASED": "You already have a transaction for this plan",
+    "PAYMENT_PLAN_PAYPAL_PROVISIONING_FAILED": "Could not provision the plan in PayPal",
+    "PAYMENT_PLAN_LOCKED_FIELDS_AFTER_PROVISIONING": "Value and duration cannot be changed after PayPal provisioning",
+    "PAYMENT_SUBSCRIPTION_CANCEL_SUCCESS": "Future subscription charges were cancelled successfully",
+    "PAYMENT_SUBSCRIPTION_NOT_ACTIVE": "There is no active subscription to cancel"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "notApplicable": "N/A",
+    "apply": "Apply",
+    "clearAll": "Clear all",
+    "filters": "Filters",
+    "filtersWithCount": "Filters ({{count}})",
+    "filtersTitle": "Filters",
+    "cancel": "Cancel",
+    "create": "Create",
+    "save": "Save",
+    "saving": "Saving...",
+    "actions": "Actions"
   },
   "auth": {
+    "backToHome": "Back to site",
+    "backToLogin": "Back to login",
     "loginSubtitle": "Sign in with your consultant or administrator account.",
     "emailLabel": "Email",
     "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm password",
     "emailPlaceholder": "you@company.com",
     "passwordPlaceholder": "••••••••",
+    "confirmPasswordPlaceholder": "Re-enter password",
     "submitLabel": "Sign in",
     "submittingLabel": "Signing in...",
     "forgotPassword": "Forgot your password?",
+    "forgotSubtitle": "Enter your email and we will send a link to reset your password.",
+    "forgotSubmitLabel": "Send link",
+    "forgotSubmittingLabel": "Sending...",
+    "forgotSuccess": "If the email is registered, you will receive instructions to reset your password.",
+    "resetSubtitle": "Choose a new password to access your account.",
+    "resetSubmitLabel": "Reset password",
+    "resetSubmittingLabel": "Resetting...",
+    "resetSuccess": "Password reset successfully. Sign in with your new password.",
+    "resetMissingToken": "Invalid or incomplete link. Request a new password reset.",
+    "requestNewLink": "Request a new link",
+    "goToLogin": "Go to login",
+    "passwordMismatch": "Passwords do not match",
+    "revealPassword": "Show password",
+    "hidePassword": "Hide password",
     "loginFailed": "Could not sign in. Please try again.",
     "requiredField": "Required field",
     "invalidEmail": "Invalid email. Check the format and try again.",
-    "registerSoon": "Registration coming soon"
+    "registerSoon": "Registration coming soon",
+    "logout": "Logout",
+    "loggingOut": "Signing out...",
+    "loggingIn": "Connecting...",
+    "loading": "Loading..."
+  },
+  "status": {
+    "unknown": "Unknown",
+    "connected": "Connected"
+  },
+  "nav": {
+    "chat": "Chat",
+    "dashboard": "Dashboard",
+    "userPlans": "View plans",
+    "settings": "Settings",
+    "reports": "Reports",
+    "support": "Support",
+    "users": "Users",
+    "paymentPlans": "Plans",
+    "paymentTransactions": "Transactions",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "copyright": "© {{year}} Pulse. All rights reserved."
+  },
+  "landing": {
+    "nav": {
+      "enter": "Sign in",
+      "requestDemo": "Request Demo",
+      "goToDashboard": "Go to dashboard"
+    },
+    "hero": {
+      "pill": "CT Invictus just joined +1,000 gyms.",
+      "pillMessages": {
+        "apexFitness": "Apex Fitness <bold>unified everything in Pulse!</bold>",
+        "pulsarGym": "Pulsar Gym <bold>centralized WhatsApp.</bold>",
+        "ctInvictus": "CT Invictus <bold>synced their system.</bold>",
+        "vibeFitness": "Vibe Fitness <bold>now uses a single screen.</bold>",
+        "impacto": "Impacto Fitness <bold>integrated their operation.</bold>",
+        "arenaBase": "Arena Base <bold>unified system and networks.</bold>",
+        "studioVigor": "Studio Vigor <bold>centralized management.</bold>"
+      },
+      "title": "The platform that <highlight>unifies</highlight> all of your<br/>gym's management and sales.",
+      "subtitle": "Stop jumping from tab to tab to cross-check data. Pulse centralizes your current system data and social contacts, delivering financial, commercial, and administrative control in a single screen.",
+      "ctaDemo": "Request Demo",
+      "ctaLogin": "Access My Account",
+      "dashboardAlt": "Pulse dashboard preview"
+    },
+    "carousel": {
+      "label": "Used by gym chains and independent studios across Brazil",
+      "ariaLabel": "Partner gym logos"
+    },
+    "product": {
+      "overline": "THE PRODUCT",
+      "title": "A complete view of your gym, synced in one place.",
+      "description": "Stop wasting time cross-checking information across different windows. Pulse connects the system your gym already uses with your support channels, centralizing everything into a single management view.",
+      "imageAlt": "Pulse product statistics",
+      "stats": {
+        "spreadsheets": {
+          "value": "1",
+          "valueSuffix": "single",
+          "label": "dashboard to cross-check information"
+        },
+        "cashFlow": {
+          "value": "Zero",
+          "label": "need to jump between tabs"
+        },
+        "billing": {
+          "value": "100%",
+          "label": "synced to your CRM and networks"
+        }
+      },
+      "features": {
+        "billing": {
+          "title": "System Integration",
+          "description": "Connect the platform you already use. See your gym's data integrated in one place, without switching systems."
+        },
+        "collection": {
+          "title": "Sales Funnels",
+          "description": "Bring together contacts from WhatsApp, Instagram, and Facebook. Get a complete sales funnel integrated with your current member base."
+        },
+        "retention": {
+          "title": "Lead Management",
+          "description": "Make your contacts visible and manageable. Track conversations and know exactly how many leads converted in clear dashboards."
+        },
+        "payments": {
+          "title": "Centralized View",
+          "description": "Keep your current system running. Pulse syncs commercial and administrative information into a single panel."
+        }
+      }
+    },
+    "potencialize": {
+      "overline": "SUPERCHARGE YOUR VIEW",
+      "title": "Your system and social networks,<br/>working together.",
+      "description": "Pulse pulls information from your current management system (like Next Fit, EVO, or Tecnofit) and combines it with contacts arriving via WhatsApp, Instagram, and Facebook. Everything becomes an integrated funnel so you can manage leads and conversions without leaving the screen.",
+      "dashboardAlt": "Pulse dashboard integrated with gym system"
+    },
+    "demo": {
+      "badge": "Free demo",
+      "title": "Discover Pulse's impact on your management.",
+      "description": "Book 30 minutes and see our platform in action with your own data. No canned demos — just your real problems being solved.",
+      "benefits": {
+        "noCard": "No credit card and no commitment.",
+        "dashboards": "Visual dashboards focused on revenue and retention.",
+        "integrations": "Live integration with EVO, Next Fit, Tecnofit, and WhatsApp.",
+        "cashFlow": "Uncover hidden opportunities in your cash flow."
+      },
+      "formTitle": "Request a demo",
+      "formSubtitle": "Fill in your details and we'll contact you to schedule.",
+      "fields": {
+        "name": "Name",
+        "gymName": "Gym",
+        "email": "Email",
+        "whatsapp": "WhatsApp",
+        "studentsRange": "Number of members"
+      },
+      "placeholders": {
+        "name": "Enter your name",
+        "gymName": "e.g. Forma Física Gym",
+        "email": "you@gym.com",
+        "whatsapp": "(00) 00000-0000",
+        "studentsRange": "Select an option..."
+      },
+      "studentRanges": {
+        "upTo100": "Up to 100 members",
+        "100to300": "100 to 300 members",
+        "300to1000": "300 to 1,000 members",
+        "1000plus": "More than 1,000 members"
+      },
+      "submit": "Request Demo",
+      "submitting": "Sending...",
+      "termsLabel": "I agree to the processing of my data so you can contact me about the demo.",
+      "footerNote": "No credit card · Response within 1 business day",
+      "success": "We received your request and our team already has it. We'll get back to you as soon as possible.",
+      "errors": {
+        "required": "Required field",
+        "invalidEmail": "Invalid email",
+        "invalidWhatsapp": "Invalid WhatsApp number. Include the area code.",
+        "termsRequired": "Please accept the terms to continue.",
+        "submitFailed": "Could not send your request. Please try again."
+      }
+    },
+    "footer": {
+      "tagline": "The synchronized command center for your gym.",
+      "usefulLinks": "Useful Links",
+      "home": "Home",
+      "product": "The Product",
+      "navigation": "Navigation",
+      "login": "Sign in",
+      "requestDemo": "Request Demo",
+      "contact": "Contact",
+      "email": "suporte@pulse.com.br",
+      "cnpj": "Tax ID: 00.000.000/0001-00",
+      "copyright": "© NOEV {{year}}. All rights reserved.",
+      "terms": "Terms of Use",
+      "privacy": "Privacy Policy"
+    }
+  },
+  "payments": {
+    "userPlans": {
+      "eyebrow": "Choose your plan",
+      "title": "View plans",
+      "subtitle": "Pick the best plan for your current needs and continue to checkout to complete your purchase.",
+      "currentPlanEyebrow": "Current gym plan",
+      "currentPlanValidity": "Valid until {{date}}",
+      "loading": "Loading available plans...",
+      "emptyTitle": "No plans available right now",
+      "emptySubtitle": "As soon as new plans are published, they will appear here for purchase.",
+      "fallbackName": "Unnamed plan",
+      "priceSubtitle": "Billing follows the rules of the selected plan",
+      "permissionsTitle": "Included benefits",
+      "noPermissions": "This plan does not have any additional permissions configured.",
+      "multipleAllowed": "Can be purchased more than once",
+      "multipleBlocked": "One purchase per gym",
+      "selectAction": "Choose plan",
+      "selecting": "Redirecting...",
+      "redirectError": "Could not start checkout for this plan.",
+      "cancelSubscriptionTitle": "Cancel auto-renewal",
+      "cancelSubscriptionConfirm": "Do you want to cancel future charges for this subscription? Current access remains active until the current validity date.",
+      "cancelSubscriptionAction": "Cancel future charges",
+      "cancellingSubscription": "Cancelling...",
+      "cancellationScheduled": "Auto-renewal cancelled. The plan stays active until the current validity date.",
+      "types": {
+        "subscription": "Subscription",
+        "oneTime": "One-time"
+      }
+    },
+    "plans": {
+      "title": "Payment plans",
+      "subtitle": "Manage active and inactive plans available for purchase",
+      "newPlan": "New plan",
+      "create": {
+        "back": "Back to plans",
+        "title": "Create payment plan",
+        "subtitle": "Register a new plan following the same visual pattern as the admin panel"
+      },
+      "searchPlaceholder": "Search by name...",
+      "filterPlaceholder": "Filter by status",
+      "filters": {
+        "all": "All",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "loading": "Loading plans...",
+      "empty": "No plans found",
+      "active": "Active",
+      "inactive": "Inactive",
+      "createdAt": "Created at {{date}}",
+      "durationDays": "{{days}} days",
+      "durationMonthsSingular": "{{months}} month",
+      "durationMonthsPlural": "{{months}} months",
+      "flags": "Type: {{type}} • Multiple: {{multiple}}",
+      "columns": {
+        "name": "Name",
+        "value": "Value",
+        "duration": "Duration",
+        "type": "Type",
+        "multiple": "Multiple",
+        "status": "Status"
+      },
+      "technical": {
+        "title": "Technical data",
+        "subtitle": "Identifiers synced automatically with PayPal",
+        "paypalProductId": "PayPal product id",
+        "paypalPlanId": "PayPal plan id"
+      },
+      "status": {
+        "activateTitle": "Activate plan",
+        "activateConfirm": "Do you want to activate plan {{name}}?",
+        "activateAction": "Activate",
+        "activating": "Activating...",
+        "deactivateTitle": "Deactivate plan",
+        "deactivateConfirm": "Do you want to deactivate plan {{name}}?",
+        "deactivateAction": "Deactivate",
+        "deactivating": "Deactivating..."
+      },
+      "edit": {
+        "back": "Back to plans",
+        "title": "Edit plan",
+        "subtitle": "Update allowed fields and inspect provider technical identifiers",
+        "action": "Edit",
+        "loading": "Loading plan...",
+        "notFound": "Plan not found",
+        "lockedFieldsHint": "Value, duration, and month count are locked after the plan is provisioned in PayPal."
+      },
+      "form": {
+        "createTitle": "New plan",
+        "editTitle": "Edit plan",
+        "name": "Plan name",
+        "namePlaceholder": "Ex: Premium Monthly Plan",
+        "value": "Value",
+        "currency": "Currency",
+        "durationDays": "Duration (days)",
+        "maxBillingCycles": "Number of months",
+        "type": "Type",
+        "typePlaceholder": "Select a type",
+        "types": {
+          "ONE_TIME": "One-time purchase",
+          "SUBSCRIPTION": "Subscription"
+        },
+        "permissions": "Permissions",
+        "permissionsPlaceholder": "Ex: payments.read,sales.read",
+        "allowMultiplePurchases": "Allow multiple purchases",
+        "subscriptionBillingHint": "Subscriptions are billed every 30 days. Enter how many months the billing should last.",
+        "errors": {
+          "name": "Enter the plan name",
+          "value": "Enter a valid value",
+          "currency": "Enter a currency",
+          "durationDays": "Enter a valid duration",
+          "maxBillingCycles": "Enter a valid number of months",
+          "type": "Select a type"
+        }
+      }
+    },
+    "transactions": {
+      "title": "Transactions",
+      "subtitle": "Track payment transactions with filters and pagination",
+      "details": "Details",
+      "detailsTitle": "Transaction details",
+      "detailsAccessStart": "Access start",
+      "detailsAccessEnd": "Access end",
+      "openFilters": "Filters",
+      "openFiltersWithCount": "Filters ({{count}})",
+      "searchPlaceholder": "Search by user name...",
+      "applyFilters": "Apply filters",
+      "loading": "Loading transactions...",
+      "empty": "No transactions found",
+      "columns": {
+        "purchasedAt": "Date",
+        "status": "Status",
+        "provider": "Provider",
+        "amount": "Amount",
+        "userId": "User",
+        "plan": "Plan",
+        "access": "Access"
+      },
+      "filters": {
+        "modalTitle": "Filters",
+        "provider": "Provider",
+        "providerPlaceholder": "All",
+        "status": "Status",
+        "statusPlaceholder": "All",
+        "limit": "Items",
+        "userQuery": "User",
+        "userQueryPlaceholder": "Name, email or phone",
+        "paymentPlanId": "Plan",
+        "paymentPlanIdPlaceholder": "All",
+        "startDate": "Start",
+        "endDate": "End"
+      },
+      "mobile": {
+        "order": "Order",
+        "user": "User",
+        "plan": "Plan",
+        "access": "Access"
+      }
+    }
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Manage users for {{tenant}}",
+    "createSubtitle": "Create a new user for {{tenant}}",
+    "editSubtitle": "Edit user details for {{tenant}}",
+    "backToList": "Back to users",
+    "notFound": "User not found",
+    "newUser": "New user",
+    "edit": "Edit",
+    "searchPlaceholder": "Search by name or email...",
+    "sortAz": "A-Z",
+    "sortNewest": "Newest first",
+    "sortOldest": "Oldest first",
+    "count": "{{total}} users",
+    "loading": "Loading users...",
+    "empty": "No users found",
+    "noTenantSelected": "Select a gym to view users",
+    "columns": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "createdAt": "Created at",
+      "actions": "Actions"
+    },
+    "roles": {
+      "ADMIN": "Administrator",
+      "USER": "User"
+    },
+    "form": {
+      "createTitle": "New user",
+      "editTitle": "Edit user",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "role": "Role",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "reveal": "Show password",
+      "hide": "Hide password",
+      "requiredHint": "All required fields must be filled in",
+      "aside": {
+        "tenant": "Gym",
+        "roleTitle": "Access level",
+        "adminHint": "Can manage users and gym settings.",
+        "userHint": "Access to day-to-day operational features."
+      },
+      "sections": {
+        "identity": "Identity",
+        "identityHint": "Name and email used to access the platform",
+        "security": "Access password",
+        "securityHint": "Set a strong password for the new user",
+        "permission": "Permission",
+        "permissionHint": "Choose this user's access level"
+      },
+      "placeholders": {
+        "name": "e.g. John Smith",
+        "email": "user@gym.com",
+        "password": "Enter password",
+        "confirmPassword": "Re-enter password"
+      },
+      "errors": {
+        "passwordMismatch": "Passwords do not match"
+      },
+      "passwordRequirements": {
+        "title": "Password requirements",
+        "subtitle": "Please follow this guide for a strong password",
+        "minLength": "At least 8 characters",
+        "uppercase": "At least one uppercase letter (A-Z)",
+        "lowercase": "At least one lowercase letter (a-z)",
+        "number": "At least one number (0-9)",
+        "special": "At least one special character (!@#$%^&* etc.)"
+      }
+    },
+    "deactivate": {
+      "title": "Deactivate user",
+      "confirm": "Are you sure you want to deactivate {{name}}? This cannot be undone from the UI.",
+      "action": "Deactivate",
+      "deactivating": "Deactivating..."
+    }
+  },
+  "tenant": {
+    "lastEvent": "Last event {{time}}",
+    "noEvent": "No events received yet",
+    "changeTenant": "Change $t(terms.tenantCapitalized)",
+    "currentPlanLabel": "Current plan: {{plan}} • {{value}} • {{duration}}"
+  },
+  "tenants": {
+    "title": "Gyms",
+    "newTenant": "$t(terms.newPrefix) $t(terms.tenant)",
+    "searchPlaceholder": "Search by name, city or gym ID...",
+    "sortAz": "A-Z",
+    "count": "{{total}} gyms",
+    "showing": "Showing {{shown}} of {{total}}",
+    "loading": "Loading gyms...",
+    "empty": "No gyms found",
+    "edit": "Edit",
+    "sync": "Sync",
+    "selected": "Selected gym: {{name}}",
+    "selectTenant": "Select {{name}}",
+    "syncFeedback": {
+      "loading": "Syncing...",
+      "started": "Sync started",
+      "running": "Sync already in progress"
+    },
+    "statusLabels": {
+      "INTEGRATION_PENDING": "Integration pending",
+      "INVALID_CREDENTIALS": "Invalid credentials",
+      "WAITING_EVENTS": "Waiting for events",
+      "CONNECTED": "Connected"
+    },
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "filters": {
+      "all": "All",
+      "connected": "Connected",
+      "waiting": "Waiting",
+      "error": "Error",
+      "pending": "Pending"
+    },
+    "create": {
+      "back": "Back",
+      "title": "Add Gym",
+      "next": "Next",
+      "reveal": "Show",
+      "hide": "Hide",
+      "integrationNote": "These credentials come from the gym's own EVO panel. They are only used to authenticate and register the webhook – they are not shown again after being saved.",
+      "testConnection": "Test connection",
+      "testing": "Testing...",
+      "testSuccess": "Connection validated successfully",
+      "testError": "Connection failed. Check the API Key and API Secret.",
+      "createGym": "Create Gym",
+      "creating": "Creating...",
+      "createHint": "We recommend testing the connection before creating.",
+      "confirmNoTest": {
+        "title": "Create without testing the connection?",
+        "message": "You are about to save without testing the connection. Do you want to continue?",
+        "confirm": "Continue",
+        "cancel": "Cancel"
+      },
+      "steps": {
+        "data": "Gym details",
+        "integration": "Integration"
+      },
+      "fields": {
+        "name": "Gym name",
+        "cnpj": "Tax ID",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "city": "City",
+        "state": "State",
+        "gateway": "Gateway",
+        "apiKey": "API Key",
+        "apiSecret": "API Secret"
+      },
+      "placeholders": {
+        "name": "Ex: Academia Vitta",
+        "cnpj": "00.000.000/0001-00",
+        "phone": "(00) 00000-0000",
+        "email": "contact@gym.com",
+        "address": "Street, number, district",
+        "city": "City",
+        "state": "State",
+        "token": "evo_tk_...",
+        "apiKey": "evo_key_...",
+        "apiSecret": "••••••••••••"
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Sales overview for the gym",
+    "presets": {
+      "currentMonth": "This month",
+      "lastMonth": "Last month",
+      "last7Days": "7 days",
+      "last30Days": "30 days",
+      "last12Months": "12 months"
+    },
+    "granularity": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month"
+    },
+    "kpis": {
+      "revenue": "Revenue",
+      "paid": "Received",
+      "pending": "Pending",
+      "pendingInfo": "Overdue: {{rate}} of the selected period revenue",
+      "salesCount": "Sales",
+      "averageTicket": "Average ticket",
+      "averageTicketInfo": "Calculated as revenue divided by number of sales",
+      "collectionRate": "Collection rate"
+    },
+    "series": {
+      "revenue": "Revenue",
+      "paid": "Received",
+      "pending": "Pending",
+      "sales": "Sales",
+      "averageTicket": "Average ticket",
+      "defaultRate": "Overdue",
+      "new": "New",
+      "renewal": "Renewals",
+      "total": "Total",
+      "value": "Value",
+      "share": "Share",
+      "transactions": "Transactions",
+      "quantity": "Quantity"
+    },
+    "charts": {
+      "revenue": {
+        "title": "Revenue over time",
+        "subtitle": "Total revenue and received value",
+        "info": "Total revenue (area) and value actually received (line) per period."
+      },
+      "paidVsPending": {
+        "title": "Received x Pending",
+        "subtitle": "Billing health",
+        "info": "Comparison between received and pending amounts per period."
+      },
+      "paymentMethods": {
+        "title": "Payment methods",
+        "subtitle": "Distribution by method",
+        "info": "Value per payment method, aggregated from the period's sales."
+      },
+      "newVsRenewal": {
+        "title": "New x Renewals",
+        "subtitle": "Acquisition vs retention",
+        "info": "Number of new enrollments and renewals per period."
+      },
+      "plans": {
+        "title": "Plan mix",
+        "subtitle": "Revenue by plan/product",
+        "info": "Top plans and products by revenue in the period."
+      },
+      "sellers": {
+        "title": "Sellers ranking",
+        "subtitle": "Revenue by seller",
+        "info": "Top sellers by revenue in the period."
+      },
+      "whatsapp": {
+        "title": "Tenant WhatsApp",
+        "subtitle": "QR Code connection for the current instance",
+        "info": "Loads the tenant instance QR code from Evolution API and keeps the per-tenant webhook configured.",
+        "noTenantSelected": "Select a gym to load the WhatsApp QR code",
+        "instanceName": "Instance",
+        "connectionState": "Connection state",
+        "pairingCode": "Pairing code",
+        "refreshButton": "Refresh QR code",
+        "refreshStatusButton": "Refresh connection",
+        "resetting": "Resetting session...",
+        "refreshing": "Refreshing...",
+        "qrHelp": "Scan this QR code in WhatsApp to connect the selected gym instance.",
+        "connectedHelp": "This tenant instance is already connected to WhatsApp.",
+        "connectedNoQr": "Instance already connected. No QR code is required right now.",
+        "waitingQr": "Waiting for the QR code to be generated.",
+        "qrUnavailable": "The backend queried the instance, but Evolution API did not return a QR code image in this attempt.",
+        "qrAlt": "Gym WhatsApp QR code",
+        "status": {
+          "DISCONNECTED": "Disconnected",
+          "CONNECTING": "Connecting",
+          "QRCODE": "Waiting for QR scan",
+          "CONNECTED": "Connected",
+          "ERROR": "Error"
+        }
+      }
+    }
+  },
+  "chat": {
+    "title": "Chat",
+    "subtitle": "Conversations received via WhatsApp for {{tenant}}",
+    "searchPlaceholder": "Search by name, phone or message...",
+    "refresh": "Refresh",
+    "showMore": "Show more",
+    "loadingMore": "Loading more...",
+    "noTenantSelected": "Select a gym to view conversations",
+    "activeConversation": "Active conversation: {{contact}}",
+    "conversationsCount": "{{shown}} of {{total}} conversations",
+    "messagesCount": "{{shown}} of {{total}} messages",
+    "emptyConversations": "No conversations found for this tenant.",
+    "emptyConversationSelection": "Select a conversation to view messages.",
+    "emptyMessages": "No messages found for this conversation.",
+    "loadingMessages": "Loading messages..."
   }
 }

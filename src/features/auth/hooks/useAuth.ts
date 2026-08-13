@@ -1,5 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react'
 import { storage } from '@/services/storage'
+import { logoutRequest } from '../api/logout'
 import type { UserSession } from '../types/auth.types'
 
 const AUTH_CHANGED_EVENT = 'auth-changed'
@@ -23,9 +24,15 @@ export function useAuth() {
 
   const isAuthenticated = Boolean(token)
 
-  const logout = useCallback(() => {
-    storage.clearSession()
-    window.dispatchEvent(new Event(AUTH_CHANGED_EVENT))
+  const logout = useCallback(async () => {
+    try {
+      await logoutRequest()
+    } catch {
+      // Best-effort: ignora falha de rede ou 401 (sessao ja expirada).
+    } finally {
+      storage.clearSession()
+      window.dispatchEvent(new Event(AUTH_CHANGED_EVENT))
+    }
   }, [])
 
   return {

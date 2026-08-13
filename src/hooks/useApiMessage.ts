@@ -3,6 +3,15 @@ import axios from 'axios'
 import { useTranslation } from 'react-i18next'
 import type { ApiResponseCode } from '@/i18n/response-codes'
 
+function isDuplicateEmailMessage(message: string): boolean {
+  const normalized = message.toLowerCase()
+
+  return (
+    normalized.includes('dup key') &&
+    (normalized.includes('email') || normalized.includes('email_1'))
+  )
+}
+
 export function useApiMessage() {
   const { t } = useTranslation()
 
@@ -22,6 +31,10 @@ export function useApiMessage() {
         const message = error.response?.data?.message
 
         if (typeof message === 'string' && message.length > 0) {
+          if (isDuplicateEmailMessage(message)) {
+            return translateResponse('USER_EMAIL_ALREADY_EXISTS')
+          }
+
           return translateResponse(message)
         }
       }
