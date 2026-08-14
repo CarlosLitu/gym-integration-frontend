@@ -274,6 +274,7 @@ export function PaymentPlanEditPage() {
                   type="button"
                   size="sm"
                   variant={offerValues.isActive ? 'active' : 'outline'}
+                  className="rounded-pill"
                   onClick={() => setOfferField('isActive', true)}
                   disabled={isSavingOffer || isDeletingOffer}
                 >
@@ -283,6 +284,7 @@ export function PaymentPlanEditPage() {
                   type="button"
                   size="sm"
                   variant={!offerValues.isActive ? 'active' : 'outline'}
+                  className="rounded-pill"
                   onClick={() => setOfferField('isActive', false)}
                   disabled={isSavingOffer || isDeletingOffer}
                 >
@@ -301,6 +303,7 @@ export function PaymentPlanEditPage() {
                     type="button"
                     variant="outline"
                     size="md"
+                    className="rounded-pill"
                     onClick={handleDeleteOffer}
                     disabled={isSavingOffer || isDeletingOffer}
                   >

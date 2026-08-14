@@ -135,7 +135,7 @@ export function UserPaymentPlansPage() {
             </div>
           ) : null}
           <div className="mt-4 flex justify-end">
-            <Button type="button" variant="outline" size="md" onClick={() => navigate('/plans/upgrade')}>
+            <Button type="button" variant="outline" size="md" className="rounded-pill" onClick={() => navigate('/plans/upgrade')}>
               {t('payments.userPlans.upgradeSubscriptionAction')}
             </Button>
           </div>
