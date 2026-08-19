@@ -80,7 +80,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ "${{ github.ref_name }}" = "main" ]; then
-            echo "url=https://api.noev.io" >> "$GITHUB_OUTPUT"
+            echo "url=https://api.pulse.noev.io" >> "$GITHUB_OUTPUT"
           else
             echo "url=https://gym-integration-api-test.duckdns.org" >> "$GITHUB_OUTPUT"
           fi
@@ -154,7 +154,7 @@ jobs:
             NS="prod-environment"
             RELEASE="gym-integration-frontend"
             HOST="${{ vars.PRODUCTION_GYM_FRONTEND_INGRESS_HOST }}"
-            HOST="${HOST:-noev.io}"
+            HOST="${HOST:-pulse.noev.io}"
           elif [ "$BRANCH" = "development" ]; then
             TAG="development"
             NS="test-environment"
