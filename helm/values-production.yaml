@@ -4,9 +4,7 @@ imagePullSecrets:
   - name: dockerhub
 
 ingress:
-  host: noev.io
-  extraHosts:
-    - www.noev.io
+  host: pulse.noev.io
   issuer: letsencrypt-prod
   tls:
     enabled: true
