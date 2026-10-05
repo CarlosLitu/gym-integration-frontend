@@ -82,7 +82,7 @@ jobs:
           if [ "${{ github.ref_name }}" = "main" ]; then
             echo "url=https://api.pulse.noev.io" >> "$GITHUB_OUTPUT"
           else
-            echo "url=https://gym-integration-api-test.duckdns.org" >> "$GITHUB_OUTPUT"
+            echo "url=https://gym-integration-api.duckdns.org" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build and push
